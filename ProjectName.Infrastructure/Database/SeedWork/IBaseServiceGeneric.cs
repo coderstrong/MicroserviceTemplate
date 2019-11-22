@@ -1,20 +1,23 @@
-﻿using ProjectName.Infrastructure.Database;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ProjectName.Infrastructure.Database
 {
-    public interface IBaseServiceGeneric<T> : IDisposable where T : BaseModel
+    public interface IBaseServiceGeneric<C, E> : IDisposable
+        where C : IContext
+        where E : BaseModel
     {
-        Task<T> GetOneAsync(object key);
+        Task<E> GetOneAsync(object key);
 
-        Task<List<T>> GetAllAsync(int top = 0, int skip = -1);
+        Task<List<E>> GetAllAsync(int top = 0, int skip = -1);
 
-        void Insert(T entity);
+        void Insert(E entity);
 
-        void Update(T entity);
+        void InsertRange(IEnumerable<E> entity);
 
-        void Delete(T entity);
+        void Update(E entity);
+
+        void Delete(object key);
     }
 }

@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 
 namespace ProjectName.Infrastructure.Database
 {
-    public interface IUnitOfWorkGeneric<T> where T : DbContext, IContext, IDisposable
+    public interface IUnitOfWorkGeneric<C> where C : DbContext, IContext, IDisposable
     {
-        T GetContext(bool isMultiThread = false);
+        C GetContext(bool isMultiThread = false);
 
         void Dispose();
 

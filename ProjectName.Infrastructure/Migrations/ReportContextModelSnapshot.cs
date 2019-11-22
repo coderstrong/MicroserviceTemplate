@@ -3,17 +3,15 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjectName.Infrastructure.Database;
 
 namespace ProjectName.Infrastructure.Migrations
 {
-    [DbContext(typeof(ProfileContext))]
-    [Migration("20191122031753_InitialCreate")]
-    partial class InitialCreate
+    [DbContext(typeof(ReportContext))]
+    partial class ReportContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,7 +19,7 @@ namespace ProjectName.Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("ProjectName.Infrastructure.Database.Contract", b =>
+            modelBuilder.Entity("ProjectName.Infrastructure.Database.Report", b =>
                 {
                     b.Property<long?>("Id")
                         .ValueGeneratedOnAdd()
@@ -95,10 +93,10 @@ namespace ProjectName.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Contracts");
+                    b.ToTable("Reports");
                 });
 
-            modelBuilder.Entity("ProjectName.Infrastructure.Database.Employee", b =>
+            modelBuilder.Entity("ProjectName.Infrastructure.Database.User", b =>
                 {
                     b.Property<long?>("Id")
                         .ValueGeneratedOnAdd()
@@ -120,19 +118,8 @@ namespace ProjectName.Infrastructure.Migrations
                     b.Property<string>("FirstName")
                         .HasMaxLength(20);
 
-                    b.Property<string>("FullName")
-                        .HasMaxLength(60);
-
                     b.Property<string>("LastName")
                         .HasMaxLength(20);
-
-                    b.Property<string>("MiddleName")
-                        .HasMaxLength(20);
-
-                    b.Property<string>("Title")
-                        .HasMaxLength(60);
-
-                    b.Property<int?>("TitleId");
 
                     b.Property<DateTime?>("UpdatedAt");
 
@@ -141,7 +128,7 @@ namespace ProjectName.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Employees");
+                    b.ToTable("Users");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using ProjectName.Bussiness.Services;
 using ProjectName.Infrastructure.Database;
 
 namespace ProjectName.Api.Infrastructure
@@ -7,7 +8,7 @@ namespace ProjectName.Api.Infrastructure
     {
         public static IServiceCollection LoadServices(this IServiceCollection services)
         {
-            services.AddTransient(typeof(IBaseServiceGeneric<>), typeof(BaseServiceGeneric<>));
+            services.AddTransient(typeof(IBaseServiceGeneric<,>), typeof(BaseServiceGeneric<,>));
             // add more Service here
 
             return services;

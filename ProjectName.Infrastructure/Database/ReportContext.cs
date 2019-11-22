@@ -4,13 +4,13 @@ using System.Threading.Tasks;
 
 namespace ProjectName.Infrastructure.Database
 {
-    public class ProfileContext : DbContext, IContext, IDisposable
+    public class ReportContext : DbContext, IContext, IDisposable
     {
-        public virtual DbSet<Employee> Employees { get; set; }
+        public virtual DbSet<Report> Reports { get; set; }
 
-        public virtual DbSet<Contract> Contracts { get; set; }
+        public virtual DbSet<User> Users { get; set; }
 
-        public ProfileContext(DbContextOptions<ProfileContext> options) : base(options)
+        public ReportContext(DbContextOptions<ReportContext> options) : base(options)
         {
         }
 
@@ -33,10 +33,10 @@ namespace ProjectName.Infrastructure.Database
             return await base.SaveChangesAsync();
         }
 
-        public ProfileContext CreateDbContext(string[] args)
+        public ReportContext CreateDbContext(string[] args)
         {
-            var builder = new DbContextOptionsBuilder<ProfileContext>();
-            return new ProfileContext(builder.Options);
+            var builder = new DbContextOptionsBuilder<ReportContext>();
+            return new ReportContext(builder.Options);
         }
     }
 }

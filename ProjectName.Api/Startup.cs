@@ -27,10 +27,15 @@ namespace ProjectName.Api
         {
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-            var CoreContext = new ServiceDescriptor(typeof(DbContextOptions<ProfileContext>), ProfileContextFactory, ServiceLifetime.Scoped);
-            services.Replace(CoreContext);
+            services.CreateProfileDbContext();
 
-            services.CreateDefaultDbContext();
+            // DB Context
+            var ProfileContext = new ServiceDescriptor(typeof(DbContextOptions<ProfileContext>), ProfileContextFactory, ServiceLifetime.Scoped);
+            services.Replace(ProfileContext);
+            var ReportContext = new ServiceDescriptor(typeof(DbContextOptions<ReportContext>), ReportContextFactory, ServiceLifetime.Scoped);
+            services.Replace(ReportContext);
+            ConfigureContext(services);
+
             services.LoadServices();
             // Add Swagger
             SwaggerConfig.RegisterSwaggerServices(services);
@@ -55,11 +60,29 @@ namespace ProjectName.Api
             app.UseMvc();
         }
 
-        public DbContextOptions<ProfileContext> ProfileContextFactory(IServiceProvider provider)
+        private void ConfigureContext(IServiceCollection services)
         {
-            string connectionString = Configuration.GetSection("ConnectionStrings:CoreConnection").Value;
+            services.CreateProfileDbContext();
+            services.CreateReportDbContext();
+        }
+
+        private DbContextOptions<ProfileContext> ProfileContextFactory(IServiceProvider provider)
+        {
+            string connectionString = Configuration.GetSection("ConnectionStrings:ProfileConnection").Value;
 
             var optionsBuilder = new DbContextOptionsBuilder<ProfileContext>();
+            if (!String.IsNullOrEmpty(connectionString))
+            {
+                optionsBuilder.UseSqlServer(connectionString);
+            }
+            return optionsBuilder.Options;
+        }
+
+        private DbContextOptions<ReportContext> ReportContextFactory(IServiceProvider provider)
+        {
+            string connectionString = Configuration.GetSection("ConnectionStrings:ReportConnection").Value;
+
+            var optionsBuilder = new DbContextOptionsBuilder<ReportContext>();
             if (!String.IsNullOrEmpty(connectionString))
             {
                 optionsBuilder.UseSqlServer(connectionString);
