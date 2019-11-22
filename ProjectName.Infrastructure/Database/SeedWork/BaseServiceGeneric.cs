@@ -18,20 +18,20 @@ namespace ProjectName.Infrastructure.Database
             _unitOfWork.Repository<T>().Remove(entity);
         }
 
-        public async Task<List<T>> GetAll(int top = 0, int skip = 20)
+        public async Task<List<T>> GetAllAsync(int top = 0, int skip = 20)
         {
             if (top > 0)
             {
-                return await _unitOfWork.Repository<T>().OrderBy(x => x.Id).Skip(skip).Take(top).ToListAsync();
+                return await _unitOfWork.Repository<T>().OrderBy(x => x.Id).Skip(skip).Take(top).AsNoTracking().ToListAsync();
             }
             else
             {
-                return await _unitOfWork.Repository<T>().ToListAsync();
+                return await _unitOfWork.Repository<T>().AsNoTracking().ToListAsync();
             }
 
         }
 
-        public async Task<T> GetOne(object key)
+        public async Task<T> GetOneAsync(object key)
         {
             return await _unitOfWork.Repository<T>().FindAsync(key);
         }

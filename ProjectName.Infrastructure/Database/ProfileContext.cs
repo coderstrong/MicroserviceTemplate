@@ -1,12 +1,11 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using System;
+using System.Threading.Tasks;
 
 namespace ProjectName.Infrastructure.Database
 {
-    public class ProfileContext : DbContext, IContext, IDisposable, IDesignTimeDbContextFactory<ProfileContext>
+    public class ProfileContext : DbContext, IContext, IDisposable
     {
         public virtual DbSet<Employee> Employees { get; set; }
 
@@ -18,16 +17,6 @@ namespace ProjectName.Infrastructure.Database
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Employee>()
-                .HasIndex(x => x.Code).IsUnique();
-
-            modelBuilder.Entity<Contract>()
-                .HasIndex(x => x.Id);
-        }
-
-        public T CreateDbContext<T>(IOptions<ConnectionStringsSetting> connOptions) where T : class
-        {
-            return CreateDbContext(new string[] { connOptions.Value.CoreConnection }) as T;
         }
 
         public DbSet<T> Repository<T>() where T : class

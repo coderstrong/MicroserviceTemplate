@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ProjectName.Infrastructure.Database;
 using System.Collections.Generic;
 
 namespace ProjectName.Api.Controllers
@@ -7,6 +8,11 @@ namespace ProjectName.Api.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+
+        public ValuesController(IBaseServiceGeneric<Employee> test)
+        {
+        }
+
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()

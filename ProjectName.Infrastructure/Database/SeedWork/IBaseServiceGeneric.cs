@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace ProjectName.Infrastructure.Database
 {
-    interface IBaseServiceGeneric<T> : IDisposable where T : BaseModel
+    public interface IBaseServiceGeneric<T> : IDisposable where T : BaseModel
     {
-        Task<T> GetOne(object key);
+        Task<T> GetOneAsync(object key);
 
-        Task<List<T>> GetAll(int top = 0, int skip = -1);
+        Task<List<T>> GetAllAsync(int top = 0, int skip = -1);
 
         void Insert(T entity);
 

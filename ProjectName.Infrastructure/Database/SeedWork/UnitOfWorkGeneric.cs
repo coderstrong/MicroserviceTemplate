@@ -10,12 +10,10 @@ namespace ProjectName.Infrastructure.Database
         private bool disposed = false;
 
         private readonly T _dataContext;
-        private readonly IOptions<ConnectionStringsSetting> _connOptions;
 
-        public UnitOfWorkGeneric(T dataContext, IOptions<ConnectionStringsSetting> connOptions)
+        public UnitOfWorkGeneric(T dataContext)
         {
             _dataContext = dataContext;
-            _connOptions = connOptions;
         }
 
         public DbSet<TEntity> Repository<TEntity>() where TEntity : BaseModel
