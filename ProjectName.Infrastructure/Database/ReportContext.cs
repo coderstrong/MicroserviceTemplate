@@ -10,16 +10,12 @@ namespace ProjectName.Infrastructure.Database
         public ReportContext(DbContextOptions<ReportContext> options) : base(options)
         {
         }
-        public Guid OperationId
-        {
-            get { return OperationId; }
-            set { OperationId = OperationId == null ? Guid.NewGuid() : OperationId; }
-        }
+
         private IDbContextTransaction _transaction;
         public virtual DbSet<Report> Reports { get; set; }
 
         public virtual DbSet<User> Users { get; set; }
-
+        public Guid OperationId() { return this.ContextId.InstanceId; }
         public DbSet<T> Repository<T>() where T : class
         {
             return Set<T>();
@@ -28,12 +24,6 @@ namespace ProjectName.Infrastructure.Database
         public async Task<int> SaveChangesAsync()
         {
             return await base.SaveChangesAsync();
-        }
-
-        public ReportContext CreateDbContext(string[] args)
-        {
-            var builder = new DbContextOptionsBuilder<ReportContext>();
-            return new ReportContext(builder.Options);
         }
 
         public void BeginTransaction()

@@ -10,16 +10,12 @@ namespace ProjectName.Infrastructure.Database
         public ProfileContext(DbContextOptions<ProfileContext> options) : base(options)
         {
         }
-        public Guid OperationId
-        {
-            get { return OperationId; }
-            set { OperationId = OperationId == null ? Guid.NewGuid() : OperationId; }
-        }
+
         private IDbContextTransaction _transaction;
         public virtual DbSet<Employee> Employees { get; set; }
 
         public virtual DbSet<Contract> Contracts { get; set; }
-        
+        public Guid OperationId() { return this.ContextId.InstanceId; }
 
         public DbSet<T> Repository<T>() where T : class
         {
@@ -29,12 +25,6 @@ namespace ProjectName.Infrastructure.Database
         public async Task<int> SaveChangesAsync()
         {
             return await base.SaveChangesAsync();
-        }
-
-        public ProfileContext CreateDbContext(string[] args)
-        {
-            var builder = new DbContextOptionsBuilder<ProfileContext>();
-            return new ProfileContext(builder.Options);
         }
 
         public void BeginTransaction()

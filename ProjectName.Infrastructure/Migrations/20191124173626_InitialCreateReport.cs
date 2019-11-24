@@ -1,19 +1,18 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 
 namespace ProjectName.Infrastructure.Migrations
 {
-    public partial class InitialCreateProfile : Migration
+    public partial class InitialCreateReport : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Contracts",
+                name: "Reports",
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedAt = table.Column<DateTime>(nullable: true),
                     UpdatedAt = table.Column<DateTime>(nullable: true),
                     DeletedAt = table.Column<DateTime>(nullable: true),
@@ -43,15 +42,15 @@ namespace ProjectName.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Contracts", x => x.Id);
+                    table.PrimaryKey("PK_Reports", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Employees",
+                name: "Users",
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedAt = table.Column<DateTime>(nullable: true),
                     UpdatedAt = table.Column<DateTime>(nullable: true),
                     DeletedAt = table.Column<DateTime>(nullable: true),
@@ -60,25 +59,21 @@ namespace ProjectName.Infrastructure.Migrations
                     DeletedBy = table.Column<string>(maxLength: 20, nullable: true),
                     Code = table.Column<string>(maxLength: 20, nullable: true),
                     FirstName = table.Column<string>(maxLength: 20, nullable: true),
-                    LastName = table.Column<string>(maxLength: 20, nullable: true),
-                    MiddleName = table.Column<string>(maxLength: 20, nullable: true),
-                    FullName = table.Column<string>(maxLength: 60, nullable: true),
-                    TitleId = table.Column<int>(nullable: true),
-                    Title = table.Column<string>(maxLength: 60, nullable: true)
+                    LastName = table.Column<string>(maxLength: 20, nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Employees", x => x.Id);
+                    table.PrimaryKey("PK_Users", x => x.Id);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Contracts");
+                name: "Reports");
 
             migrationBuilder.DropTable(
-                name: "Employees");
+                name: "Users");
         }
     }
 }

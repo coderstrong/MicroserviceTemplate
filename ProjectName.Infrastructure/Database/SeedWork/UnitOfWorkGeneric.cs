@@ -17,7 +17,7 @@ namespace ProjectName.Infrastructure.Database
         {
             _dataContext = dataContext;
             _logger = logger;
-            _logger.LogInformation(_dataContext.OperationId.ToString());
+            _logger.LogInformation(_dataContext.OperationId().ToString());
         }
 
         public DbSet<TEntity> Repository<TEntity>() where TEntity : BaseModel

@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace ProjectName.Api.Helper
 {
-
     public static class GenericTypeExtensions
     {
         public static string GetGenericTypeName(this Type type)
@@ -30,5 +27,4 @@ namespace ProjectName.Api.Helper
             return @object.GetType().GetGenericTypeName();
         }
     }
-
 }

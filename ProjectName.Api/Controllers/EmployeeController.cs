@@ -10,8 +10,8 @@ namespace ProjectName.Api.Controllers
     [ApiController]
     public class EmployeeController : ControllerBase
     {
-        private IBaseServiceGeneric<ProfileContext, Employee> _employee;
-        private ILogger<EmployeeController> _logger;
+        private readonly IBaseServiceGeneric<ProfileContext, Employee> _employee;
+        private readonly ILogger<EmployeeController> _logger;
 
         public EmployeeController(IBaseServiceGeneric<ProfileContext, Employee> employee, ILogger<EmployeeController> logger)
         {
@@ -32,7 +32,7 @@ namespace ProjectName.Api.Controllers
         }
 
         [HttpPost]
-        [ProfileUnitOfWorkFilter]
+        [ProfileUnitOfWork]
         public void Post([FromBody] Employee value)
         {
             _employee.Insert(value);

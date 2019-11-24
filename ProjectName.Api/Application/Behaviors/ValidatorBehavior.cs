@@ -2,8 +2,6 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
 using ProjectName.Api.Helper;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -38,6 +36,7 @@ namespace ProjectName.Api.Application.Behaviors
                 _logger.LogWarning("Validation errors - {CommandType} - Command: {@Command} - Errors: {@ValidationErrors}", typeName, request, failures);
 
                 // Bad request
+                throw new ValidationException(failures);
             }
 
             return await next();

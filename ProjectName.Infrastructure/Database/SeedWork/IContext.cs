@@ -6,7 +6,8 @@ namespace ProjectName.Infrastructure.Database
 {
     public interface IContext : IDisposable
     {
-        Guid OperationId { get; set; }
+        Guid OperationId();
+
         DbSet<T> Repository<T>() where T : class;
 
         void BeginTransaction();
