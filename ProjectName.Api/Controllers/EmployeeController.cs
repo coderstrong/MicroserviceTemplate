@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using ProjectName.Api.Application.Middlewares;
 using ProjectName.Infrastructure.Database;
 using System.Threading.Tasks;
 
@@ -9,10 +11,12 @@ namespace ProjectName.Api.Controllers
     public class EmployeeController : ControllerBase
     {
         private IBaseServiceGeneric<ProfileContext, Employee> _employee;
+        private ILogger<EmployeeController> _logger;
 
-        public EmployeeController(IBaseServiceGeneric<ProfileContext, Employee> employee)
+        public EmployeeController(IBaseServiceGeneric<ProfileContext, Employee> employee, ILogger<EmployeeController> logger)
         {
             _employee = employee;
+            _logger = logger;
         }
 
         [HttpGet]
@@ -28,6 +32,7 @@ namespace ProjectName.Api.Controllers
         }
 
         [HttpPost]
+        [ProfileUnitOfWorkFilter]
         public void Post([FromBody] Employee value)
         {
             _employee.Insert(value);

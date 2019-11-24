@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Threading.Tasks;
 
@@ -6,26 +7,23 @@ namespace ProjectName.Infrastructure.Database
 {
     public class ProfileContext : DbContext, IContext, IDisposable
     {
-        public virtual DbSet<Employee> Employees { get; set; }
-
-        public virtual DbSet<Contract> Contracts { get; set; }
-
         public ProfileContext(DbContextOptions<ProfileContext> options) : base(options)
         {
         }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        public Guid OperationId
         {
+            get { return OperationId; }
+            set { OperationId = OperationId == null ? Guid.NewGuid() : OperationId; }
         }
+        private IDbContextTransaction _transaction;
+        public virtual DbSet<Employee> Employees { get; set; }
+
+        public virtual DbSet<Contract> Contracts { get; set; }
+        
 
         public DbSet<T> Repository<T>() where T : class
         {
             return Set<T>();
-        }
-
-        public DbQuery<T> RepositoryQuery<T>() where T : class
-        {
-            return Query<T>();
         }
 
         public async Task<int> SaveChangesAsync()
@@ -37,6 +35,30 @@ namespace ProjectName.Infrastructure.Database
         {
             var builder = new DbContextOptionsBuilder<ProfileContext>();
             return new ProfileContext(builder.Options);
+        }
+
+        public void BeginTransaction()
+        {
+            _transaction = Database.BeginTransaction();
+        }
+
+        public void Commit()
+        {
+            try
+            {
+                SaveChanges();
+                _transaction.Commit();
+            }
+            finally
+            {
+                _transaction.Dispose();
+            }
+        }
+
+        public void Rollback()
+        {
+            _transaction.Rollback();
+            _transaction.Dispose();
         }
     }
 }

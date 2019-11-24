@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ProjectName.Infrastructure.Database
@@ -9,10 +11,13 @@ namespace ProjectName.Infrastructure.Database
         private bool disposed = false;
 
         private readonly T _dataContext;
+        private readonly ILogger<UnitOfWorkGeneric<T>> _logger;
 
-        public UnitOfWorkGeneric(T dataContext)
+        public UnitOfWorkGeneric(T dataContext, ILogger<UnitOfWorkGeneric<T>> logger)
         {
             _dataContext = dataContext;
+            _logger = logger;
+            _logger.LogInformation(_dataContext.OperationId.ToString());
         }
 
         public DbSet<TEntity> Repository<TEntity>() where TEntity : BaseModel
@@ -26,19 +31,15 @@ namespace ProjectName.Infrastructure.Database
             return _dataContext as T;
         }
 
-        public DbQuery<TEntity> RepositoryQuery<TEntity>() where TEntity : BaseModel
-        {
-            return _dataContext.RepositoryQuery<TEntity>();
-        }
-
         public int SaveChanges()
         {
             return _dataContext.SaveChanges();
         }
 
-        public async Task<int> SaveChangesAsync()
+        public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await _dataContext.SaveChangesAsync();
+
+            return await _dataContext.SaveChangesAsync(cancellationToken);
         }
 
         public void Dispose()

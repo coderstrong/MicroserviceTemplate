@@ -6,9 +6,14 @@ namespace ProjectName.Infrastructure.Database
 {
     public interface IContext : IDisposable
     {
+        Guid OperationId { get; set; }
         DbSet<T> Repository<T>() where T : class;
 
-        DbQuery<T> RepositoryQuery<T>() where T : class;
+        void BeginTransaction();
+
+        void Commit();
+
+        void Rollback();
 
         int SaveChanges();
 

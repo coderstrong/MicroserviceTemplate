@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ProjectName.Infrastructure.Database
@@ -12,10 +13,8 @@ namespace ProjectName.Infrastructure.Database
 
         DbSet<TEntity> Repository<TEntity>() where TEntity : BaseModel;
 
-        DbQuery<TEntity> RepositoryQuery<TEntity>() where TEntity : BaseModel;
-
         int SaveChanges();
 
-        Task<int> SaveChangesAsync();
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken));
     }
 }

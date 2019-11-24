@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using ProjectName.Infrastructure.Database;
 using System;
 using System.Collections.Generic;
@@ -11,11 +12,12 @@ namespace ProjectName.Bussiness.Services
         where C : DbContext, IContext, IDisposable
         where E : BaseModel
     {
-        protected readonly IUnitOfWorkGeneric<C> _unitOfWork;
-
-        public BaseServiceGeneric(IUnitOfWorkGeneric<C> unitOfWork)
+        private readonly IUnitOfWorkGeneric<C> _unitOfWork;
+        private readonly ILogger<BaseServiceGeneric<C, E>> _logger;
+        public BaseServiceGeneric(IUnitOfWorkGeneric<C> unitOfWork, ILogger<BaseServiceGeneric<C, E>> logger)
         {
             _unitOfWork = unitOfWork;
+            _logger = logger;
         }
 
         public void Delete(object key)

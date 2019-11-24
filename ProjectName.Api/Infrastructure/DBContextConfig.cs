@@ -9,17 +9,15 @@ namespace ProjectName.Api.Infrastructure
     {
         public static IServiceCollection CreateProfileDbContext(this IServiceCollection services)
         {
-            services.AddTransient<IContext, ProfileContext>();
-            services.AddTransient(typeof(IUnitOfWorkGeneric<>), typeof(UnitOfWorkGeneric<>));
-            services.AddDbContext<ProfileContext>(options => options.UseInMemoryDatabase(databaseName: "Profile" + Guid.NewGuid()));
+            services.AddScoped(typeof(IUnitOfWorkGeneric<>), typeof(UnitOfWorkGeneric<>));
+            services.AddDbContext<ProfileContext>(options => options.UseInMemoryDatabase(databaseName: "Profile" + Guid.NewGuid()), ServiceLifetime.Scoped);
             return services;
         }
 
         public static IServiceCollection CreateReportDbContext(this IServiceCollection services)
         {
-            services.AddTransient<IContext, ReportContext>();
-            services.AddTransient(typeof(IUnitOfWorkGeneric<>), typeof(UnitOfWorkGeneric<>));
-            services.AddDbContext<ReportContext>(options => options.UseInMemoryDatabase(databaseName: "Report" + Guid.NewGuid()));
+            services.AddScoped(typeof(IUnitOfWorkGeneric<>), typeof(UnitOfWorkGeneric<>));
+            services.AddDbContext<ReportContext>(options => options.UseInMemoryDatabase(databaseName: "Report" + Guid.NewGuid()), ServiceLifetime.Scoped);
             return services;
         }
     }
