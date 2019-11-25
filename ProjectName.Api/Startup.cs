@@ -1,5 +1,4 @@
 ﻿using FluentValidation.AspNetCore;
-using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -9,7 +8,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Project.Api.Infrastructure;
-using ProjectName.Api.Application.Behaviors;
 using ProjectName.Api.Infrastructure;
 using ProjectName.Infrastructure.Database;
 using System;
@@ -29,9 +27,7 @@ namespace ProjectName.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
-            services.AddMediatR(typeof(Program));
-
+            services.AddLoggingSystem(Configuration);
             // DB Context
             var ProfileContext = new ServiceDescriptor(typeof(DbContextOptions<ProfileContext>), ProfileContextFactory, ServiceLifetime.Scoped);
             services.Replace(ProfileContext);
@@ -42,18 +38,8 @@ namespace ProjectName.Api
             services.LoadServices();
             // Add Swagger
             SwaggerConfig.RegisterSwaggerServices(services);
-            // Add Validate
-            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidatorBehavior<,>));
-            //services.AddCors(options =>
-            //{
-            //    options.AddPolicy("Default",
-            //    builder =>
-            //    {
-            //        builder.WithOrigins("*");
-            //    });
-            //});
 
-            services.AddControllers(); //.AddFluentValidation(apiConfiguration => apiConfiguration.RegisterValidatorsFromAssemblyContaining<Startup>());
+            services.AddControllers().AddFluentValidation(apiConfiguration => apiConfiguration.RegisterValidatorsFromAssemblyContaining<Startup>());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -27,7 +27,7 @@ namespace ProjectName.Bussiness.Services
                 _unitOfWork.Repository<E>().Remove(entity);
         }
 
-        public async Task<List<E>> GetAllAsync(int top = 0, int skip = 20)
+        public async Task<List<E>> GetAllAsync(int top = 20, int skip = 0)
         {
             if (top > 0)
             {

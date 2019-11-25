@@ -5,22 +5,22 @@ using ProjectName.Infrastructure.Database;
 using System;
 using System.Threading.Tasks;
 
-namespace ProjectName.Api.Application.Middlewares
+namespace ProjectName.Api.Application.Behaviors
 {
-    public class ProfileUnitOfWorkAttribute : TypeFilterAttribute
+    public class ReportUnitOfWorkAttribute : TypeFilterAttribute
     {
-        public ProfileUnitOfWorkAttribute(bool isTransaction = false) : base(typeof(ProfileUnitOfWorkAsync))
+        public ReportUnitOfWorkAttribute(bool isTransaction = false) : base(typeof(ReportUnitOfWorkAsync))
         {
             Arguments = new object[] { isTransaction };
         }
 
-        private class ProfileUnitOfWorkAsync : IAsyncActionFilter
+        private class ReportUnitOfWorkAsync : IAsyncActionFilter
         {
             private readonly ILogger _logger;
             private readonly IContext _context;
             private readonly bool _isTransaction;
 
-            public ProfileUnitOfWorkAsync(ProfileContext context, ILogger<ProfileUnitOfWorkAttribute> logger, bool isTransaction)
+            public ReportUnitOfWorkAsync(ReportContext context, ILogger<ReportUnitOfWorkAttribute> logger, bool isTransaction)
             {
                 _context = context;
                 _logger = logger;

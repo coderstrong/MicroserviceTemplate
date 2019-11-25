@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using ProjectName.Api.Application.Middlewares;
+using ProjectName.Api.Application.Behaviors;
 using ProjectName.Infrastructure.Database;
 using System.Threading.Tasks;
 

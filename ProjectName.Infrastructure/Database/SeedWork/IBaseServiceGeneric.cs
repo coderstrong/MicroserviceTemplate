@@ -10,7 +10,7 @@ namespace ProjectName.Infrastructure.Database
     {
         Task<E> GetOneAsync(object key);
 
-        Task<List<E>> GetAllAsync(int top = 0, int skip = -1);
+        Task<List<E>> GetAllAsync(int top = 20, int skip = 0);
 
         void Insert(E entity);
 
