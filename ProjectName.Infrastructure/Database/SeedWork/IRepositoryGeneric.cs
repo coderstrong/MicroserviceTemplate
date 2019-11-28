@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace ProjectName.Infrastructure.Database
 {
-    public interface IBaseServiceGeneric<C, E> : IDisposable
+    public interface IRepositoryGeneric<C, E> : IDisposable
         where C : IContext
         where E : BaseModel
     {

@@ -9,9 +9,9 @@ namespace ProjectName.Api.Application.Behaviors
 {
     public class ReportUnitOfWorkAttribute : TypeFilterAttribute
     {
-        public ReportUnitOfWorkAttribute(bool isTransaction = false) : base(typeof(ReportUnitOfWorkAsync))
+        public ReportUnitOfWorkAttribute(bool useTransaction = false) : base(typeof(ReportUnitOfWorkAsync))
         {
-            Arguments = new object[] { isTransaction };
+            Arguments = new object[] { useTransaction };
         }
 
         private class ReportUnitOfWorkAsync : IAsyncActionFilter
@@ -44,6 +44,7 @@ namespace ProjectName.Api.Application.Behaviors
                     {
                         try
                         {
+                            _context.SaveChanges();
                             _context.Commit();
                         }
                         catch (Exception ex)

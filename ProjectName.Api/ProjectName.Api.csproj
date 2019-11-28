@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <Folder Include="Application\Middlewares\" />
+    <Folder Include="Application\Commands\" />
     <Folder Include="Controllers\" />
   </ItemGroup>
 

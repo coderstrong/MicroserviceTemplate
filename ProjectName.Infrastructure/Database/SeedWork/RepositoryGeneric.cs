@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace ProjectName.Bussiness.Services
 {
-    public class BaseServiceGeneric<C, E> : Disposable, IBaseServiceGeneric<C, E>
+    public class RepositoryGeneric<C, E> : Disposable, IRepositoryGeneric<C, E>
         where C : DbContext, IContext, IDisposable
         where E : BaseModel
     {
         private readonly IUnitOfWorkGeneric<C> _unitOfWork;
-        private readonly ILogger<BaseServiceGeneric<C, E>> _logger;
-        public BaseServiceGeneric(IUnitOfWorkGeneric<C> unitOfWork, ILogger<BaseServiceGeneric<C, E>> logger)
+        private readonly ILogger<RepositoryGeneric<C, E>> _logger;
+        public RepositoryGeneric(IUnitOfWorkGeneric<C> unitOfWork, ILogger<RepositoryGeneric<C, E>> logger)
         {
             _unitOfWork = unitOfWork;
             _logger = logger;

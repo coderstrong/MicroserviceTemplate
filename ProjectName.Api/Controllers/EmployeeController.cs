@@ -10,10 +10,10 @@ namespace ProjectName.Api.Controllers
     [ApiController]
     public class EmployeeController : ControllerBase
     {
-        private readonly IBaseServiceGeneric<ProfileContext, Employee> _employee;
+        private readonly IRepositoryGeneric<ProfileContext, Employee> _employee;
         private readonly ILogger<EmployeeController> _logger;
 
-        public EmployeeController(IBaseServiceGeneric<ProfileContext, Employee> employee, ILogger<EmployeeController> logger)
+        public EmployeeController(IRepositoryGeneric<ProfileContext, Employee> employee, ILogger<EmployeeController> logger)
         {
             _employee = employee;
             _logger = logger;

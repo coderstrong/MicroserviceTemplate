@@ -8,9 +8,9 @@ namespace ProjectName.Api.Controllers
     [ApiController]
     public class ReportController : ControllerBase
     {
-        private IBaseServiceGeneric<ReportContext, User> _report;
+        private IRepositoryGeneric<ReportContext, User> _report;
 
-        public ReportController(IBaseServiceGeneric<ReportContext, User> report)
+        public ReportController(IRepositoryGeneric<ReportContext, User> report)
         {
             _report = report;
         }

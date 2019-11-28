@@ -8,7 +8,7 @@ namespace ProjectName.Api.Infrastructure
     {
         public static IServiceCollection LoadServices(this IServiceCollection services)
         {
-            services.AddTransient(typeof(IBaseServiceGeneric<,>), typeof(BaseServiceGeneric<,>));
+            services.AddTransient(typeof(IRepositoryGeneric<,>), typeof(RepositoryGeneric<,>));
             // add more Service here
 
             return services;

@@ -9,9 +9,9 @@ namespace ProjectName.Api.Application.Behaviors
 {
     public class ProfileUnitOfWorkAttribute : TypeFilterAttribute
     {
-        public ProfileUnitOfWorkAttribute(bool isTransaction = false) : base(typeof(ProfileUnitOfWorkAsync))
+        public ProfileUnitOfWorkAttribute(bool useTransaction = false) : base(typeof(ProfileUnitOfWorkAsync))
         {
-            Arguments = new object[] { isTransaction };
+            Arguments = new object[] { useTransaction };
         }
 
         private class ProfileUnitOfWorkAsync : IAsyncActionFilter
@@ -44,6 +44,7 @@ namespace ProjectName.Api.Application.Behaviors
                     {
                         try
                         {
+                            _context.SaveChanges();
                             _context.Commit();
                         }
                         catch (Exception ex)
