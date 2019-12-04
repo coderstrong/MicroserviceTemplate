@@ -10,14 +10,14 @@ namespace ProjectName.Api.Infrastructure
         public static IServiceCollection CreateProfileDbContext(this IServiceCollection services)
         {
             services.AddScoped(typeof(IUnitOfWorkGeneric<>), typeof(UnitOfWorkGeneric<>));
-            services.AddDbContext<ProfileContext>(options => options.UseInMemoryDatabase(databaseName: "Profile" + Guid.NewGuid()), ServiceLifetime.Scoped, ServiceLifetime.Scoped);
+            services.AddDbContext<EmployeeContext>(options => options.UseInMemoryDatabase(databaseName: "Profile" + Guid.NewGuid()), ServiceLifetime.Scoped, ServiceLifetime.Scoped);
             return services;
         }
 
         public static IServiceCollection CreateReportDbContext(this IServiceCollection services)
         {
             services.AddScoped(typeof(IUnitOfWorkGeneric<>), typeof(UnitOfWorkGeneric<>));
-            services.AddDbContext<ReportContext>(options => options.UseInMemoryDatabase(databaseName: "Report" + Guid.NewGuid()), ServiceLifetime.Scoped, ServiceLifetime.Scoped);
+            services.AddDbContext<PortalContext>(options => options.UseInMemoryDatabase(databaseName: "Report" + Guid.NewGuid()), ServiceLifetime.Scoped, ServiceLifetime.Scoped);
             return services;
         }
     }

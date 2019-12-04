@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ProjectName.Api.Application.Behaviors;
+using ProjectName.Domain.AggregatesModel.EmployeeAggregate;
 using ProjectName.Infrastructure.Database;
 using System.Threading.Tasks;
 
@@ -10,10 +11,10 @@ namespace ProjectName.Api.Controllers
     [ApiController]
     public class EmployeeController : ControllerBase
     {
-        private readonly IRepositoryGeneric<ProfileContext, Employee> _employee;
+        private readonly IRepositoryGeneric<EmployeeContext, Employee> _employee;
         private readonly ILogger<EmployeeController> _logger;
 
-        public EmployeeController(IRepositoryGeneric<ProfileContext, Employee> employee, ILogger<EmployeeController> logger)
+        public EmployeeController(IRepositoryGeneric<EmployeeContext, Employee> employee, ILogger<EmployeeController> logger)
         {
             _employee = employee;
             _logger = logger;
@@ -41,8 +42,8 @@ namespace ProjectName.Api.Controllers
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] Employee value)
         {
-            value.Id = id;
-            _employee.Update(value);
+            //value.Id = id;
+            //_employee.Update(value);
         }
 
         [HttpDelete("{id}")]

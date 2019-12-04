@@ -29,9 +29,9 @@ namespace ProjectName.Api
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddLoggingSystem(Configuration);
             // DB Context
-            var ProfileContext = new ServiceDescriptor(typeof(DbContextOptions<ProfileContext>), ProfileContextFactory, ServiceLifetime.Scoped);
+            var ProfileContext = new ServiceDescriptor(typeof(DbContextOptions<EmployeeContext>), ProfileContextFactory, ServiceLifetime.Scoped);
             services.Replace(ProfileContext);
-            var ReportContext = new ServiceDescriptor(typeof(DbContextOptions<ReportContext>), ReportContextFactory, ServiceLifetime.Scoped);
+            var ReportContext = new ServiceDescriptor(typeof(DbContextOptions<PortalContext>), ReportContextFactory, ServiceLifetime.Scoped);
             services.Replace(ReportContext);
             ConfigureContext(services);
 
@@ -68,16 +68,16 @@ namespace ProjectName.Api
 
         private void ConfigureContext(IServiceCollection services)
         {
-            services.AddScoped<IContext, ProfileContext>();
+            services.AddScoped<IContext, EmployeeContext>();
             services.CreateProfileDbContext();
             services.CreateReportDbContext();
         }
 
-        private DbContextOptions<ProfileContext> ProfileContextFactory(IServiceProvider provider)
+        private DbContextOptions<EmployeeContext> ProfileContextFactory(IServiceProvider provider)
         {
             string connectionString = Configuration.GetSection("ConnectionStrings:ProfileConnection").Value;
 
-            var optionsBuilder = new DbContextOptionsBuilder<ProfileContext>();
+            var optionsBuilder = new DbContextOptionsBuilder<EmployeeContext>();
             if (!String.IsNullOrEmpty(connectionString))
             {
                 optionsBuilder.UseSqlServer(connectionString);
@@ -85,11 +85,11 @@ namespace ProjectName.Api
             return optionsBuilder.Options;
         }
 
-        private DbContextOptions<ReportContext> ReportContextFactory(IServiceProvider provider)
+        private DbContextOptions<PortalContext> ReportContextFactory(IServiceProvider provider)
         {
             string connectionString = Configuration.GetSection("ConnectionStrings:ReportConnection").Value;
 
-            var optionsBuilder = new DbContextOptionsBuilder<ReportContext>();
+            var optionsBuilder = new DbContextOptionsBuilder<PortalContext>();
             if (!String.IsNullOrEmpty(connectionString))
             {
                 optionsBuilder.UseSqlServer(connectionString);

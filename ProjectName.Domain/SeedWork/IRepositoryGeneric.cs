@@ -1,12 +1,13 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using ProjectName.Domain.SeedWork;
 
 namespace ProjectName.Infrastructure.Database
 {
     public interface IRepositoryGeneric<C, E> : IDisposable
         where C : IContext
-        where E : BaseModel
+        where E : Entity
     {
         Task<E> GetOneAsync(object key);
 

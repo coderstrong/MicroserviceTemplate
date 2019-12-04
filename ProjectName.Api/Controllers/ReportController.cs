@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using ProjectName.Infrastructure.Database;
 using System.Threading.Tasks;
 
@@ -8,9 +8,9 @@ namespace ProjectName.Api.Controllers
     [ApiController]
     public class ReportController : ControllerBase
     {
-        private IRepositoryGeneric<ReportContext, User> _report;
+        private IRepositoryGeneric<PortalContext, User> _report;
 
-        public ReportController(IRepositoryGeneric<ReportContext, User> report)
+        public ReportController(IRepositoryGeneric<PortalContext, User> report)
         {
             _report = report;
         }
@@ -36,8 +36,8 @@ namespace ProjectName.Api.Controllers
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] User value)
         {
-            value.Id = id;
-            _report.Update(value);
+            //value.Id = id;
+            //_report.Update(value);
         }
 
         [HttpDelete("{id}")]

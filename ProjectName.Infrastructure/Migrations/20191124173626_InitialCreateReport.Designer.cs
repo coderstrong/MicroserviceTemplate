@@ -9,7 +9,7 @@ using ProjectName.Infrastructure.Database;
 
 namespace ProjectName.Infrastructure.Migrations
 {
-    [DbContext(typeof(ReportContext))]
+    [DbContext(typeof(PortalContext))]
     [Migration("20191124173626_InitialCreateReport")]
     partial class InitialCreateReport
     {

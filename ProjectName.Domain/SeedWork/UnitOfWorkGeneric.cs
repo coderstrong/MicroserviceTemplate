@@ -1,5 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using ProjectName.Domain.SeedWork;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -20,7 +21,7 @@ namespace ProjectName.Infrastructure.Database
             _logger.LogInformation(_dataContext.OperationId().ToString());
         }
 
-        public DbSet<TEntity> Repository<TEntity>() where TEntity : BaseModel
+        public DbSet<TEntity> Repository<TEntity>() where TEntity : Entity
         {
             return _dataContext.Repository<TEntity>();
         }
@@ -55,7 +56,6 @@ namespace ProjectName.Infrastructure.Database
 
             if (disposing)
             {
-                _dataContext?.Database?.CloseConnection();
                 _dataContext.Dispose();
             }
 

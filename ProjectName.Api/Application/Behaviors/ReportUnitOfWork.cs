@@ -20,7 +20,7 @@ namespace ProjectName.Api.Application.Behaviors
             private readonly IContext _context;
             private readonly bool _isTransaction;
 
-            public ReportUnitOfWorkAsync(ReportContext context, ILogger<ReportUnitOfWorkAttribute> logger, bool isTransaction)
+            public ReportUnitOfWorkAsync(PortalContext context, ILogger<ReportUnitOfWorkAttribute> logger, bool isTransaction)
             {
                 _context = context;
                 _logger = logger;

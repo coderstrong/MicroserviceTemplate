@@ -1,5 +1,6 @@
-﻿using FluentValidation;
+using FluentValidation;
 using Microsoft.Extensions.Logging;
+using ProjectName.Domain.AggregatesModel.EmployeeAggregate;
 using ProjectName.Infrastructure.Database;
 
 namespace ProjectName.Api.Application.Validations

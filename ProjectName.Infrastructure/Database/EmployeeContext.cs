@@ -1,21 +1,23 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
+using ProjectName.Domain.AggregatesModel.EmployeeAggregate;
 using System;
 using System.Threading.Tasks;
 
 namespace ProjectName.Infrastructure.Database
 {
-    public class ReportContext : DbContext, IContext, IDisposable
+    public class EmployeeContext : DbContext, IContext, IDisposable
     {
-        public ReportContext(DbContextOptions<ReportContext> options) : base(options)
+        public EmployeeContext(DbContextOptions<EmployeeContext> options) : base(options)
         {
         }
 
         private IDbContextTransaction _transaction;
-        public virtual DbSet<Report> Reports { get; set; }
+        public virtual DbSet<Employee> Employees { get; set; }
 
-        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Profile> Profiles { get; set; }
         public Guid OperationId() { return this.ContextId.InstanceId; }
+
         public DbSet<T> Repository<T>() where T : class
         {
             return Set<T>();

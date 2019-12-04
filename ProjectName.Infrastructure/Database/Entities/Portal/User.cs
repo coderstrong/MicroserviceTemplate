@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
+using ProjectName.Domain.SeedWork;
 
 namespace ProjectName.Infrastructure.Database
 {
-    public class User : BaseModel
+    public class User : Entity
     {
         [MaxLength(20)]
         public string Code { get; set; }

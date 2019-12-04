@@ -1,5 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using ProjectName.Domain.SeedWork;
 using ProjectName.Infrastructure.Database;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace ProjectName.Bussiness.Services
 {
     public class RepositoryGeneric<C, E> : Disposable, IRepositoryGeneric<C, E>
         where C : DbContext, IContext, IDisposable
-        where E : BaseModel
+        where E : Entity
     {
         private readonly IUnitOfWorkGeneric<C> _unitOfWork;
         private readonly ILogger<RepositoryGeneric<C, E>> _logger;

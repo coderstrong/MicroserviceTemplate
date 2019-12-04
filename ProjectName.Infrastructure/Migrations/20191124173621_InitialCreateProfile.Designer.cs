@@ -9,7 +9,7 @@ using ProjectName.Infrastructure.Database;
 
 namespace ProjectName.Infrastructure.Migrations
 {
-    [DbContext(typeof(ProfileContext))]
+    [DbContext(typeof(EmployeeContext))]
     [Migration("20191124173621_InitialCreateProfile")]
     partial class InitialCreateProfile
     {

@@ -1,22 +1,21 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Threading.Tasks;
 
 namespace ProjectName.Infrastructure.Database
 {
-    public class ProfileContext : DbContext, IContext, IDisposable
+    public class PortalContext : DbContext, IContext, IDisposable
     {
-        public ProfileContext(DbContextOptions<ProfileContext> options) : base(options)
+        public PortalContext(DbContextOptions<PortalContext> options) : base(options)
         {
         }
 
         private IDbContextTransaction _transaction;
-        public virtual DbSet<Employee> Employees { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
 
-        public virtual DbSet<Contract> Contracts { get; set; }
+        public virtual DbSet<User> Users { get; set; }
         public Guid OperationId() { return this.ContextId.InstanceId; }
-
         public DbSet<T> Repository<T>() where T : class
         {
             return Set<T>();
