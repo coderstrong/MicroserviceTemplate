@@ -1,9 +1,11 @@
+using Microsoft.EntityFrameworkCore;
 using ProjectName.Domain.SeedWork;
 using System;
 using System.Collections.Generic;
 
 namespace ProjectName.Domain.AggregatesModel.EmployeeAggregate
 {
+    [Owned]
     public class Address : ValueObject
     {
         public String Street { get; private set; }
@@ -25,7 +27,6 @@ namespace ProjectName.Domain.AggregatesModel.EmployeeAggregate
 
         protected override IEnumerable<object> GetAtomicValues()
         {
-            // Using a yield return statement to return each element one at a time
             yield return Street;
             yield return City;
             yield return State;

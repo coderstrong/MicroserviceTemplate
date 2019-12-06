@@ -9,7 +9,7 @@ namespace ProjectName.Infrastructure.Database
         {
             var optionsBuilder = new DbContextOptionsBuilder<EmployeeContext>();
 
-            optionsBuilder.UseSqlServer("Server=.;Database=HRProfile;user id=sa;password=123456");
+            optionsBuilder.UseSqlServer("Server=.;Database=Employee;user id=sa;password=123456");
 
             return new EmployeeContext(optionsBuilder.Options);
         }

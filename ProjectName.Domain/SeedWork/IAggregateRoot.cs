@@ -8,7 +8,5 @@ namespace ProjectName.Domain.SeedWork
 {
     public interface IAggregateRoot
     {
-        Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken));
-        Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default(CancellationToken));
     }
 }

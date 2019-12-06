@@ -17,8 +17,4 @@
     <ProjectReference Include="..\ProjectName.Domain\ProjectName.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Database\EntityConfigurations\" />
-  </ItemGroup>
-
 </Project>

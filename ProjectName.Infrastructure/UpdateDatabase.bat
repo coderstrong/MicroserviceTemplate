@@ -1,4 +1,4 @@
-dotnet ef database update --context ProfileContext
-dotnet ef database update --context ReportContext
+dotnet-ef database update --context EmployeeContext
+dotnet-ef database update --context PortalContext
 
 pause;

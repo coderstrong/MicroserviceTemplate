@@ -9,7 +9,7 @@ namespace ProjectName.Infrastructure.Database
         {
             var optionsBuilder = new DbContextOptionsBuilder<PortalContext>();
 
-            optionsBuilder.UseSqlServer("Server=.;Database=HRReport;user id=sa;password=123456");
+            optionsBuilder.UseSqlServer("Server=.;Database=Portal;user id=sa;password=123456");
 
             return new PortalContext(optionsBuilder.Options);
         }

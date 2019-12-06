@@ -1,21 +1,25 @@
+using System;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using ProjectName.Domain.AggregatesModel.EmployeeAggregate;
-using System;
-using System.Threading.Tasks;
 
 namespace ProjectName.Infrastructure.Database
 {
     public class EmployeeContext : DbContext, IContext, IDisposable
     {
+        public const string DefaultSchema = "Employee";
+
+        private IDbContextTransaction _transaction;
+
+        public virtual DbSet<Employee> Employees { get; set; }
+
+        public virtual DbSet<EmployeeTypes> EmployeesTypes { get; set; }
+
         public EmployeeContext(DbContextOptions<EmployeeContext> options) : base(options)
         {
         }
 
-        private IDbContextTransaction _transaction;
-        public virtual DbSet<Employee> Employees { get; set; }
-
-        public virtual DbSet<Profile> Profiles { get; set; }
         public Guid OperationId() { return this.ContextId.InstanceId; }
 
         public DbSet<T> Repository<T>() where T : class
