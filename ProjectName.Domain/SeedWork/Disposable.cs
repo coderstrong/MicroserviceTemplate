@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ProjectName.Infrastructure.Database
+namespace ProjectName.Domain.SeedWork
 {
     public class Disposable : IDisposable
     {

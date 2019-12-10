@@ -1,6 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using ProjectName.Bussiness.Services;
-using ProjectName.Infrastructure.Database;
+using Microsoft.Extensions.DependencyInjection;
+using ProjectName.Domain.SeedWork;
 
 namespace ProjectName.Api.Infrastructure
 {

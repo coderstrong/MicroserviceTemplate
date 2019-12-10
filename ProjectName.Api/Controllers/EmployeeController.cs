@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ProjectName.Api.Application.Behaviors;
 using ProjectName.Domain.AggregatesModel.EmployeeAggregate;
+using ProjectName.Domain.SeedWork;
 using ProjectName.Infrastructure.Database;
 using System.Threading.Tasks;
 

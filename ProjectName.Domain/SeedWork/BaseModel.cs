@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace ProjectName.Infrastructure.Database
+namespace ProjectName.Domain.SeedWork
 {
     public abstract class BaseModel
     {

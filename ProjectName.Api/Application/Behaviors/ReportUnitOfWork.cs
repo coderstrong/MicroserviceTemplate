@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Logging;
 using ProjectName.Infrastructure.Database;
@@ -17,7 +17,7 @@ namespace ProjectName.Api.Application.Behaviors
         private class ReportUnitOfWorkAsync : IAsyncActionFilter
         {
             private readonly ILogger _logger;
-            private readonly IContext _context;
+            private readonly PortalContext _context;
             private readonly bool _isTransaction;
 
             public ReportUnitOfWorkAsync(PortalContext context, ILogger<ReportUnitOfWorkAttribute> logger, bool isTransaction)
@@ -33,31 +33,37 @@ namespace ProjectName.Api.Application.Behaviors
                 _logger.LogInformation(_context.OperationId().ToString());
                 if (_isTransaction)
                 {
-                    _context.BeginTransaction();
-                }
-                // next() calls the action method.
-                var resultContext = await next();
-                //Do something after the action executes.
-                if (resultContext.Exception == null)
-                {
-                    if (_isTransaction)
+                    using (var transaction = _context.Database.BeginTransaction())
                     {
-                        try
+                        // next() calls the action method.
+                        var resultContext = await next();
+                        //Do something after the action executes.
+                        if (resultContext.Exception == null)
                         {
-                            _context.SaveChanges();
-                            _context.Commit();
-                        }
-                        catch (Exception ex)
-                        {
-                            _logger.LogError(ex, "context commit false");
-                            _context.Rollback();
+                            try
+                            {
+                                _context.SaveChanges();
+                                transaction.Commit();
+                            }
+                            catch (Exception ex)
+                            {
+                                _logger.LogError(ex, "context commit false");
+                                transaction.Rollback();
+                            }
                         }
                     }
-                    else
+                }
+                else
+                {
+                    // next() calls the action method.
+                    var resultContext = await next();
+                    //Do something after the action executes.
+                    if (resultContext.Exception == null)
                     {
                         _context.SaveChanges();
                     }
                 }
+
             }
         }
     }

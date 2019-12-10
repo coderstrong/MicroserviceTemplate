@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using ProjectName.Domain.SeedWork;
 using ProjectName.Infrastructure.Database;
 using System.Threading.Tasks;
 

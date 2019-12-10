@@ -1,23 +1,12 @@
-using Microsoft.EntityFrameworkCore;
 using System;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
-namespace ProjectName.Infrastructure.Database
+namespace ProjectName.Domain.SeedWork
 {
     public interface IContext : IDisposable
     {
         Guid OperationId();
 
-        DbSet<T> Repository<T>() where T : class;
-
-        void BeginTransaction();
-
-        void Commit();
-
-        void Rollback();
-
-        int SaveChanges();
-
-        Task<int> SaveChangesAsync();
+        DbSet<T> Repository<T>() where T : Entity;
     }
 }

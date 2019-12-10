@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using ProjectName.Domain.SeedWork;
+using Microsoft.EntityFrameworkCore;
 
-namespace ProjectName.Infrastructure.Database
+namespace ProjectName.Domain.SeedWork
 {
     public interface IRepositoryGeneric<C, E> : IDisposable
         where C : IContext

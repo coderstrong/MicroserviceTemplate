@@ -1,4 +1,4 @@
-﻿using FluentValidation.AspNetCore;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Project.Api.Infrastructure;
 using ProjectName.Api.Infrastructure;
+using ProjectName.Domain.SeedWork;
 using ProjectName.Infrastructure.Database;
 using System;
 

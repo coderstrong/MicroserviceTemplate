@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
+using ProjectName.Infrastructure.Utils;
 
 namespace ProjectName.Infrastructure.Database
 {
@@ -11,7 +12,7 @@ namespace ProjectName.Infrastructure.Database
 
             optionsBuilder.UseSqlServer("Server=.;Database=Employee;user id=sa;password=123456");
 
-            return new EmployeeContext(optionsBuilder.Options);
+            return new EmployeeContext(optionsBuilder.Options, new NoMediator());
         }
     }
 }
