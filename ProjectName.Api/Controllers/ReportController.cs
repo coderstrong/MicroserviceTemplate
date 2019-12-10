@@ -1,7 +1,7 @@
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ProjectName.Domain.SeedWork;
 using ProjectName.Infrastructure.Database;
-using System.Threading.Tasks;
 
 namespace ProjectName.Api.Controllers
 {

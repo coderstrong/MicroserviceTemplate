@@ -1,7 +1,7 @@
+using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using ProjectName.Infrastructure.Database;
-using System;
 
 namespace ProjectName.Api.Infrastructure
 {

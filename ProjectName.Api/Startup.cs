@@ -1,3 +1,4 @@
+using System;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -11,7 +12,6 @@ using Project.Api.Infrastructure;
 using ProjectName.Api.Infrastructure;
 using ProjectName.Domain.SeedWork;
 using ProjectName.Infrastructure.Database;
-using System;
 
 namespace ProjectName.Api
 {

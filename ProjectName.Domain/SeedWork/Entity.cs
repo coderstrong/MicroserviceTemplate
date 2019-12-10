@@ -1,13 +1,14 @@
 namespace ProjectName.Domain.SeedWork
 {
     using System;
-    using MediatR;
     using System.Collections.Generic;
+    using MediatR;
 
     public abstract class Entity
     {
-        int? _requestedHashCode;
-        int _Id;
+        private int? _requestedHashCode;
+        private int _Id;
+
         public virtual int Id
         {
             get
@@ -74,8 +75,8 @@ namespace ProjectName.Domain.SeedWork
             }
             else
                 return base.GetHashCode();
-
         }
+
         public static bool operator ==(Entity left, Entity right)
         {
             if (Object.Equals(left, null))

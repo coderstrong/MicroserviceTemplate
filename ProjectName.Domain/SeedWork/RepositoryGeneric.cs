@@ -1,9 +1,8 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace ProjectName.Domain.SeedWork
 {
@@ -13,6 +12,7 @@ namespace ProjectName.Domain.SeedWork
     {
         private readonly ILogger<RepositoryGeneric<C, E>> _logger;
         private readonly C _context;
+
         public RepositoryGeneric(C context, ILogger<RepositoryGeneric<C, E>> logger)
         {
             _context = context;

@@ -6,7 +6,7 @@ using ProjectName.Domain.SeedWork;
 
 namespace ProjectName.Infrastructure.Utils
 {
-    static class MediatorExtension
+    internal static class MediatorExtension
     {
         public static async Task DispatchDomainEventsAsync<C>(this IMediator mediator, C ctx) where C : DbContext
         {

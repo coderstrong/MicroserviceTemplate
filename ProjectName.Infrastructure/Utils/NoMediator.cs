@@ -4,7 +4,7 @@ using MediatR;
 
 namespace ProjectName.Infrastructure.Utils
 {
-    class NoMediator : IMediator
+    internal class NoMediator : IMediator
     {
         public Task Publish<TNotification>(TNotification notification, CancellationToken cancellationToken = default(CancellationToken)) where TNotification : INotification
         {
