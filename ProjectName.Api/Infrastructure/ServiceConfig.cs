@@ -1,5 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
+using ProjectName.Domain.AggregatesModel.EmployeeAggregate;
 using ProjectName.Domain.SeedWork;
+using ProjectName.Infrastructure.Repositories;
 
 namespace ProjectName.Api.Infrastructure
 {
@@ -8,7 +10,7 @@ namespace ProjectName.Api.Infrastructure
         public static IServiceCollection LoadServices(this IServiceCollection services)
         {
             services.AddTransient(typeof(IRepositoryGeneric<,>), typeof(RepositoryGeneric<,>));
-            // add more Service here
+            services.AddTransient<IEmployeeRepository, EmployeeRepository>();
 
             return services;
         }

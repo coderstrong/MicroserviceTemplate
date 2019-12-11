@@ -1,10 +1,11 @@
+using System.Net;
 using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ProjectName.Api.Application.Behaviors;
+using ProjectName.Api.Application.Commands;
 using ProjectName.Domain.AggregatesModel.EmployeeAggregate;
-using ProjectName.Domain.SeedWork;
-using ProjectName.Infrastructure.Database;
 
 namespace ProjectName.Api.Controllers
 {
@@ -12,45 +13,49 @@ namespace ProjectName.Api.Controllers
     [ApiController]
     public class EmployeeController : ControllerBase
     {
-        private readonly IRepositoryGeneric<EmployeeContext, Employee> _employee;
         private readonly ILogger<EmployeeController> _logger;
-
-        public EmployeeController(IRepositoryGeneric<EmployeeContext, Employee> employee, ILogger<EmployeeController> logger)
+        private readonly IMediator _mediator;
+        public EmployeeController(ILogger<EmployeeController> logger,
+            IMediator mediator)
         {
-            _employee = employee;
             _logger = logger;
+            _mediator = mediator;
         }
 
         [HttpGet]
+        [ProducesResponseType(typeof(Employee), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> Get()
         {
-            return Ok(await _employee.GetAllAsync());
+            return Ok();
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        [ProducesResponseType(typeof(Employee), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> Get([FromServices] IEmployeeRepository _employee, [FromRoute] int id)
         {
-            return Ok(await _employee.GetOneAsync(id));
+            return Ok(_employee.GetAsync(id));
         }
 
         [HttpPost]
         [ProfileUnitOfWork]
-        public void Post([FromBody] Employee value)
+        [ProducesResponseType(typeof(Employee), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        public async Task PostAsync([FromBody] CreateEmployeeCommand value)
         {
-            _employee.Insert(value);
+            await _mediator.Send(value);
         }
 
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] Employee value)
         {
-            //value.Id = id;
-            //_employee.Update(value);
+
         }
 
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            _employee.Delete(id);
         }
     }
 }

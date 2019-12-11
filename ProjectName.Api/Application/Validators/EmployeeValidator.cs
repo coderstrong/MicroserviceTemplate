@@ -8,7 +8,7 @@ namespace ProjectName.Api.Application.Validations
     {
         public EmployeeValidator(ILogger<EmployeeValidator> logger)
         {
-            RuleFor(employe => employe.FirstName).NotEmpty().WithMessage("No FirstName found");
+            RuleFor(employe => employe.FullName).NotEmpty().WithMessage("No FirstName found");
             logger.LogTrace("----- INSTANCE CREATED - {ClassName}", GetType().Name);
         }
     }

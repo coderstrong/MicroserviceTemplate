@@ -15,8 +15,8 @@ namespace ProjectName.Infrastructure.Database
 
         private readonly IMediator _mediator;
         public virtual DbSet<Employee> Employees { get; set; }
-
-        public virtual DbSet<EmployeeTypes> EmployeesTypes { get; set; }
+        public virtual DbSet<Project> Projects { get; set; }
+        public virtual DbSet<EmployeeType> EmployeesTypes { get; set; }
 
         public EmployeeContext(DbContextOptions<EmployeeContext> options, IMediator mediator) : base(options)
         {

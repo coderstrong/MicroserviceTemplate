@@ -6,22 +6,22 @@ namespace ProjectName.Domain.AggregatesModel.EmployeeAggregate
     using ProjectName.Domain.Exceptions;
     using ProjectName.Domain.SeedWork;
 
-    public class EmployeeTypes : Enumeration
+    public class EmployeeType : Enumeration
     {
-        public static EmployeeTypes Internship = new EmployeeTypes(1, nameof(Internship).ToLowerInvariant());
-        public static EmployeeTypes Fresher = new EmployeeTypes(1, nameof(Fresher).ToLowerInvariant());
-        public static EmployeeTypes Junior = new EmployeeTypes(2, nameof(Junior).ToLowerInvariant());
-        public static EmployeeTypes Senior = new EmployeeTypes(3, nameof(Senior).ToLowerInvariant());
+        public static EmployeeType Internship = new EmployeeType(1, nameof(Internship).ToLowerInvariant());
+        public static EmployeeType Fresher = new EmployeeType(1, nameof(Fresher).ToLowerInvariant());
+        public static EmployeeType Junior = new EmployeeType(2, nameof(Junior).ToLowerInvariant());
+        public static EmployeeType Senior = new EmployeeType(3, nameof(Senior).ToLowerInvariant());
 
-        public EmployeeTypes(int id, string name)
+        public EmployeeType(int id, string name)
             : base(id, name)
         {
         }
 
-        public static IEnumerable<EmployeeTypes> List() =>
+        public static IEnumerable<EmployeeType> List() =>
             new[] { Internship, Fresher, Junior, Senior };
 
-        public static EmployeeTypes FromName(string name)
+        public static EmployeeType FromName(string name)
         {
             var state = List()
                 .SingleOrDefault(s => String.Equals(s.Name, name, StringComparison.CurrentCultureIgnoreCase));
@@ -34,7 +34,7 @@ namespace ProjectName.Domain.AggregatesModel.EmployeeAggregate
             return state;
         }
 
-        public static EmployeeTypes From(int id)
+        public static EmployeeType From(int id)
         {
             var state = List().SingleOrDefault(s => s.Id == id);
 

@@ -10,7 +10,7 @@ using ProjectName.Infrastructure.Database;
 namespace ProjectName.Infrastructure.Migrations
 {
     [DbContext(typeof(EmployeeContext))]
-    [Migration("20191206091055_InitialCreateProfile")]
+    [Migration("20191211173459_InitialCreateProfile")]
     partial class InitialCreateProfile
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,37 +28,21 @@ namespace ProjectName.Infrastructure.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Code")
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
-
-                    b.Property<int?>("EmployeeTypesId")
+                    b.Property<int?>("EmployeeTypeId")
                         .HasColumnType("int");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(30)")
-                        .HasMaxLength(30);
 
                     b.Property<string>("FullName")
                         .HasColumnType("nvarchar(90)")
                         .HasMaxLength(90);
 
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(30)")
-                        .HasMaxLength(30);
-
-                    b.Property<string>("MiddleName")
-                        .HasColumnType("nvarchar(30)")
-                        .HasMaxLength(30);
-
                     b.HasKey("Id");
 
-                    b.HasIndex("EmployeeTypesId");
+                    b.HasIndex("EmployeeTypeId");
 
                     b.ToTable("Employees");
                 });
 
-            modelBuilder.Entity("ProjectName.Domain.AggregatesModel.EmployeeAggregate.EmployeeTypes", b =>
+            modelBuilder.Entity("ProjectName.Domain.AggregatesModel.EmployeeAggregate.EmployeeType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -73,11 +57,43 @@ namespace ProjectName.Infrastructure.Migrations
                     b.ToTable("EmployeesTypes");
                 });
 
+            modelBuilder.Entity("ProjectName.Domain.AggregatesModel.EmployeeAggregate.Project", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Begin")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("End")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProjectId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.ToTable("Project");
+                });
+
             modelBuilder.Entity("ProjectName.Domain.AggregatesModel.EmployeeAggregate.Employee", b =>
                 {
-                    b.HasOne("ProjectName.Domain.AggregatesModel.EmployeeAggregate.EmployeeTypes", "EmployeeTypes")
+                    b.HasOne("ProjectName.Domain.AggregatesModel.EmployeeAggregate.EmployeeType", "EmployeeType")
                         .WithMany()
-                        .HasForeignKey("EmployeeTypesId");
+                        .HasForeignKey("EmployeeTypeId");
 
                     b.OwnsOne("ProjectName.Domain.AggregatesModel.EmployeeAggregate.Address", "Address", b1 =>
                         {
@@ -108,6 +124,13 @@ namespace ProjectName.Infrastructure.Migrations
                             b1.WithOwner()
                                 .HasForeignKey("EmployeeId");
                         });
+                });
+
+            modelBuilder.Entity("ProjectName.Domain.AggregatesModel.EmployeeAggregate.Project", b =>
+                {
+                    b.HasOne("ProjectName.Domain.AggregatesModel.EmployeeAggregate.Employee", null)
+                        .WithMany("Projects")
+                        .HasForeignKey("EmployeeId");
                 });
 #pragma warning restore 612, 618
         }

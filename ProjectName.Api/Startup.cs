@@ -1,5 +1,7 @@
 using System;
+using System.Reflection;
 using FluentValidation.AspNetCore;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -29,6 +31,7 @@ namespace ProjectName.Api
         {
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddLoggingSystem(Configuration);
+            services.AddMediatR(Assembly.GetExecutingAssembly());
             // DB Context
             var ProfileContext = new ServiceDescriptor(typeof(DbContextOptions<EmployeeContext>), ProfileContextFactory, ServiceLifetime.Scoped);
             services.Replace(ProfileContext);
@@ -76,7 +79,7 @@ namespace ProjectName.Api
 
         private DbContextOptions<EmployeeContext> ProfileContextFactory(IServiceProvider provider)
         {
-            string connectionString = Configuration.GetSection("ConnectionStrings:ProfileConnection").Value;
+            string connectionString = Configuration.GetSection("ConnectionStrings:EmployeeConnection").Value;
 
             var optionsBuilder = new DbContextOptionsBuilder<EmployeeContext>();
             if (!String.IsNullOrEmpty(connectionString))

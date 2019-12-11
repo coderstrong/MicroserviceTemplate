@@ -2,13 +2,14 @@ namespace ProjectName.Domain.SeedWork
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations.Schema;
     using MediatR;
 
     public abstract class Entity
     {
         private int? _requestedHashCode;
         private int _Id;
-
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public virtual int Id
         {
             get
