@@ -33,7 +33,7 @@ namespace ProjectName.Api
             services.AddLoggingSystem(Configuration);
             services.AddMediatR(Assembly.GetExecutingAssembly());
             // DB Context
-            var ProfileContext = new ServiceDescriptor(typeof(DbContextOptions<EmployeeContext>), ProfileContextFactory, ServiceLifetime.Scoped);
+            var ProfileContext = new ServiceDescriptor(typeof(DbContextOptions<EmployeeContext>), EmployeeContextFactory, ServiceLifetime.Scoped);
             services.Replace(ProfileContext);
             var ReportContext = new ServiceDescriptor(typeof(DbContextOptions<PortalContext>), ReportContextFactory, ServiceLifetime.Scoped);
             services.Replace(ReportContext);
@@ -73,11 +73,11 @@ namespace ProjectName.Api
         private void ConfigureContext(IServiceCollection services)
         {
             services.AddScoped<IContext, EmployeeContext>();
-            services.CreateProfileDbContext();
-            services.CreateReportDbContext();
+            services.CreateEmployeeDbContext();
+            services.CreatePortalDbContext();
         }
 
-        private DbContextOptions<EmployeeContext> ProfileContextFactory(IServiceProvider provider)
+        private DbContextOptions<EmployeeContext> EmployeeContextFactory(IServiceProvider provider)
         {
             string connectionString = Configuration.GetSection("ConnectionStrings:EmployeeConnection").Value;
 

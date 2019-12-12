@@ -1,3 +1,4 @@
+using System;
 using System.Net;
 using System.Threading.Tasks;
 using MediatR;
@@ -15,11 +16,14 @@ namespace ProjectName.Api.Controllers
     {
         private readonly ILogger<EmployeeController> _logger;
         private readonly IMediator _mediator;
+        private readonly IEmployeeRepository _employee;
         public EmployeeController(ILogger<EmployeeController> logger,
-            IMediator mediator)
+            IMediator mediator,
+            IEmployeeRepository employee)
         {
             _logger = logger;
             _mediator = mediator;
+            _employee = employee;
         }
 
         [HttpGet]
@@ -33,13 +37,14 @@ namespace ProjectName.Api.Controllers
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(Employee), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public async Task<IActionResult> Get([FromServices] IEmployeeRepository _employee, [FromRoute] int id)
+        public async Task<IActionResult> Get([FromRoute] int id)
         {
-            return Ok(_employee.GetAsync(id));
+            var test = await _employee.GetAsync(id);
+            return Ok(test);
         }
 
         [HttpPost]
-        [ProfileUnitOfWork]
+        [EmployeeUnitOfWork(useTransaction:true)]
         [ProducesResponseType(typeof(Employee), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task PostAsync([FromBody] CreateEmployeeCommand value)

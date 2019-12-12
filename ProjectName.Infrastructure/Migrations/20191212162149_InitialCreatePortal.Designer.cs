@@ -9,8 +9,8 @@ using ProjectName.Infrastructure.Database;
 namespace ProjectName.Infrastructure.Migrations
 {
     [DbContext(typeof(PortalContext))]
-    [Migration("20191211173504_InitialCreateReport")]
-    partial class InitialCreateReport
+    [Migration("20191212162149_InitialCreatePortal")]
+    partial class InitialCreatePortal
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

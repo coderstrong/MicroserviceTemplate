@@ -2,7 +2,7 @@
 
 namespace ProjectName.Infrastructure.Migrations
 {
-    public partial class InitialCreateReport : Migration
+    public partial class InitialCreatePortal : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

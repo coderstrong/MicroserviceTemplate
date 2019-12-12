@@ -7,20 +7,20 @@ using ProjectName.Infrastructure.Database;
 
 namespace ProjectName.Api.Application.Behaviors
 {
-    public class ProfileUnitOfWorkAttribute : TypeFilterAttribute
+    public class EmployeeUnitOfWorkAttribute : TypeFilterAttribute
     {
-        public ProfileUnitOfWorkAttribute(bool useTransaction = false) : base(typeof(ProfileUnitOfWorkAsync))
+        public EmployeeUnitOfWorkAttribute(bool useTransaction = false) : base(typeof(EmployeeUnitOfWorkAsync))
         {
             Arguments = new object[] { useTransaction };
         }
 
-        private class ProfileUnitOfWorkAsync : IAsyncActionFilter
+        private class EmployeeUnitOfWorkAsync : IAsyncActionFilter
         {
             private readonly ILogger _logger;
             private readonly EmployeeContext _context;
             private readonly bool _isTransaction;
 
-            public ProfileUnitOfWorkAsync(EmployeeContext context, ILogger<ProfileUnitOfWorkAttribute> logger, bool isTransaction)
+            public EmployeeUnitOfWorkAsync(EmployeeContext context, ILogger<EmployeeUnitOfWorkAttribute> logger, bool isTransaction)
             {
                 _context = context;
                 _logger = logger;

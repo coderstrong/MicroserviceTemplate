@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ProjectName.Infrastructure.Migrations
 {
-    public partial class InitialCreateProfile : Migration
+    public partial class InitialCreateEmployee : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -32,7 +32,7 @@ namespace ProjectName.Infrastructure.Migrations
                     Address_State = table.Column<string>(nullable: true),
                     Address_Country = table.Column<string>(nullable: true),
                     Address_ZipCode = table.Column<string>(nullable: true),
-                    EmployeeTypeId = table.Column<int>(nullable: true)
+                    EmployeeTypeId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -42,11 +42,11 @@ namespace ProjectName.Infrastructure.Migrations
                         column: x => x.EmployeeTypeId,
                         principalTable: "EmployeesTypes",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Project",
+                name: "Projects",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -56,17 +56,17 @@ namespace ProjectName.Infrastructure.Migrations
                     Description = table.Column<string>(nullable: true),
                     Begin = table.Column<DateTime>(nullable: false),
                     End = table.Column<DateTime>(nullable: false),
-                    EmployeeId = table.Column<int>(nullable: true)
+                    EmployeeId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Project", x => x.Id);
+                    table.PrimaryKey("PK_Projects", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Project_Employees_EmployeeId",
+                        name: "FK_Projects_Employees_EmployeeId",
                         column: x => x.EmployeeId,
                         principalTable: "Employees",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -75,15 +75,15 @@ namespace ProjectName.Infrastructure.Migrations
                 column: "EmployeeTypeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Project_EmployeeId",
-                table: "Project",
+                name: "IX_Projects_EmployeeId",
+                table: "Projects",
                 column: "EmployeeId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Project");
+                name: "Projects");
 
             migrationBuilder.DropTable(
                 name: "Employees");

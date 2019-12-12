@@ -7,20 +7,20 @@ using ProjectName.Infrastructure.Database;
 
 namespace ProjectName.Api.Application.Behaviors
 {
-    public class ReportUnitOfWorkAttribute : TypeFilterAttribute
+    public class PortalUnitOfWorkAttribute : TypeFilterAttribute
     {
-        public ReportUnitOfWorkAttribute(bool useTransaction = false) : base(typeof(ReportUnitOfWorkAsync))
+        public PortalUnitOfWorkAttribute(bool useTransaction = false) : base(typeof(PortalUnitOfWorkAsync))
         {
             Arguments = new object[] { useTransaction };
         }
 
-        private class ReportUnitOfWorkAsync : IAsyncActionFilter
+        private class PortalUnitOfWorkAsync : IAsyncActionFilter
         {
             private readonly ILogger _logger;
             private readonly PortalContext _context;
             private readonly bool _isTransaction;
 
-            public ReportUnitOfWorkAsync(PortalContext context, ILogger<ReportUnitOfWorkAttribute> logger, bool isTransaction)
+            public PortalUnitOfWorkAsync(PortalContext context, ILogger<PortalUnitOfWorkAttribute> logger, bool isTransaction)
             {
                 _context = context;
                 _logger = logger;

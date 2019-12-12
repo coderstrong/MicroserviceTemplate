@@ -10,8 +10,8 @@ using ProjectName.Infrastructure.Database;
 namespace ProjectName.Infrastructure.Migrations
 {
     [DbContext(typeof(EmployeeContext))]
-    [Migration("20191211173459_InitialCreateProfile")]
-    partial class InitialCreateProfile
+    [Migration("20191212162145_InitialCreateEmployee")]
+    partial class InitialCreateEmployee
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,7 +28,7 @@ namespace ProjectName.Infrastructure.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("EmployeeTypeId")
+                    b.Property<int>("EmployeeTypeId")
                         .HasColumnType("int");
 
                     b.Property<string>("FullName")
@@ -70,7 +70,7 @@ namespace ProjectName.Infrastructure.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("EmployeeId")
+                    b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("End")
@@ -86,14 +86,16 @@ namespace ProjectName.Infrastructure.Migrations
 
                     b.HasIndex("EmployeeId");
 
-                    b.ToTable("Project");
+                    b.ToTable("Projects");
                 });
 
             modelBuilder.Entity("ProjectName.Domain.AggregatesModel.EmployeeAggregate.Employee", b =>
                 {
                     b.HasOne("ProjectName.Domain.AggregatesModel.EmployeeAggregate.EmployeeType", "EmployeeType")
                         .WithMany()
-                        .HasForeignKey("EmployeeTypeId");
+                        .HasForeignKey("EmployeeTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.OwnsOne("ProjectName.Domain.AggregatesModel.EmployeeAggregate.Address", "Address", b1 =>
                         {
@@ -130,7 +132,9 @@ namespace ProjectName.Infrastructure.Migrations
                 {
                     b.HasOne("ProjectName.Domain.AggregatesModel.EmployeeAggregate.Employee", null)
                         .WithMany("Projects")
-                        .HasForeignKey("EmployeeId");
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
