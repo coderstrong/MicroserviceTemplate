@@ -5,22 +5,22 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Logging;
 using ProjectName.Infrastructure.Database;
 
-namespace ProjectName.Api.Application.Behaviors
+namespace ProjectName.Api.Application.ActionAttribute
 {
-    public class EmployeeUnitOfWorkAttribute : TypeFilterAttribute
+    public class PortalUnitOfWork : TypeFilterAttribute
     {
-        public EmployeeUnitOfWorkAttribute(bool useTransaction = false) : base(typeof(EmployeeUnitOfWorkAsync))
+        public PortalUnitOfWork(bool useTransaction = false) : base(typeof(PortalUnitOfWorkAsync))
         {
             Arguments = new object[] { useTransaction };
         }
 
-        private class EmployeeUnitOfWorkAsync : IAsyncActionFilter
+        private class PortalUnitOfWorkAsync : IAsyncActionFilter
         {
             private readonly ILogger _logger;
-            private readonly EmployeeContext _context;
+            private readonly PortalContext _context;
             private readonly bool _isTransaction;
 
-            public EmployeeUnitOfWorkAsync(EmployeeContext context, ILogger<EmployeeUnitOfWorkAttribute> logger, bool isTransaction)
+            public PortalUnitOfWorkAsync(PortalContext context, ILogger<PortalUnitOfWork> logger, bool isTransaction)
             {
                 _context = context;
                 _logger = logger;

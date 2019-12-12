@@ -43,7 +43,7 @@ namespace ProjectName.Api
             // Add Swagger
             SwaggerConfig.RegisterSwaggerServices(services);
 
-            services.AddControllers().AddFluentValidation(apiConfiguration => apiConfiguration.RegisterValidatorsFromAssemblyContaining<Startup>());
+            services.AddControllers();//.AddFluentValidation(apiConfiguration => apiConfiguration.RegisterValidatorsFromAssemblyContaining<Startup>());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
