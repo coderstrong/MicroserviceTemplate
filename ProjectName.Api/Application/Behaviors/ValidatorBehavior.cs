@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -12,11 +13,11 @@ namespace ProjectName.Api.Application.Behaviors
     public class ValidatorBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     {
         private readonly ILogger<ValidatorBehavior<TRequest, TResponse>> _logger;
-        private readonly IValidator<TRequest> _validator;
+        private readonly IEnumerable<IValidator<TRequest>> _validators;
 
-        public ValidatorBehavior(IValidator<TRequest> validator, ILogger<ValidatorBehavior<TRequest, TResponse>> logger)
+        public ValidatorBehavior(IEnumerable<IValidator<TRequest>> validator, ILogger<ValidatorBehavior<TRequest, TResponse>> logger)
         {
-            _validator = validator;
+            _validators = validator;
             _logger = logger;
         }
 
@@ -26,8 +27,10 @@ namespace ProjectName.Api.Application.Behaviors
 
             _logger.LogInformation("----- Validating command {CommandType}", typeName);
 
-            var failures = _validator.Validate(request).Errors.Where(error => error != null)
-                .ToList();
+            var failures = _validators
+               .Select(v => v.Validate(request))
+               .SelectMany(result => result.Errors)
+               .Where(error => error != null);
 
             if (failures.Any())
             {
