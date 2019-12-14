@@ -16,6 +16,7 @@ namespace ProjectName.Api.Controllers
         private readonly ILogger<EmployeeController> _logger;
         private readonly IMediator _mediator;
         private readonly IEmployeeRepository _employee;
+
         public EmployeeController(ILogger<EmployeeController> logger,
             IMediator mediator,
             IEmployeeRepository employee)
@@ -43,7 +44,7 @@ namespace ProjectName.Api.Controllers
         }
 
         [HttpPost]
-        [EmployeeUnitOfWork(useTransaction:true)]
+        [EmployeeUnitOfWork(useTransaction: true)]
         [ProducesResponseType(typeof(Employee), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task PostAsync([FromBody] CreateEmployeeCommand value)
@@ -54,7 +55,6 @@ namespace ProjectName.Api.Controllers
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] Employee value)
         {
-
         }
 
         [HttpDelete("{id}")]

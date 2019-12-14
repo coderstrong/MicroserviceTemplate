@@ -9,6 +9,7 @@ namespace ProjectName.Domain.SeedWork
     {
         private int? _requestedHashCode;
         private int _Id;
+
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public virtual int Id
         {

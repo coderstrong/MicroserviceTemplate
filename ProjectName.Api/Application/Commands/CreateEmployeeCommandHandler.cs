@@ -9,6 +9,7 @@ namespace ProjectName.Api.Application.Commands
     public class CreateEmployeeCommandHandler : IRequestHandler<CreateEmployeeCommand, bool>
     {
         private readonly IEmployeeRepository _employee;
+
         public CreateEmployeeCommandHandler(IEmployeeRepository employee)
         {
             _employee = employee;

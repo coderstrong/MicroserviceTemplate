@@ -1,7 +1,4 @@
 using System;
-using System.Reflection;
-using FluentValidation.AspNetCore;
-using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -31,7 +28,8 @@ namespace ProjectName.Api
         {
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddLoggingSystem(Configuration);
-            services.AddMediatR(Assembly.GetExecutingAssembly());
+            services.AddMediaRModule();
+
             // DB Context
             var ProfileContext = new ServiceDescriptor(typeof(DbContextOptions<EmployeeContext>), EmployeeContextFactory, ServiceLifetime.Scoped);
             services.Replace(ProfileContext);
@@ -43,7 +41,7 @@ namespace ProjectName.Api
             // Add Swagger
             SwaggerConfig.RegisterSwaggerServices(services);
 
-            services.AddControllers();//.AddFluentValidation(apiConfiguration => apiConfiguration.RegisterValidatorsFromAssemblyContaining<Startup>());
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
