@@ -16,12 +16,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ProjectName.Api\ProjectName.Api.csproj" />
+    <ProjectReference Include="..\ProjectName.Domain\ProjectName.Domain.csproj" />
     <ProjectReference Include="..\ProjectName.Infrastructure\ProjectName.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Infrastructure\" />
-    <Folder Include="Bussiness\" />
+    <Folder Include="Domain\" />
     <Folder Include="Api\" />
   </ItemGroup>
 

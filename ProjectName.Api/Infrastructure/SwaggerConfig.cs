@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Builder;
+using System.Linq;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using NSwag;
+using NSwag.Generation.Processors.Security;
 
 namespace Project.Api.Infrastructure
 {
@@ -10,6 +13,16 @@ namespace Project.Api.Infrastructure
             // Register the Swagger services
             services.AddOpenApiDocument(config =>
             {
+                config.AddSecurity("JWT", Enumerable.Empty<string>(), new OpenApiSecurityScheme
+                {
+                    Type = OpenApiSecuritySchemeType.ApiKey,
+                    Name = "Authorization",
+                    In = OpenApiSecurityApiKeyLocation.Header,
+                    Description = "Type into the textbox: Bearer {your JWT token}."
+                });
+
+                config.OperationProcessors.Add(new AspNetCoreOperationSecurityScopeProcessor("JWT"));
+
                 config.PostProcess = document =>
                 {
                     document.Info.Version = "v1";
@@ -20,7 +33,7 @@ namespace Project.Api.Infrastructure
                     {
                         Name = "Thao Tran",
                         Email = string.Empty,
-                        Url = "https://fb.com/thaodev90"
+                        Url = "https://coderstrong.github.io"
                     };
                     document.Info.License = new NSwag.OpenApiLicense
                     {

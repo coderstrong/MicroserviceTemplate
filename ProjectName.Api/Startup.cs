@@ -89,7 +89,7 @@ namespace ProjectName.Api
 
         private DbContextOptions<PortalContext> ReportContextFactory(IServiceProvider provider)
         {
-            string connectionString = Configuration.GetSection("ConnectionStrings:ReportConnection").Value;
+            string connectionString = Configuration.GetSection("ConnectionStrings:PortalConnection").Value;
 
             var optionsBuilder = new DbContextOptionsBuilder<PortalContext>();
             if (!String.IsNullOrEmpty(connectionString))

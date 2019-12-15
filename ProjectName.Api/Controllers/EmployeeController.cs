@@ -16,7 +16,6 @@ namespace ProjectName.Api.Controllers
         private readonly ILogger<EmployeeController> _logger;
         private readonly IMediator _mediator;
         private readonly IEmployeeRepository _employee;
-
         public EmployeeController(ILogger<EmployeeController> logger,
             IMediator mediator,
             IEmployeeRepository employee)
