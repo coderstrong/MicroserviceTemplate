@@ -17,10 +17,10 @@ namespace ProjectName.Api.Application.ActionAttribute
         private class EmployeeUnitOfWorkAsync : IAsyncActionFilter
         {
             private readonly ILogger _logger;
-            private readonly EmployeeContext _context;
+            private readonly BlogContext _context;
             private readonly bool _isTransaction;
 
-            public EmployeeUnitOfWorkAsync(EmployeeContext context, ILogger<EmployeeUnitOfWork> logger, bool isTransaction)
+            public EmployeeUnitOfWorkAsync(BlogContext context, ILogger<EmployeeUnitOfWork> logger, bool isTransaction)
             {
                 _context = context;
                 _logger = logger;

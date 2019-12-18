@@ -9,7 +9,7 @@ namespace ProjectName.Api.Infrastructure
     {
         public static IServiceCollection CreateEmployeeDbContext(this IServiceCollection services)
         {
-            services.AddDbContext<EmployeeContext>(options => options.UseInMemoryDatabase(databaseName: "Employee" + Guid.NewGuid()), ServiceLifetime.Scoped, ServiceLifetime.Scoped);
+            services.AddDbContext<BlogContext>(options => options.UseInMemoryDatabase(databaseName: "Employee" + Guid.NewGuid()), ServiceLifetime.Scoped, ServiceLifetime.Scoped);
             return services;
         }
 

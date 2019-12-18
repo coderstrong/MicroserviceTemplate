@@ -3,22 +3,25 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using ProjectName.Domain.AggregatesModel.EmployeeAggregate;
+using ProjectName.Domain.AggregatesModel.PostAggregate;
 using ProjectName.Domain.SeedWork;
 using ProjectName.Infrastructure.Utils;
 
 namespace ProjectName.Infrastructure.Database
 {
-    public class EmployeeContext : DbContext, IContext, IUnitOfWork, IDisposable
+    public class BlogContext : DbContext, IContext, IUnitOfWork, IDisposable
     {
-        public const string DefaultSchema = "Employee";
+        public const string DefaultSchema = "Blog";
 
         private readonly IMediator _mediator;
-        public virtual DbSet<Employee> Employees { get; set; }
-        public virtual DbSet<Project> Projects { get; set; }
-        public virtual DbSet<EmployeeType> EmployeesTypes { get; set; }
+        public virtual DbSet<Post> Posts { get; set; }
 
-        public EmployeeContext(DbContextOptions<EmployeeContext> options, IMediator mediator) : base(options)
+        public virtual DbSet<Comment> Comments { get; set; }
+
+        public virtual DbSet<Tag> Tags { get; set; }
+        public virtual DbSet<PostStatus> PostStatus { get; set; }
+
+        public BlogContext(DbContextOptions<BlogContext> options, IMediator mediator) : base(options)
         {
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
@@ -41,7 +44,7 @@ namespace ProjectName.Infrastructure.Database
             // side effects from the domain event handlers which are using the same DbContext with "InstancePerLifetimeScope" or "scoped" lifetime
             // B) Right AFTER committing data (EF SaveChanges) into the DB will make multiple transactions.
             // You will need to handle eventual consistency and compensatory actions in case of failures in any of the Handlers.
-            await _mediator.DispatchDomainEventsAsync<EmployeeContext>(this);
+            await _mediator.DispatchDomainEventsAsync<BlogContext>(this);
 
             // After executing this line all the changes (from the Command Handler and Domain Event Handlers)
             // performed through the DbContext will be committed

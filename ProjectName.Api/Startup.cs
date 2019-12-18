@@ -31,7 +31,7 @@ namespace ProjectName.Api
             services.AddMediaRModule();
 
             // DB Context
-            var ProfileContext = new ServiceDescriptor(typeof(DbContextOptions<EmployeeContext>), EmployeeContextFactory, ServiceLifetime.Scoped);
+            var ProfileContext = new ServiceDescriptor(typeof(DbContextOptions<BlogContext>), EmployeeContextFactory, ServiceLifetime.Scoped);
             services.Replace(ProfileContext);
             var ReportContext = new ServiceDescriptor(typeof(DbContextOptions<PortalContext>), ReportContextFactory, ServiceLifetime.Scoped);
             services.Replace(ReportContext);
@@ -70,16 +70,16 @@ namespace ProjectName.Api
 
         private void ConfigureContext(IServiceCollection services)
         {
-            services.AddScoped<IContext, EmployeeContext>();
+            services.AddScoped<IContext, BlogContext>();
             services.CreateEmployeeDbContext();
             services.CreatePortalDbContext();
         }
 
-        private DbContextOptions<EmployeeContext> EmployeeContextFactory(IServiceProvider provider)
+        private DbContextOptions<BlogContext> EmployeeContextFactory(IServiceProvider provider)
         {
             string connectionString = Configuration.GetSection("ConnectionStrings:EmployeeConnection").Value;
 
-            var optionsBuilder = new DbContextOptionsBuilder<EmployeeContext>();
+            var optionsBuilder = new DbContextOptionsBuilder<BlogContext>();
             if (!String.IsNullOrEmpty(connectionString))
             {
                 optionsBuilder.UseSqlServer(connectionString);

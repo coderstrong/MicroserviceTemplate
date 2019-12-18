@@ -9,7 +9,7 @@ using ProjectName.Infrastructure.Database;
 
 namespace ProjectName.Infrastructure.Migrations
 {
-    [DbContext(typeof(EmployeeContext))]
+    [DbContext(typeof(BlogContext))]
     [Migration("20191212162203_SeedDataEmployeesTypes")]
     partial class SeedDataEmployeesTypes
     {

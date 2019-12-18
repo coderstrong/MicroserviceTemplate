@@ -2,6 +2,7 @@ namespace ProjectName.Domain.SeedWork
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using MediatR;
 
@@ -9,6 +10,19 @@ namespace ProjectName.Domain.SeedWork
     {
         private int? _requestedHashCode;
         private int _Id;
+
+        public DateTime CreatedAt { get; set; }
+        public DateTime? ModifiedAt { get; set; }
+        public DateTime? DeletedAt { get; set; }
+
+        [MaxLength(50)]
+        public string CreatedBy { get; set; }
+
+        [MaxLength(50)]
+        public string ModifiedBy { get; set; }
+
+        [MaxLength(50)]
+        public string DeletedBy { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public virtual int Id
@@ -25,6 +39,11 @@ namespace ProjectName.Domain.SeedWork
 
         private List<INotification> _domainEvents;
         public IReadOnlyCollection<INotification> DomainEvents => _domainEvents?.AsReadOnly();
+
+        public Entity()
+        {
+            this.CreatedAt = DateTime.Now;
+        }
 
         public void AddDomainEvent(INotification eventItem)
         {

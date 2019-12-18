@@ -8,7 +8,7 @@ using ProjectName.Infrastructure.Database;
 
 namespace ProjectName.Infrastructure.Migrations
 {
-    [DbContext(typeof(EmployeeContext))]
+    [DbContext(typeof(BlogContext))]
     partial class EmployeeContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

@@ -5,28 +5,30 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ProjectName.Api.Application.ActionAttribute;
 using ProjectName.Api.Application.Commands;
-using ProjectName.Domain.AggregatesModel.EmployeeAggregate;
+using ProjectName.Domain.AggregatesModel.BlogAggregate;
+using ProjectName.Domain.AggregatesModel.PostAggregate;
 
 namespace ProjectName.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EmployeeController : ControllerBase
+    public class BlogController : ControllerBase
     {
-        private readonly ILogger<EmployeeController> _logger;
+        private readonly ILogger<BlogController> _logger;
         private readonly IMediator _mediator;
-        private readonly IEmployeeRepository _employee;
-        public EmployeeController(ILogger<EmployeeController> logger,
+        private readonly IPostRepository _post;
+
+        public BlogController(ILogger<BlogController> logger,
             IMediator mediator,
-            IEmployeeRepository employee)
+            IPostRepository post)
         {
             _logger = logger;
             _mediator = mediator;
-            _employee = employee;
+            _post = post ?? throw new System.ArgumentNullException(nameof(post));
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(Employee), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(Post), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> Get()
         {
@@ -34,25 +36,25 @@ namespace ProjectName.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        [ProducesResponseType(typeof(Employee), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(Post), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> Get([FromRoute] int id)
         {
-            var test = await _employee.GetAsync(id);
+            var test = await _post.GetAsync(id);
             return Ok(test);
         }
 
         [HttpPost]
         [EmployeeUnitOfWork(useTransaction: true)]
-        [ProducesResponseType(typeof(Employee), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(Post), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public async Task PostAsync([FromBody] CreateEmployeeCommand value)
+        public async Task PostAsync([FromBody] CreatePostCommand value)
         {
             await _mediator.Send(value);
         }
 
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Employee value)
+        public void Put(int id, [FromBody] Post value)
         {
         }
 
