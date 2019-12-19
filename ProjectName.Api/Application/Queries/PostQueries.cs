@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ProjectName.Api.Application.Queries
 {
-    public class EmployeeQueries
+    public class PostQueries
     {
     }
 }

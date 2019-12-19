@@ -19,17 +19,17 @@ namespace ProjectName.Domain.AggregatesModel.PostAggregate
         public int BlogId { get; private set; }
 
         private readonly List<Comment> _comments;
-
         public IReadOnlyList<Comment> Comments => _comments;
 
-        private readonly List<Tag> _tags;
 
-        public IReadOnlyList<Tag> Tags => _tags;
+        private readonly List<PostTag> _postTags;
+        public IReadOnlyList<PostTag> PostTags => _postTags;
+
 
         public Post()
         {
             this._comments = new List<Comment>();
-            this._tags = new List<Tag>();
+            this._postTags = new List<PostTag>();
         }
 
         public Post(string title, string author, string content, PostStatus postStatus)
@@ -41,9 +41,9 @@ namespace ProjectName.Domain.AggregatesModel.PostAggregate
             this.StatusId = postStatus.Id;
         }
 
-        public void AddTag(string name)
+        public void AddTag(int tagId)
         {
-            this._tags.Add(new Tag(name));
+            this._postTags.Add(new PostTag(this.Id, tagId));
         }
     }
 }

@@ -35,7 +35,7 @@ namespace ProjectName.Infrastructure.Repositories
             if (post != null)
             {
                 await _context.Entry(post).Collection(i => i.Comments).LoadAsync();
-                await _context.Entry(post).Reference(i => i.Tags).LoadAsync();
+                await _context.Entry(post).Reference(i => i.PostTags).LoadAsync();
             }
             return post;
         }

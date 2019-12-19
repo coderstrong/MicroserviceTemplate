@@ -45,7 +45,7 @@ namespace ProjectName.Api.Controllers
         }
 
         [HttpPost]
-        [EmployeeUnitOfWork(useTransaction: true)]
+        [PostUnitOfWork(useTransaction: true)]
         [ProducesResponseType(typeof(Post), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task PostAsync([FromBody] CreatePostCommand value)

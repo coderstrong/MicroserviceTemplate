@@ -5,6 +5,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using ProjectName.Domain.AggregatesModel.PostAggregate;
 using ProjectName.Domain.SeedWork;
+using ProjectName.Infrastructure.Database.Configurations;
 using ProjectName.Infrastructure.Utils;
 
 namespace ProjectName.Infrastructure.Database
@@ -24,6 +25,16 @@ namespace ProjectName.Infrastructure.Database
         public BlogContext(DbContextOptions<BlogContext> options, IMediator mediator) : base(options)
         {
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new BlogEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new PostEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new CommentEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new PostStatusEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new PostTagConfiguration());
+            modelBuilder.ApplyConfiguration(new TagEntityConfiguration());
         }
 
         public Guid OperationId()
