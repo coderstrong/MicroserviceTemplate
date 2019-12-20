@@ -11,6 +11,7 @@ namespace ProjectName.Infrastructure.Database.Configurations
         {
             builder.ToTable("Tag", BlogContext.DefaultSchema);
             builder.HasKey(m => m.Id);
+            builder.Property(m => m.Name).HasMaxLength(50);
         }
     }
 }

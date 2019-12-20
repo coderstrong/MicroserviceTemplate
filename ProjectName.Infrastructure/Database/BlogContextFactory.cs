@@ -10,7 +10,7 @@ namespace ProjectName.Infrastructure.Database
         {
             var optionsBuilder = new DbContextOptionsBuilder<BlogContext>();
 
-            optionsBuilder.UseSqlServer("Server=.;Database=Employee;user id=sa;password=123456");
+            optionsBuilder.UseSqlServer("Server=.;Database=BlogSample;user id=sa;password=123456");
 
             return new BlogContext(optionsBuilder.Options, new NoMediator());
         }

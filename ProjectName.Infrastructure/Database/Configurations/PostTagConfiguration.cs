@@ -9,6 +9,7 @@ namespace ProjectName.Infrastructure.Database.Configurations
     {
         public void Configure(EntityTypeBuilder<PostTag> builder)
         {
+            builder.ToTable("PostTag", BlogContext.DefaultSchema);
             builder.HasKey(bt => new { bt.PostId, bt.TagId });
             builder.HasOne(bt => bt.Post)
                 .WithMany(b => b.PostTags)

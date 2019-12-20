@@ -12,7 +12,7 @@ namespace ProjectName.Infrastructure.Database
 {
     public class BlogContext : DbContext, IContext, IUnitOfWork, IDisposable
     {
-        public const string DefaultSchema = "Blog";
+        public const string DefaultSchema = "BlogSample";
 
         private readonly IMediator _mediator;
         public virtual DbSet<Post> Posts { get; set; }
@@ -31,7 +31,6 @@ namespace ProjectName.Infrastructure.Database
         {
             modelBuilder.ApplyConfiguration(new BlogEntityConfiguration());
             modelBuilder.ApplyConfiguration(new PostEntityConfiguration());
-            modelBuilder.ApplyConfiguration(new CommentEntityConfiguration());
             modelBuilder.ApplyConfiguration(new PostStatusEntityConfiguration());
             modelBuilder.ApplyConfiguration(new PostTagConfiguration());
             modelBuilder.ApplyConfiguration(new TagEntityConfiguration());

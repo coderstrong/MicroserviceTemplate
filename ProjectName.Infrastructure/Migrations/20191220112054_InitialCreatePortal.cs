@@ -1,3 +1,4 @@
+﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ProjectName.Infrastructure.Migrations
@@ -25,6 +26,12 @@ namespace ProjectName.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedAt = table.Column<DateTime>(nullable: false),
+                    ModifiedAt = table.Column<DateTime>(nullable: true),
+                    DeletedAt = table.Column<DateTime>(nullable: true),
+                    CreatedBy = table.Column<string>(maxLength: 50, nullable: true),
+                    ModifiedBy = table.Column<string>(maxLength: 50, nullable: true),
+                    DeletedBy = table.Column<string>(maxLength: 50, nullable: true),
                     Code = table.Column<string>(maxLength: 20, nullable: true),
                     FirstName = table.Column<string>(maxLength: 20, nullable: true),
                     LastName = table.Column<string>(maxLength: 20, nullable: true)

@@ -4,11 +4,11 @@ using ProjectName.Domain.SeedWork;
 
 namespace ProjectName.Domain.AggregatesModel.PostAggregate
 {
-    public class Comment : Entity
+    public class Comment : ValueObject
     {
-        public int? ParentId { get; private set; }
+        public int Id { get; set; }
 
-        public Post Post { get; private set; }
+        public int? ParentId { get; private set; }
 
         public int PostId { get; private set; }
 
@@ -20,6 +20,15 @@ namespace ProjectName.Domain.AggregatesModel.PostAggregate
 
         public string Content { get; private set; }
 
-
+        protected override IEnumerable<object> GetAtomicValues()
+        {
+            yield return Id;
+            yield return ParentId;
+            yield return PostId;
+            yield return Date;
+            yield return Author;
+            yield return EmailAddress;
+            yield return Content;
+        }
     }
 }

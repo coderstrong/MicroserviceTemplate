@@ -1,8 +1,6 @@
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using ProjectName.Domain.AggregatesModel.BlogAggregate;
 using ProjectName.Domain.AggregatesModel.PostAggregate;
 
 namespace ProjectName.Api.Application.Commands
