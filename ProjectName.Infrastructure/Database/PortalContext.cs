@@ -1,10 +1,12 @@
 using System;
+using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ProjectName.Domain.SeedWork;
 
 namespace ProjectName.Infrastructure.Database
 {
-    public class PortalContext : DbContext, IContext, IDisposable
+    public class PortalContext : DbContext, IUnitOfWork, IDisposable
     {
         public PortalContext(DbContextOptions<PortalContext> options) : base(options)
         {
@@ -22,6 +24,13 @@ namespace ProjectName.Infrastructure.Database
         public DbSet<T> Repository<T>() where T : Entity
         {
             return Set<T>();
+        }
+
+        public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default)
+        {
+            var result = await base.SaveChangesAsync(cancellationToken);
+
+            return true;
         }
     }
 }

@@ -9,13 +9,13 @@ namespace ProjectName.Api.Infrastructure
     {
         public static IServiceCollection CreateEmployeeDbContext(this IServiceCollection services)
         {
-            services.AddDbContext<BlogContext>(options => options.UseInMemoryDatabase(databaseName: "Employee" + Guid.NewGuid()), ServiceLifetime.Scoped, ServiceLifetime.Scoped);
+            services.AddDbContext<BlogContext>(options => options.UseInMemoryDatabase(databaseName: "BlogSample" + Guid.NewGuid()), ServiceLifetime.Transient, ServiceLifetime.Scoped);
             return services;
         }
 
         public static IServiceCollection CreatePortalDbContext(this IServiceCollection services)
         {
-            services.AddDbContext<PortalContext>(options => options.UseInMemoryDatabase(databaseName: "Portal" + Guid.NewGuid()), ServiceLifetime.Scoped, ServiceLifetime.Scoped);
+            services.AddDbContext<PortalContext>(options => options.UseInMemoryDatabase(databaseName: "Portal" + Guid.NewGuid()), ServiceLifetime.Transient, ServiceLifetime.Scoped);
             return services;
         }
     }

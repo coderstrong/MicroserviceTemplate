@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 namespace ProjectName.Domain.SeedWork
 {
     public class RepositoryGeneric<C, E> : Disposable, IRepositoryGeneric<C, E>
-        where C : DbContext, IContext
+        where C : DbContext, IUnitOfWork
         where E : Entity
     {
         private readonly ILogger<RepositoryGeneric<C, E>> _logger;
@@ -17,6 +17,14 @@ namespace ProjectName.Domain.SeedWork
         {
             _context = context;
             _logger = logger;
+        }
+
+        public IUnitOfWork UnitOfWork
+        {
+            get
+            {
+                return _context;
+            }
         }
 
         public void Delete(object key)

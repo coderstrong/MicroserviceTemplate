@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 namespace ProjectName.Domain.SeedWork
 {
     public interface IRepositoryGeneric<C, E> : IDisposable
-        where C : IContext
+        where C : IUnitOfWork
         where E : Entity
     {
+        IUnitOfWork UnitOfWork { get; }
+
         Task<E> GetOneAsync(object key);
 
         Task<List<E>> GetAllAsync(int top = 20, int skip = 0);

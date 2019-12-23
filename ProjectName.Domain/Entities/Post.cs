@@ -4,7 +4,7 @@ using ProjectName.Domain.SeedWork;
 
 namespace ProjectName.Domain.AggregatesModel.PostAggregate
 {
-    public class Post : Entity, IAggregateRoot
+    public class Post : Entity
     {
         public string Title { get; private set; }
 
@@ -12,10 +12,10 @@ namespace ProjectName.Domain.AggregatesModel.PostAggregate
 
         public string Content { get; private set; }
 
-        public PostStatus Status { get; private set; }
+        public virtual PostStatus Status { get; private set; }
         public int StatusId { get; private set; }
 
-        public Blog Blog { get; private set; }
+        public virtual Blog Blog { get; private set; }
         public int BlogId { get; private set; }
 
         private readonly List<Comment> _comments;
@@ -37,7 +37,6 @@ namespace ProjectName.Domain.AggregatesModel.PostAggregate
             this.Title = title;
             this.Author = author;
             this.Content = content;
-            this.Status = postStatus;
             this.StatusId = postStatus.Id;
         }
 

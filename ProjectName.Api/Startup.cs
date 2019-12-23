@@ -1,4 +1,5 @@
 using System;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -30,16 +31,17 @@ namespace ProjectName.Api
             services.AddLoggingSystem(Configuration);
             services.AddMediaRModule();
 
-            // DB Context
-            var ProfileContext = new ServiceDescriptor(typeof(DbContextOptions<BlogContext>), EmployeeContextFactory, ServiceLifetime.Scoped);
+            var ProfileContext = new ServiceDescriptor(typeof(DbContextOptions<BlogContext>), EmployeeContextFactory, ServiceLifetime.Transient);
             services.Replace(ProfileContext);
-            var ReportContext = new ServiceDescriptor(typeof(DbContextOptions<PortalContext>), ReportContextFactory, ServiceLifetime.Scoped);
+            var ReportContext = new ServiceDescriptor(typeof(DbContextOptions<PortalContext>), ReportContextFactory, ServiceLifetime.Transient);
             services.Replace(ReportContext);
             ConfigureContext(services);
 
             services.LoadServices();
-            // Add Swagger
+
             SwaggerConfig.RegisterSwaggerServices(services);
+
+            services.LoadMapper();
 
             services.AddControllers();
         }
@@ -70,7 +72,7 @@ namespace ProjectName.Api
 
         private void ConfigureContext(IServiceCollection services)
         {
-            services.AddScoped<IContext, BlogContext>();
+            services.AddScoped<IUnitOfWork, BlogContext>();
             services.CreateEmployeeDbContext();
             services.CreatePortalDbContext();
         }

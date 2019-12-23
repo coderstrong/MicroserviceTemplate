@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using ProjectName.Api.Application.ActionAttribute;
 using ProjectName.Api.Application.Commands;
-using ProjectName.Domain.AggregatesModel.BlogAggregate;
+using ProjectName.Api.Application.Queries;
+using ProjectName.Api.ViewModel;
 using ProjectName.Domain.AggregatesModel.PostAggregate;
 
 namespace ProjectName.Api.Controllers
@@ -16,37 +16,39 @@ namespace ProjectName.Api.Controllers
     {
         private readonly ILogger<BlogController> _logger;
         private readonly IMediator _mediator;
-        private readonly IPostRepository _post;
+        private readonly IPostQueries _postQueries;
 
         public BlogController(ILogger<BlogController> logger,
             IMediator mediator,
-            IPostRepository post)
+            IPostQueries postQueries)
         {
             _logger = logger;
+            _postQueries = postQueries;
             _mediator = mediator;
-            _post = post ?? throw new System.ArgumentNullException(nameof(post));
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(Post), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(PostViewModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> Get()
         {
-            return Ok();
+            var post = await _postQueries.GetAsync();
+
+            return Ok(post);
         }
 
         [HttpGet("{id}")]
-        [ProducesResponseType(typeof(Post), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(PostViewModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> Get([FromRoute] int id)
         {
-            var test = await _post.GetAsync(id);
-            return Ok(test);
+            var post = await _postQueries.GetAsync(id);
+
+            return Ok(post);
         }
 
         [HttpPost]
-        [PostUnitOfWork(useTransaction: true)]
-        [ProducesResponseType(typeof(Post), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(PostViewModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task PostAsync([FromBody] CreatePostCommand value)
         {
@@ -56,6 +58,7 @@ namespace ProjectName.Api.Controllers
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] Post value)
         {
+            
         }
 
         [HttpDelete("{id}")]
