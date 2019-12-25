@@ -73,7 +73,7 @@ namespace ProjectName.Api
         private void ConfigureContext(IServiceCollection services)
         {
             services.AddScoped<IUnitOfWork, BlogContext>();
-            services.CreateEmployeeDbContext();
+            services.CreateDomainDbContext();
             services.CreatePortalDbContext();
         }
 
