@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using ProjectName.Domain.SeedWork;
 
-namespace ProjectName.Domain.AggregatesModel.PostAggregate
+namespace ProjectName.Domain.Entities
 {
     public class Comment : ValueObject
     {

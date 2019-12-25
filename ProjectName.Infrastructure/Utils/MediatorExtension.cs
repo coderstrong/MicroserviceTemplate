@@ -2,7 +2,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using ProjectName.Domain.SeedWork;
+using ProjectName.Domain.Common;
 
 namespace ProjectName.Infrastructure.Utils
 {

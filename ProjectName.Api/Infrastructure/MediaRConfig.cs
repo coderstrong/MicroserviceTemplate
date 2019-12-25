@@ -1,4 +1,3 @@
-using System;
 using System.Reflection;
 using FluentValidation;
 using MediatR;
@@ -16,7 +15,6 @@ namespace ProjectName.Api.Infrastructure
             AssemblyScanner.FindValidatorsInAssembly(assembly)
             .ForEach(result =>
             {
-                Console.WriteLine("Here we are");
                 services.AddTransient(result.InterfaceType, result.ValidatorType);
             });
 

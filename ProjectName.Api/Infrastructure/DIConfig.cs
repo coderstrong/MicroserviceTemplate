@@ -1,6 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using ProjectName.Api.Application.Queries;
-using ProjectName.Domain.SeedWork;
+using ProjectName.Domain.Common;
 
 namespace ProjectName.Api.Infrastructure
 {
@@ -10,7 +10,7 @@ namespace ProjectName.Api.Infrastructure
         {
             services.AddTransient(typeof(IRepositoryGeneric<,>), typeof(RepositoryGeneric<,>));
             services.AddTransient(typeof(IPostQueries), typeof(PostQueries));
-
+            services.AddTransient(typeof(IBlogQueries), typeof(BlogQueries));
             return services;
         }
     }

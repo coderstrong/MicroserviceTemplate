@@ -1,5 +1,5 @@
 using System.ComponentModel.DataAnnotations;
-using ProjectName.Domain.SeedWork;
+using ProjectName.Domain.Common;
 
 namespace ProjectName.Infrastructure.Database
 {

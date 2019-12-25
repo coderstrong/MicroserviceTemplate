@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using ProjectName.Domain.AggregatesModel.PostAggregate;
+using ProjectName.Domain.Entities;
 
 namespace ProjectName.Infrastructure.Database.Configurations
 {
@@ -31,6 +31,4 @@ namespace ProjectName.Infrastructure.Database.Configurations
             builder.HasOne(m => m.Status).WithMany().HasForeignKey(m => m.StatusId).OnDelete(DeleteBehavior.Restrict);
         }
     }
-
-    
 }

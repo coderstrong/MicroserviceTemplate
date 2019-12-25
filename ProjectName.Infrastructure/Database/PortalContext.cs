@@ -2,7 +2,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using ProjectName.Domain.SeedWork;
+using ProjectName.Domain.Common;
 
 namespace ProjectName.Infrastructure.Database
 {

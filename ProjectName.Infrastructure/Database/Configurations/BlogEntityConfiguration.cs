@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using ProjectName.Domain.AggregatesModel.BlogAggregate;
+using ProjectName.Domain.Entities;
 
 namespace ProjectName.Infrastructure.Database.Configurations
 {

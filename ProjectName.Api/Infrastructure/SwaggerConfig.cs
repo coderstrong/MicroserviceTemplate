@@ -27,13 +27,13 @@ namespace Project.Api.Infrastructure
                 {
                     document.Info.Version = "v1";
                     document.Info.Title = "Demo API";
-                    document.Info.Description = "A simple ASP.NET Core web API";
+                    document.Info.Description = "ASP.NET Core web API";
                     document.Info.TermsOfService = "None";
                     document.Info.Contact = new NSwag.OpenApiContact
                     {
-                        Name = "Thao Tran",
+                        Name = "ACB",
                         Email = string.Empty,
-                        Url = "https://coderstrong.github.io"
+                        Url = "https://acb.com.vn"
                     };
                     document.Info.License = new NSwag.OpenApiLicense
                     {

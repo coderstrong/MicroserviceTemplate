@@ -1,9 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using AutoMapper;
 using MediatR;
-using ProjectName.Domain.SeedWork;
+using ProjectName.Domain.Common;
 
 namespace ProjectName.Infrastructure.Utils
 {

@@ -1,10 +1,10 @@
-namespace ProjectName.Domain.AggregatesModel.PostAggregate
+namespace ProjectName.Domain.Entities
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using ProjectName.Domain.Common;
     using ProjectName.Domain.Exceptions;
-    using ProjectName.Domain.SeedWork;
 
     public class PostStatus
         : Enumeration

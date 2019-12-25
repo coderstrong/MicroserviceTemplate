@@ -1,20 +1,18 @@
 using System.Collections.Generic;
-using System.Text;
-using ProjectName.Domain.SeedWork;
+using ProjectName.Domain.Common;
 
-namespace ProjectName.Domain.AggregatesModel.PostAggregate
+namespace ProjectName.Domain.Entities
 {
     public class Tag : Entity
     {
         public string Name { get; private set; }
 
-        private readonly List<PostTag> _postTags;
-        public IReadOnlyList<PostTag> PostTags => _postTags;
+        public virtual List<PostTag> PostTags { get; set; }
 
         public Tag(string Name)
         {
             this.Name = Name;
+            this.PostTags = new List<PostTag>();
         }
-
     }
 }

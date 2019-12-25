@@ -51,9 +51,9 @@ namespace ProjectName.Domain.SeedWork
             return await _context.Repository<E>().FindAsync(key);
         }
 
-        public void Insert(E entity)
+        public E Insert(E entity)
         {
-            _context.Repository<E>().Add(entity);
+            return _context.Repository<E>().Add(entity).Entity;
         }
 
         public void InsertRange(IEnumerable<E> entitys)

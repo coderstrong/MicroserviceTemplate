@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 using ProjectName.Api.Application.Commands;
 using ProjectName.Api.Application.Queries;
 using ProjectName.Api.ViewModel;
-using ProjectName.Domain.AggregatesModel.PostAggregate;
+using ProjectName.Domain.Entities;
 
 namespace ProjectName.Api.Controllers
 {
@@ -33,8 +33,10 @@ namespace ProjectName.Api.Controllers
         public async Task<IActionResult> Get()
         {
             var post = await _postQueries.GetAsync();
-
-            return Ok(post);
+            if (post != null)
+                return Ok(post);
+            else
+                return NotFound();
         }
 
         [HttpGet("{id}")]
@@ -50,15 +52,14 @@ namespace ProjectName.Api.Controllers
         [HttpPost]
         [ProducesResponseType(typeof(PostViewModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public async Task PostAsync([FromBody] CreatePostCommand value)
+        public async Task<ActionResult<PostViewModel>> PostAsync([FromBody] CreatePostCommand value)
         {
-            await _mediator.Send(value);
+            return await _mediator.Send(value);
         }
 
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] Post value)
         {
-            
         }
 
         [HttpDelete("{id}")]

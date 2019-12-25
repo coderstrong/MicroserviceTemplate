@@ -1,39 +1,14 @@
 using System.Collections.Generic;
-using System.Linq;
-using ProjectName.Domain.AggregatesModel.PostAggregate;
-using ProjectName.Domain.SeedWork;
+using ProjectName.Domain.Common;
 
-namespace ProjectName.Domain.AggregatesModel.BlogAggregate
+namespace ProjectName.Domain.Entities
 {
-    public class Blog : Entity, IAggregateRoot
+    public class Blog : Entity
     {
-        public string Title { get; private set; }
+        public string Title { get; set; }
 
-        public string Description { get; private set; }
+        public string Description { get; set; }
 
-        private readonly List<Post> _Posts;
-
-        public IReadOnlyList<Post> Posts => this._Posts;
-
-        public Blog()
-        {
-            this._Posts = new List<Post>();
-        }
-
-        public Blog(string Title, string Description, List<Post> Posts)
-        {
-            this.Title = Title;
-            this.Description = Description;
-            this._Posts = Posts;
-        }
-
-        public void AddPost(Post post)
-        {
-            var existProject = this.Posts.Where(o => o.Id == post.Id).SingleOrDefault();
-            if (existProject == null)
-            {
-                this._Posts.Add(post);
-            }
-        }
+        public virtual List<Post> Posts { get; set; }
     }
 }

@@ -3,8 +3,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using ProjectName.Domain.AggregatesModel.PostAggregate;
-using ProjectName.Domain.SeedWork;
+using ProjectName.Domain.Common;
+using ProjectName.Domain.Entities;
 using ProjectName.Infrastructure.Database.Configurations;
 using ProjectName.Infrastructure.Utils;
 
@@ -15,11 +15,15 @@ namespace ProjectName.Infrastructure.Database
         public const string DefaultSchema = "BlogSample";
 
         private readonly IMediator _mediator;
+
+        public virtual DbSet<Blog> Blogs { get; set; }
+
         public virtual DbSet<Post> Posts { get; set; }
 
         public virtual DbSet<Comment> Comments { get; set; }
 
         public virtual DbSet<Tag> Tags { get; set; }
+
         public virtual DbSet<PostStatus> PostStatus { get; set; }
 
         public BlogContext(DbContextOptions<BlogContext> options, IMediator mediator) : base(options)

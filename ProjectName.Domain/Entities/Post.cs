@@ -1,35 +1,30 @@
 using System.Collections.Generic;
-using ProjectName.Domain.AggregatesModel.BlogAggregate;
-using ProjectName.Domain.SeedWork;
+using ProjectName.Domain.Common;
 
-namespace ProjectName.Domain.AggregatesModel.PostAggregate
+namespace ProjectName.Domain.Entities
 {
     public class Post : Entity
     {
-        public string Title { get; private set; }
+        public string Title { get; set; }
 
-        public string Author { get; private set; }
+        public string Author { get; set; }
 
-        public string Content { get; private set; }
+        public string Content { get; set; }
 
-        public virtual PostStatus Status { get; private set; }
-        public int StatusId { get; private set; }
+        public virtual PostStatus Status { get; set; }
+        public int StatusId { get; set; }
 
-        public virtual Blog Blog { get; private set; }
-        public int BlogId { get; private set; }
+        public virtual Blog Blog { get; set; }
+        public int BlogId { get; set; }
 
-        private readonly List<Comment> _comments;
-        public IReadOnlyList<Comment> Comments => _comments;
+        public virtual List<Comment> Comments { get; set; }
 
-
-        private readonly List<PostTag> _postTags;
-        public IReadOnlyList<PostTag> PostTags => _postTags;
-
+        public virtual List<PostTag> PostTags { get; set; }
 
         public Post()
         {
-            this._comments = new List<Comment>();
-            this._postTags = new List<PostTag>();
+            this.Comments = new List<Comment>();
+            this.PostTags = new List<PostTag>();
         }
 
         public Post(string title, string author, string content, PostStatus postStatus)
@@ -38,11 +33,6 @@ namespace ProjectName.Domain.AggregatesModel.PostAggregate
             this.Author = author;
             this.Content = content;
             this.StatusId = postStatus.Id;
-        }
-
-        public void AddTag(int tagId)
-        {
-            this._postTags.Add(new PostTag(this.Id, tagId));
         }
     }
 }

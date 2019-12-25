@@ -10,7 +10,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Project.Api.Infrastructure;
 using ProjectName.Api.Infrastructure;
-using ProjectName.Domain.SeedWork;
+using ProjectName.Domain.Common;
 using ProjectName.Infrastructure.Database;
 
 namespace ProjectName.Api
@@ -31,9 +31,9 @@ namespace ProjectName.Api
             services.AddLoggingSystem(Configuration);
             services.AddMediaRModule();
 
-            var ProfileContext = new ServiceDescriptor(typeof(DbContextOptions<BlogContext>), EmployeeContextFactory, ServiceLifetime.Transient);
+            var ProfileContext = new ServiceDescriptor(typeof(DbContextOptions<BlogContext>), BlogContextFactory, ServiceLifetime.Scoped);
             services.Replace(ProfileContext);
-            var ReportContext = new ServiceDescriptor(typeof(DbContextOptions<PortalContext>), ReportContextFactory, ServiceLifetime.Transient);
+            var ReportContext = new ServiceDescriptor(typeof(DbContextOptions<PortalContext>), ReportContextFactory, ServiceLifetime.Scoped);
             services.Replace(ReportContext);
             ConfigureContext(services);
 
@@ -77,9 +77,9 @@ namespace ProjectName.Api
             services.CreatePortalDbContext();
         }
 
-        private DbContextOptions<BlogContext> EmployeeContextFactory(IServiceProvider provider)
+        private DbContextOptions<BlogContext> BlogContextFactory(IServiceProvider provider)
         {
-            string connectionString = Configuration.GetSection("ConnectionStrings:EmployeeConnection").Value;
+            string connectionString = Configuration.GetSection("ConnectionStrings:BlogConnection").Value;
 
             var optionsBuilder = new DbContextOptionsBuilder<BlogContext>();
             if (!String.IsNullOrEmpty(connectionString))

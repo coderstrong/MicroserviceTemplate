@@ -21,7 +21,7 @@ namespace ProjectName.Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("ProjectName.Domain.AggregatesModel.BlogAggregate.Blog", b =>
+            modelBuilder.Entity("ProjectName.Domain.Entities.Blog", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -60,7 +60,7 @@ namespace ProjectName.Infrastructure.Migrations
                     b.ToTable("Blog","BlogSample");
                 });
 
-            modelBuilder.Entity("ProjectName.Domain.AggregatesModel.PostAggregate.Post", b =>
+            modelBuilder.Entity("ProjectName.Domain.Entities.Post", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -115,7 +115,7 @@ namespace ProjectName.Infrastructure.Migrations
                     b.ToTable("Post","BlogSample");
                 });
 
-            modelBuilder.Entity("ProjectName.Domain.AggregatesModel.PostAggregate.PostStatus", b =>
+            modelBuilder.Entity("ProjectName.Domain.Entities.PostStatus", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -130,7 +130,7 @@ namespace ProjectName.Infrastructure.Migrations
                     b.ToTable("PostStatus","BlogSample");
                 });
 
-            modelBuilder.Entity("ProjectName.Domain.AggregatesModel.PostAggregate.PostTag", b =>
+            modelBuilder.Entity("ProjectName.Domain.Entities.PostTag", b =>
                 {
                     b.Property<int>("PostId")
                         .HasColumnType("int");
@@ -145,7 +145,7 @@ namespace ProjectName.Infrastructure.Migrations
                     b.ToTable("PostTag","BlogSample");
                 });
 
-            modelBuilder.Entity("ProjectName.Domain.AggregatesModel.PostAggregate.Tag", b =>
+            modelBuilder.Entity("ProjectName.Domain.Entities.Tag", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -182,21 +182,21 @@ namespace ProjectName.Infrastructure.Migrations
                     b.ToTable("Tag","BlogSample");
                 });
 
-            modelBuilder.Entity("ProjectName.Domain.AggregatesModel.PostAggregate.Post", b =>
+            modelBuilder.Entity("ProjectName.Domain.Entities.Post", b =>
                 {
-                    b.HasOne("ProjectName.Domain.AggregatesModel.BlogAggregate.Blog", "Blog")
+                    b.HasOne("ProjectName.Domain.Entities.Blog", "Blog")
                         .WithMany("Posts")
                         .HasForeignKey("BlogId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ProjectName.Domain.AggregatesModel.PostAggregate.PostStatus", "Status")
+                    b.HasOne("ProjectName.Domain.Entities.PostStatus", "Status")
                         .WithMany()
                         .HasForeignKey("StatusId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.OwnsMany("ProjectName.Domain.AggregatesModel.PostAggregate.Comment", "Comments", b1 =>
+                    b.OwnsMany("ProjectName.Domain.Entities.Comment", "Comments", b1 =>
                         {
                             b1.Property<int>("Id")
                                 .ValueGeneratedOnAdd()
@@ -235,15 +235,15 @@ namespace ProjectName.Infrastructure.Migrations
                         });
                 });
 
-            modelBuilder.Entity("ProjectName.Domain.AggregatesModel.PostAggregate.PostTag", b =>
+            modelBuilder.Entity("ProjectName.Domain.Entities.PostTag", b =>
                 {
-                    b.HasOne("ProjectName.Domain.AggregatesModel.PostAggregate.Tag", "Tag")
+                    b.HasOne("ProjectName.Domain.Entities.Tag", "Tag")
                         .WithMany("PostTags")
                         .HasForeignKey("PostId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ProjectName.Domain.AggregatesModel.PostAggregate.Post", "Post")
+                    b.HasOne("ProjectName.Domain.Entities.Post", "Post")
                         .WithMany("PostTags")
                         .HasForeignKey("TagId")
                         .OnDelete(DeleteBehavior.Cascade)

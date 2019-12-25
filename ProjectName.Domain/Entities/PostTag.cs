@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ProjectName.Domain.AggregatesModel.PostAggregate
+namespace ProjectName.Domain.Entities
 {
     public class PostTag
     {

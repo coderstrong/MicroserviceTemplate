@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using ProjectName.Domain.AggregatesModel.PostAggregate;
+using ProjectName.Domain.Entities;
 
 namespace ProjectName.Infrastructure.Database.Configurations
 {

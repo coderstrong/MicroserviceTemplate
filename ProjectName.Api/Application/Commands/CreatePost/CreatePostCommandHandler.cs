@@ -1,13 +1,13 @@
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using ProjectName.Domain.AggregatesModel.PostAggregate;
+using ProjectName.Domain.Entities;
 using ProjectName.Domain.SeedWork;
 using ProjectName.Infrastructure.Database;
 
 namespace ProjectName.Api.Application.Commands
 {
-    public class CreatePostCommandHandler : IRequestHandler<CreatePostCommand, bool>
+    public class CreatePostCommandHandler : IRequestHandler<CreatePostCommand, Post>
     {
         private readonly IRepositoryGeneric<BlogContext, Post> _post;
 
@@ -16,13 +16,15 @@ namespace ProjectName.Api.Application.Commands
             _post = post;
         }
 
-        public async Task<bool> Handle(CreatePostCommand request, CancellationToken cancellationToken)
+        public async Task<Post> Handle(CreatePostCommand request, CancellationToken cancellationToken)
         {
             Post post = new Post(request.Title, request.Author, request.Content, PostStatus.Draft);
             
-            _post.Insert(post);
+            var test = _post.Insert(post);
 
-            return await _post.UnitOfWork.SaveEntitiesAsync();
+            await _post.UnitOfWork.SaveEntitiesAsync();
+
+            return test;
         }
     }
 }

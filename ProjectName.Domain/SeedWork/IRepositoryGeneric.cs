@@ -14,7 +14,7 @@ namespace ProjectName.Domain.SeedWork
 
         Task<List<E>> GetAllAsync(int top = 20, int skip = 0);
 
-        void Insert(E entity);
+        E Insert(E entity);
 
         void InsertRange(IEnumerable<E> entity);
 

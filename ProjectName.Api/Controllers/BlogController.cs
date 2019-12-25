@@ -6,7 +6,6 @@ using Microsoft.Extensions.Logging;
 using ProjectName.Api.Application.Commands;
 using ProjectName.Api.Application.Queries;
 using ProjectName.Api.ViewModel;
-using ProjectName.Domain.AggregatesModel.PostAggregate;
 
 namespace ProjectName.Api.Controllers
 {
@@ -16,54 +15,48 @@ namespace ProjectName.Api.Controllers
     {
         private readonly ILogger<BlogController> _logger;
         private readonly IMediator _mediator;
-        private readonly IPostQueries _postQueries;
+        private readonly IBlogQueries _blogQueries;
 
         public BlogController(ILogger<BlogController> logger,
             IMediator mediator,
-            IPostQueries postQueries)
+            IBlogQueries blogQueries)
         {
             _logger = logger;
-            _postQueries = postQueries;
+            _blogQueries = blogQueries;
             _mediator = mediator;
         }
 
-        [HttpGet]
-        [ProducesResponseType(typeof(PostViewModel), (int)HttpStatusCode.OK)]
-        [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public async Task<IActionResult> Get()
-        {
-            var post = await _postQueries.GetAsync();
-
-            return Ok(post);
-        }
-
         [HttpGet("{id}")]
-        [ProducesResponseType(typeof(PostViewModel), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(BlogViewModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> Get([FromRoute] int id)
         {
-            var post = await _postQueries.GetAsync(id);
-
-            return Ok(post);
+            var blog = await _blogQueries.GetAsync(id);
+            if (blog != null)
+                return Ok(blog);
+            else
+                return NotFound();
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(PostViewModel), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(BlogViewModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public async Task PostAsync([FromBody] CreatePostCommand value)
+        public async Task<IActionResult> PostAsync([FromBody] CreateBlogCommand value)
+        {
+            var blog = await _mediator.Send(value);
+            return Ok(blog);
+        }
+
+        [HttpPut]
+        public async Task Put([FromBody] UpdateBlogCommand value)
         {
             await _mediator.Send(value);
         }
 
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Post value)
-        {
-            
-        }
-
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
+            await _mediator.Send(new DeleteBlogCommand() { Id = id });
         }
     }
 }
