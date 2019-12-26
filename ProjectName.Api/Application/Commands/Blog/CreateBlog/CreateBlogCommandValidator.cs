@@ -1,6 +1,5 @@
 using FluentValidation;
 using Microsoft.Extensions.Logging;
-using ProjectName.Api.Application.Commands;
 
 namespace ProjectName.Api.Application.Commands
 {
