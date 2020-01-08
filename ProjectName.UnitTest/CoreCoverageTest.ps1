@@ -1,5 +1,6 @@
 $testProjectPath = $PSScriptRoot
 $testResultsFolder = "$PSScriptRoot\TestResults"
+$coverageOutPutFile = "coverage.coveragexml"
 
 <#
 echo "Test Project Path" $testProjectPath
@@ -7,16 +8,14 @@ echo "Test Results Folder" $testResultsFolder
 #>
 
 try {
-    #$testSettingsPath = Get-ChildItem -File -Filter *.runsettings -Path $testProjectPath -Name -Recurse | Select-Object -First 1;
-    #dotnet test $testProjectPath --settings:$testSettingsPath --collect:"Code Coverage"
-	dotnet test $testProjectPath --collect:"Code Coverage"
+	dotnet test $testProjectPath /p:CollectCoverage=true --collect:"Code Coverage"
     $recentCoverageFile = Get-ChildItem -File -Filter *.coverage -Path $testResultsFolder -Name -Recurse | Select-Object -First 1;
     write-host 'Test Completed'  -ForegroundColor Green
 
-    C:\Users\coder\.nuget\packages\microsoft.codecoverage\16.2.0\build\netstandard1.0\CodeCoverage\CodeCoverage.exe analyze  /output:$testResultsFolder\MyTestOutput.coveragexml  $testResultsFolder'\'$recentCoverageFile
+    C:\Users\coder\.nuget\packages\microsoft.codecoverage\16.2.0\build\netstandard1.0\CodeCoverage\CodeCoverage.exe analyze  /output:$testResultsFolder\$coverageOutPutFile  $testResultsFolder'\'$recentCoverageFile
     write-host 'CoverageXML Generated'  -ForegroundColor Green
 
-    reportgenerator "-reports:$testResultsFolder\MyTestOutput.coveragexml" "-targetdir:$testResultsFolder\coveragereport"
+    reportgenerator "-reports:$testResultsFolder\$coverageOutPutFile" "-targetdir:$testResultsFolder\coveragereport"
     write-host 'CoverageReport Published'  -ForegroundColor Green
 
 }
