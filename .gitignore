@@ -1,5 +1,7 @@
 .vs 
 /.vs
+.vscode
+/.vscode
 .cache 
 .suo 
 /bin
