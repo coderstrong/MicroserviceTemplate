@@ -21,9 +21,9 @@ namespace ProjectName.Infrastructure.Utils
             return Task.FromResult<TResponse>(default(TResponse));
         }
 
-        public Task Send(IRequest request, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<object> Send(object request, CancellationToken cancellationToken = default)
         {
-            return Task.CompletedTask;
+            return Task.FromResult<object>(default);
         }
     }
 }

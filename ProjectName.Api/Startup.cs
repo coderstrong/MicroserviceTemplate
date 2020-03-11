@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using Project.Api.Infrastructure;
 using ProjectName.Api.Infrastructure;
 using ProjectName.Domain.Common;
+using ProjectName.Infrastructure.Dapper;
 using ProjectName.Infrastructure.Database;
 
 namespace ProjectName.Api
@@ -36,6 +37,13 @@ namespace ProjectName.Api
             var ReportContext = new ServiceDescriptor(typeof(DbContextOptions<PortalContext>), ReportContextFactory, ServiceLifetime.Scoped);
             services.Replace(ReportContext);
             ConfigureContext(services);
+
+            services.AddDapper(o =>
+            {
+                o.Schema = "BlogSample";
+                o.DatabaseType = DatabaseType.SqlServer;
+                o.ConnectionString = Configuration.GetSection("ConnectionStrings:BlogConnection").Value;
+            });
 
             services.LoadServices();
 
