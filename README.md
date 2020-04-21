@@ -14,7 +14,7 @@
 
 **Domain**
 
-Chứa toàn bộ các entities, enums, exceptions, interfaces, types và code logic của domain
+Chứa toàn bộ các entities, enums, exceptions, interfaces, types và code logic của application
 
 **Application**
 
@@ -22,4 +22,4 @@ Chứa tất các các logic của ứng dụng, Nó chỉ phụ thuộc layer D
 
 **Infrastructure**
 
-Chứa tất cả các lớp dùng thực hiện giao tiếp với hệ thống bên ngoài ví dụ như File, Database, Webservice, ResApi, Queue
+Chứa tất cả các lớp dùng thực hiện giao tiếp với hạ tầng hoặc hệ thống bên ngoài ví dụ như File, Database, Webservice, ResApi, Queue

@@ -1,6 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
@@ -12,11 +16,13 @@ namespace ProjectName.Domain.Common
     {
         private readonly ILogger<RepositoryGeneric<C, E>> _logger;
         private readonly C _context;
+        private readonly IMapper _mapper;
 
-        public RepositoryGeneric(C context, ILogger<RepositoryGeneric<C, E>> logger)
+        public RepositoryGeneric(C context, ILogger<RepositoryGeneric<C, E>> logger, IMapper mapper)
         {
             _context = context;
             _logger = logger;
+            _mapper = mapper;
         }
 
         public IUnitOfWork UnitOfWork
@@ -34,21 +40,100 @@ namespace ProjectName.Domain.Common
                 _context.Repository<E>().Remove(entity);
         }
 
-        public async Task<List<E>> GetAllAsync(int top = 20, int skip = 0)
+        public async Task<List<E>> GetAllAsync(
+           Expression<Func<E, bool>> filter = null,
+           Func<IQueryable<E>, IOrderedQueryable<E>> orderBy = null,
+           string includeProperties = "", Pagination paging = null)
         {
-            if (top > 0)
+            IQueryable<E> query = _context.Repository<E>();
+
+            if (filter != null)
             {
-                return await _context.Repository<E>().OrderBy(x => x.Id).Skip(skip).Take(top).AsNoTracking().ToListAsync();
+                query = query.Where(filter);
             }
-            else
+
+            foreach (var includeProperty in includeProperties.Split
+                (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
             {
-                return await _context.Repository<E>().AsNoTracking().ToListAsync();
+                query = query.Include(includeProperty);
             }
+
+            if (orderBy != null)
+            {
+                query = orderBy(query);
+
+                if (paging != null)
+                {
+                    paging.TotalItem = query.Count();
+                    query = query.Skip(paging.Skip).Take(paging.PageSize);
+                }
+            }
+
+            return await query.AsNoTracking().ToListAsync();
+        }
+
+        public async Task<List<M>> GetAllAsync<M>(
+            Expression<Func<E, bool>> filter = null,
+            Func<IQueryable<E>, IOrderedQueryable<E>> orderBy = null,
+            string includeProperties = "", Pagination paging = null)
+        {
+            IQueryable<E> query = _context.Repository<E>();
+
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+
+            foreach (var includeProperty in includeProperties.Split
+                (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                query = query.Include(includeProperty);
+            }
+
+            if (orderBy != null)
+            {
+                query = orderBy(query);
+                if (paging != null)
+                {
+                    paging.TotalItem = query.Count();
+                    query = query.Skip(paging.Skip).Take(paging.PageSize);
+                }
+            }
+
+            return await query.AsNoTracking().ProjectTo<M>(_mapper.ConfigurationProvider).ToListAsync();
         }
 
         public async Task<E> GetOneAsync(object key)
         {
             return await _context.Repository<E>().FindAsync(key);
+        }
+
+        public IQueryable<E> GetQueryable(Expression<Func<E, bool>> filter = null, Func<IQueryable<E>, IOrderedQueryable<E>> orderBy = null, string includeProperties = "", Pagination paging = null)
+        {
+            IQueryable<E> query = _context.Repository<E>();
+
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+
+            foreach (var includeProperty in includeProperties.Split
+                (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                query = query.Include(includeProperty);
+            }
+
+            if (orderBy != null)
+            {
+                query = orderBy(query);
+                if (paging != null)
+                {
+                    paging.TotalItem = query.Count();
+                    query = query.Skip(paging.Skip).Take(paging.PageSize);
+                }
+            }
+
+            return query.AsNoTracking();
         }
 
         public E Insert(E entity)
