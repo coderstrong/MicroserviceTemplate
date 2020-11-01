@@ -7,8 +7,7 @@ namespace ProjectName.Api.Application.Commands
     {
         public DeleteBlogCommandValidator(ILogger<DeleteBlogCommandValidator> logger)
         {
-            RuleFor(command => command.Id).NotNull().WithMessage("Id is Required")
-                .GreaterThanOrEqualTo(0).WithMessage("Id invaild");
+            RuleFor(command => command.Id).NotNull().WithMessage("Id is Required");
             logger.LogTrace("----- INSTANCE CREATED - {ClassName}", GetType().Name);
         }
     }

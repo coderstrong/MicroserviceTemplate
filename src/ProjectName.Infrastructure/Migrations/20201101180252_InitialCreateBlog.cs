@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ProjectName.Infrastructure.Migrations
@@ -15,8 +15,7 @@ namespace ProjectName.Infrastructure.Migrations
                 schema: "BlogSample",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(nullable: false),
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     ModifiedAt = table.Column<DateTime>(nullable: true),
                     DeletedAt = table.Column<DateTime>(nullable: true),
@@ -50,8 +49,7 @@ namespace ProjectName.Infrastructure.Migrations
                 schema: "BlogSample",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(nullable: false),
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     ModifiedAt = table.Column<DateTime>(nullable: true),
                     DeletedAt = table.Column<DateTime>(nullable: true),
@@ -70,8 +68,7 @@ namespace ProjectName.Infrastructure.Migrations
                 schema: "BlogSample",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(nullable: false),
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     ModifiedAt = table.Column<DateTime>(nullable: true),
                     DeletedAt = table.Column<DateTime>(nullable: true),
@@ -82,18 +79,19 @@ namespace ProjectName.Infrastructure.Migrations
                     Author = table.Column<string>(nullable: true),
                     Content = table.Column<string>(type: "text", nullable: false),
                     StatusId = table.Column<int>(nullable: false),
+                    BlogId1 = table.Column<Guid>(nullable: true),
                     BlogId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Post", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Post_Blog_BlogId",
-                        column: x => x.BlogId,
+                        name: "FK_Post_Blog_BlogId1",
+                        column: x => x.BlogId1,
                         principalSchema: "BlogSample",
                         principalTable: "Blog",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Post_PostStatus_StatusId",
                         column: x => x.StatusId,
@@ -104,38 +102,12 @@ namespace ProjectName.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Comment",
-                schema: "BlogSample",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ParentId = table.Column<int>(nullable: true),
-                    PostId = table.Column<int>(nullable: false),
-                    Date = table.Column<DateTime>(nullable: false),
-                    Author = table.Column<string>(maxLength: 200, nullable: true),
-                    EmailAddress = table.Column<string>(maxLength: 255, nullable: true),
-                    Content = table.Column<string>(maxLength: 500, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Comment", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Comment_Post_PostId",
-                        column: x => x.PostId,
-                        principalSchema: "BlogSample",
-                        principalTable: "Post",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "PostTag",
                 schema: "BlogSample",
                 columns: table => new
                 {
-                    PostId = table.Column<int>(nullable: false),
-                    TagId = table.Column<int>(nullable: false)
+                    PostId = table.Column<Guid>(nullable: false),
+                    TagId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -157,16 +129,10 @@ namespace ProjectName.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Comment_PostId",
-                schema: "BlogSample",
-                table: "Comment",
-                column: "PostId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Post_BlogId",
+                name: "IX_Post_BlogId1",
                 schema: "BlogSample",
                 table: "Post",
-                column: "BlogId");
+                column: "BlogId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Post_StatusId",
@@ -183,10 +149,6 @@ namespace ProjectName.Infrastructure.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Comment",
-                schema: "BlogSample");
-
             migrationBuilder.DropTable(
                 name: "PostTag",
                 schema: "BlogSample");

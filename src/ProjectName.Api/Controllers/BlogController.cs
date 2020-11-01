@@ -1,3 +1,4 @@
+using System;
 using System.Net;
 using System.Threading.Tasks;
 using MediatR;
@@ -29,7 +30,7 @@ namespace ProjectName.Api.Controllers
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(BlogResponseModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public async Task<IActionResult> Get([FromRoute] int id)
+        public async Task<IActionResult> Get([FromRoute] Guid id)
         {
             var blog = await _blogQueries.GetAsync(id);
             if (blog != null)
@@ -47,14 +48,14 @@ namespace ProjectName.Api.Controllers
             return Ok(blog);
         }
 
-        [HttpPut]
-        public async Task Put([FromBody] UpdateBlogCommand value)
+        [HttpPut("{id}")]
+        public async Task Put([FromRoute] Guid id, [FromBody] UpdateBlogCommand value)
         {
             await _mediator.Send(value);
         }
 
         [HttpDelete("{id}")]
-        public async Task Delete(int id)
+        public async Task Delete([FromRoute] Guid id)
         {
             await _mediator.Send(new DeleteBlogCommand() { Id = id });
         }

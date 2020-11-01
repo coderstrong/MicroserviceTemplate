@@ -6,6 +6,7 @@ using ProjectName.Api.Application.Commands;
 using ProjectName.Api.Application.Queries;
 using ProjectName.Api.Controllers;
 using ProjectName.Api.Model;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
@@ -29,8 +30,8 @@ namespace ProjectName.UnitTest.Api
         public async Task Get_Blog_with_Id_NotFound()
         {
             //Arrange
-            int IdHas = 123;
-            int IdNotFound = 1;
+            Guid IdHas = Guid.NewGuid();
+            Guid IdNotFound = Guid.NewGuid();
             var blog = new BlogResponseModel() { Id = IdHas, Title = "Test", Description = "Test" };
             _blogQueriesMock.Setup(x => x.GetAsync(IdHas)).ReturnsAsync(blog);
 
@@ -46,7 +47,7 @@ namespace ProjectName.UnitTest.Api
         public async Task Get_Blog_with_Id_Success()
         {
             //Arrange
-            int IdHas = 123;
+            Guid IdHas = Guid.NewGuid();
             var blog = new BlogResponseModel() { Id = IdHas, Title = "Test", Description = "Test" };
             _blogQueriesMock.Setup(x => x.GetAsync(IdHas)).ReturnsAsync(blog);
 
@@ -62,7 +63,7 @@ namespace ProjectName.UnitTest.Api
         public async Task Create_Blog_Success()
         {
             //Arrange
-            var resultExpect = new BlogResponseModel() { Id = 1, Title = "New Blog", Description = "Blog description" };
+            var resultExpect = new BlogResponseModel() { Id = Guid.NewGuid(), Title = "New Blog", Description = "Blog description" };
             _mediatorMock.Setup(x => x.Send(It.IsAny<CreateBlogCommand>(), default(CancellationToken)))
                 .Returns(Task.FromResult(resultExpect));
 

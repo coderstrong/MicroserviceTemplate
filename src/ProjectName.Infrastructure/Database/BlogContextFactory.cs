@@ -10,7 +10,7 @@ namespace ProjectName.Infrastructure.Database
         {
             var optionsBuilder = new DbContextOptionsBuilder<BlogContext>();
 
-            optionsBuilder.UseSqlServer("Server=.;Database=BlogSample;user id=sa;password=123456");
+            optionsBuilder.UseSqlServer("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=D:\\Database\\MSSQL11.MSSQLSERVER\\DATA\\ProjectName.mdf;Integrated Security=True;Connect Timeout=30");
 
             return new BlogContext(optionsBuilder.Options, new NoMediator());
         }

@@ -15,16 +15,15 @@ namespace ProjectName.Infrastructure.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.0")
+                .HasAnnotation("ProductVersion", "3.1.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("ProjectName.Domain.Entities.Blog", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -60,16 +59,18 @@ namespace ProjectName.Infrastructure.Migrations
 
             modelBuilder.Entity("ProjectName.Domain.Entities.Post", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Author")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("BlogId")
                         .HasColumnType("int");
+
+                    b.Property<Guid?>("BlogId1")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Content")
                         .IsRequired()
@@ -106,7 +107,7 @@ namespace ProjectName.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BlogId");
+                    b.HasIndex("BlogId1");
 
                     b.HasIndex("StatusId");
 
@@ -130,11 +131,11 @@ namespace ProjectName.Infrastructure.Migrations
 
             modelBuilder.Entity("ProjectName.Domain.Entities.PostTag", b =>
                 {
-                    b.Property<int>("PostId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("PostId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("TagId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("TagId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("PostId", "TagId");
 
@@ -145,10 +146,9 @@ namespace ProjectName.Infrastructure.Migrations
 
             modelBuilder.Entity("ProjectName.Domain.Entities.Tag", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -184,53 +184,13 @@ namespace ProjectName.Infrastructure.Migrations
                 {
                     b.HasOne("ProjectName.Domain.Entities.Blog", "Blog")
                         .WithMany("Posts")
-                        .HasForeignKey("BlogId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("BlogId1");
 
                     b.HasOne("ProjectName.Domain.Entities.PostStatus", "Status")
                         .WithMany()
                         .HasForeignKey("StatusId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.OwnsMany("ProjectName.Domain.Entities.Comment", "Comments", b1 =>
-                        {
-                            b1.Property<int>("Id")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("int")
-                                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                            b1.Property<string>("Author")
-                                .HasColumnType("nvarchar(200)")
-                                .HasMaxLength(200);
-
-                            b1.Property<string>("Content")
-                                .HasColumnType("nvarchar(500)")
-                                .HasMaxLength(500);
-
-                            b1.Property<DateTime>("Date")
-                                .HasColumnType("datetime2");
-
-                            b1.Property<string>("EmailAddress")
-                                .HasColumnType("nvarchar(255)")
-                                .HasMaxLength(255);
-
-                            b1.Property<int?>("ParentId")
-                                .HasColumnType("int");
-
-                            b1.Property<int>("PostId")
-                                .HasColumnType("int");
-
-                            b1.HasKey("Id");
-
-                            b1.HasIndex("PostId");
-
-                            b1.ToTable("Comment","BlogSample");
-
-                            b1.WithOwner()
-                                .HasForeignKey("PostId");
-                        });
                 });
 
             modelBuilder.Entity("ProjectName.Domain.Entities.PostTag", b =>

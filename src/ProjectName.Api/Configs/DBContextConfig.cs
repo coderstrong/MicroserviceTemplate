@@ -12,11 +12,5 @@ namespace ProjectName.Api.Infrastructure
             services.AddDbContext<BlogContext>(options => options.UseInMemoryDatabase(databaseName: "BlogSample" + Guid.NewGuid()), ServiceLifetime.Scoped, ServiceLifetime.Scoped);
             return services;
         }
-
-        public static IServiceCollection CreatePortalDbContext(this IServiceCollection services)
-        {
-            services.AddDbContext<PortalContext>(options => options.UseInMemoryDatabase(databaseName: "Portal" + Guid.NewGuid()), ServiceLifetime.Scoped, ServiceLifetime.Scoped);
-            return services;
-        }
     }
 }

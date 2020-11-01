@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using AutoMapper;
 using Dapper;
@@ -20,7 +21,7 @@ namespace ProjectName.Api.Application.Queries
             _dapper = dapper;
         }
 
-        public Task<BlogResponseModel> GetAsync(int Id)
+        public Task<BlogResponseModel> GetAsync(Guid Id)
         {
             ///use _dapper if use linq generate complex sql
             return _dapper.Connection.QueryFirstAsync<BlogResponseModel>(@"SELECT * FROM BlogSample.Blog Where Id=@Id", new { Id });
