@@ -20,8 +20,6 @@ namespace ProjectName.Infrastructure.Database
 
         public virtual DbSet<Post> Posts { get; set; }
 
-        public virtual DbSet<Comment> Comments { get; set; }
-
         public virtual DbSet<Tag> Tags { get; set; }
 
         public virtual DbSet<PostStatus> PostStatus { get; set; }

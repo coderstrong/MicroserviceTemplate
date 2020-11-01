@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ProjectName.Api.Application.Commands;
 using ProjectName.Api.Application.Queries;
-using ProjectName.Api.ViewModel;
+using ProjectName.Api.Model;
 
 namespace ProjectName.Api.Controllers
 {
@@ -27,7 +27,7 @@ namespace ProjectName.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        [ProducesResponseType(typeof(BlogViewModel), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(BlogResponseModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> Get([FromRoute] int id)
         {
@@ -39,7 +39,7 @@ namespace ProjectName.Api.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(BlogViewModel), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(BlogResponseModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> PostAsync([FromBody] CreateBlogCommand value)
         {

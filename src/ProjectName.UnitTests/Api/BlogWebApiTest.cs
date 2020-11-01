@@ -5,7 +5,7 @@ using Moq;
 using ProjectName.Api.Application.Commands;
 using ProjectName.Api.Application.Queries;
 using ProjectName.Api.Controllers;
-using ProjectName.Api.ViewModel;
+using ProjectName.Api.Model;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
@@ -31,7 +31,7 @@ namespace ProjectName.UnitTest.Api
             //Arrange
             int IdHas = 123;
             int IdNotFound = 1;
-            var blog = new BlogViewModel() { Id = IdHas, Title = "Test", Description = "Test" };
+            var blog = new BlogResponseModel() { Id = IdHas, Title = "Test", Description = "Test" };
             _blogQueriesMock.Setup(x => x.GetAsync(IdHas)).ReturnsAsync(blog);
 
             //Act
@@ -47,7 +47,7 @@ namespace ProjectName.UnitTest.Api
         {
             //Arrange
             int IdHas = 123;
-            var blog = new BlogViewModel() { Id = IdHas, Title = "Test", Description = "Test" };
+            var blog = new BlogResponseModel() { Id = IdHas, Title = "Test", Description = "Test" };
             _blogQueriesMock.Setup(x => x.GetAsync(IdHas)).ReturnsAsync(blog);
 
             //Act
@@ -62,7 +62,7 @@ namespace ProjectName.UnitTest.Api
         public async Task Create_Blog_Success()
         {
             //Arrange
-            var resultExpect = new BlogViewModel() { Id = 1, Title = "New Blog", Description = "Blog description" };
+            var resultExpect = new BlogResponseModel() { Id = 1, Title = "New Blog", Description = "Blog description" };
             _mediatorMock.Setup(x => x.Send(It.IsAny<CreateBlogCommand>(), default(CancellationToken)))
                 .Returns(Task.FromResult(resultExpect));
 

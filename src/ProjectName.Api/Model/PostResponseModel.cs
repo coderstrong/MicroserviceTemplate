@@ -1,6 +1,6 @@
-namespace ProjectName.Api.ViewModel
+namespace ProjectName.Api.Model
 {
-    public class PostViewModel
+    public class PostResponseModel
     {
         public int Id { get; set; }
 

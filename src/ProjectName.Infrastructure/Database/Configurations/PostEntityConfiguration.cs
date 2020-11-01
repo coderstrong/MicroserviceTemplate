@@ -18,16 +18,6 @@ namespace ProjectName.Infrastructure.Database.Configurations
             builder.Property(m => m.Content).HasColumnType("text").IsRequired();
             builder.Property(m => m.StatusId).IsRequired();
 
-            builder.OwnsMany(m => m.Comments, n =>
-            {
-                n.ToTable("Comment", BlogContext.DefaultSchema);
-                n.WithOwner().HasForeignKey("PostId");
-                n.HasKey(x => x.Id);
-                n.Property(m => m.Author).HasMaxLength(200);
-                n.Property(m => m.Content).HasMaxLength(500);
-                n.Property(m => m.EmailAddress).HasMaxLength(255);
-            });
-
             builder.HasOne(m => m.Status).WithMany().HasForeignKey(m => m.StatusId).OnDelete(DeleteBehavior.Restrict);
         }
     }

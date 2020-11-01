@@ -1,11 +1,11 @@
-using MediatR;
-
-namespace ProjectName.Api.Application.Commands
+namespace ProjectName.Api.Model
 {
-    public class UpdateBlogCommand : IRequest<bool>
+    public class BlogResponseModel
     {
         public int Id { get; set; }
+
         public string Title { get; set; }
+
         public string Description { get; set; }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Net;
 using System.Threading.Tasks;
 using MediatR;
@@ -5,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ProjectName.Api.Application.Commands;
 using ProjectName.Api.Application.Queries;
-using ProjectName.Api.ViewModel;
+using ProjectName.Api.Model;
 using ProjectName.Domain.Entities;
 
 namespace ProjectName.Api.Controllers
@@ -28,7 +29,7 @@ namespace ProjectName.Api.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(PostViewModel), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(PostResponseModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> Get()
         {
@@ -40,9 +41,9 @@ namespace ProjectName.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        [ProducesResponseType(typeof(PostViewModel), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(PostResponseModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public async Task<IActionResult> Get([FromRoute] int id)
+        public async Task<IActionResult> Get([FromRoute] Guid id)
         {
             var post = await _postQueries.GetAsync(id);
 
@@ -50,20 +51,20 @@ namespace ProjectName.Api.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(PostViewModel), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(PostResponseModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<PostViewModel>> PostAsync([FromBody] CreatePostCommand value)
+        public async Task<ActionResult<PostResponseModel>> PostAsync([FromBody] CreatePostCommand value)
         {
             return await _mediator.Send(value);
         }
 
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Post value)
+        public void Put(Guid id, [FromBody] Post value)
         {
         }
 
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Delete(Guid id)
         {
         }
     }

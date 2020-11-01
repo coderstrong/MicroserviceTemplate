@@ -1,6 +1,6 @@
 namespace ProjectName.Domain.Common
 {
-    public static class DataDefine
+    public static class ConstDefine
     {
         public const int DefaultPageSize = 10;
     }

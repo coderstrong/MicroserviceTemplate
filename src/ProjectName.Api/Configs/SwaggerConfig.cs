@@ -31,9 +31,9 @@ namespace Project.Api.Infrastructure
                     document.Info.TermsOfService = "None";
                     document.Info.Contact = new NSwag.OpenApiContact
                     {
-                        Name = "ACB",
+                        Name = "ProjectName.API",
                         Email = string.Empty,
-                        Url = "https://acb.com.vn"
+                        Url = "ProjectName.io"
                     };
                     document.Info.License = new NSwag.OpenApiLicense
                     {

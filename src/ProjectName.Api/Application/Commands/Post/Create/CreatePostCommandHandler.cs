@@ -2,14 +2,14 @@ using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
-using ProjectName.Api.ViewModel;
+using ProjectName.Api.Model;
 using ProjectName.Domain.Common;
 using ProjectName.Domain.Entities;
 using ProjectName.Infrastructure.Database;
 
 namespace ProjectName.Api.Application.Commands
 {
-    public class CreatePostCommandHandler : IRequestHandler<CreatePostCommand, PostViewModel>
+    public class CreatePostCommandHandler : IRequestHandler<CreatePostCommand, PostResponseModel>
     {
         private readonly IRepositoryGeneric<BlogContext, Post> _post;
         private readonly IMapper _mapper;
@@ -20,7 +20,7 @@ namespace ProjectName.Api.Application.Commands
             _mapper = mapper;
         }
 
-        public async Task<PostViewModel> Handle(CreatePostCommand request, CancellationToken cancellationToken)
+        public async Task<PostResponseModel> Handle(CreatePostCommand request, CancellationToken cancellationToken)
         {
             Post post = new Post(request.Title, request.Author, request.Content, PostStatus.Draft);
             post.BlogId = 3;
@@ -28,7 +28,7 @@ namespace ProjectName.Api.Application.Commands
 
             await _post.UnitOfWork.SaveEntitiesAsync();
 
-            return _mapper.Map<PostViewModel>(posted);
+            return _mapper.Map<PostResponseModel>(posted);
         }
     }
 }

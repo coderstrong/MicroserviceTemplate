@@ -1,15 +1,13 @@
 ﻿using AutoMapper;
-using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 using ProjectName.Api.Application.Queries;
-using ProjectName.Api.ViewModel;
+using ProjectName.Api.Model;
 using ProjectName.Domain.Entities;
 using ProjectName.Infrastructure.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -32,9 +30,9 @@ namespace ProjectName.UnitTest.Queries
             //Arrange
             var data = new List<Post>
             {
-                new Post {Author = "BBB", Content ="sadfa", Id = 1 , Status =new PostStatus(1,"Test"), Title = ""},
-                new Post {Author = "BBB", Content ="sadfa", Id = 1 , Status =new PostStatus(1,"Test"), Title = ""},
-                new Post {Author = "BBB", Content ="sadfa", Id = 1 , Status =new PostStatus(1,"Test"), Title = ""},
+                new Post {Author = "BBB", Content ="sadfa", Id = Guid.NewGuid() , Status =new PostStatus(1,"Test"), Title = ""},
+                new Post {Author = "BBB", Content ="sadfa", Id = Guid.NewGuid() , Status =new PostStatus(1,"Test"), Title = ""},
+                new Post {Author = "BBB", Content ="sadfa", Id = Guid.NewGuid() , Status =new PostStatus(1,"Test"), Title = ""},
             }.AsQueryable();
             var mockSet = new Mock<DbSet<Post>>();
             mockSet.As<IQueryable<Post>>().Setup(m => m.Provider).Returns(data.Provider);
@@ -48,14 +46,14 @@ namespace ProjectName.UnitTest.Queries
             var actionResult = await postQueries.GetAsync();
 
             //Assert
-            Assert.True(actionResult is List<PostViewModel>);
+            Assert.True(actionResult is List<PostResponseModel>);
         }
 
         [Fact]
         public async Task GetAsyncById_Found()
         {
             //Arrange
-            int Id = 1;
+            Guid Id = Guid.NewGuid();
             var mockSet = new Mock<DbSet<Post>>();
             _blogContextMock.Setup(x => x.Posts).Returns(mockSet.Object);
 
@@ -64,7 +62,7 @@ namespace ProjectName.UnitTest.Queries
             var actionResult = await postQueries.GetAsync(Id);
 
             //Assert
-            Assert.True(actionResult is PostViewModel);
+            Assert.True(actionResult is PostResponseModel);
         }
     }
 }

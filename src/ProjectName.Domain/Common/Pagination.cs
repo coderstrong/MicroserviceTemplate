@@ -5,10 +5,8 @@ namespace ProjectName.Domain.Common
 {
     public class Pagination
     {
-        [JsonProperty(PropertyName = "pageIndex")]
         public int PageIndex { get; set; }
 
-        [JsonProperty(PropertyName = "pageSize")]
         public int PageSize { get; set; }
 
         [OpenApiIgnore]
@@ -28,7 +26,7 @@ namespace ProjectName.Domain.Common
         public Pagination()
         {
             this.PageIndex = 1;
-            this.PageSize = DataDefine.DefaultPageSize;
+            this.PageSize = ConstDefine.DefaultPageSize;
             this.TotalItem = this.PageSize;
         }
     }

@@ -1,13 +1,14 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using ProjectName.Api.ViewModel;
+using ProjectName.Api.Model;
 
 namespace ProjectName.Api.Application.Queries
 {
     public interface IPostQueries
     {
-        public Task<List<PostViewModel>> GetAsync();
+        public Task<List<PostResponseModel>> GetAsync();
 
-        public Task<PostViewModel> GetAsync(int Id);
+        public Task<PostResponseModel> GetAsync(Guid Id);
     }
 }

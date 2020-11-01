@@ -1,6 +1,6 @@
 using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
-using ProjectName.Api.ViewModel;
+using ProjectName.Api.Model;
 using ProjectName.Domain.Entities;
 
 namespace ProjectName.Api.Infrastructure
@@ -10,8 +10,8 @@ namespace ProjectName.Api.Infrastructure
         public AutoMappingConfigs()
         {
             // Add as many of these lines as you need to map your objects
-            CreateMap<Post, PostViewModel>().ReverseMap();
-            CreateMap<Blog, BlogViewModel>().ReverseMap();
+            CreateMap<Post, PostResponseModel>().ReverseMap();
+            CreateMap<Blog, BlogResponseModel>().ReverseMap();
         }
     }
 

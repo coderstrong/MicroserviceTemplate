@@ -1,10 +1,10 @@
 using System.Threading.Tasks;
-using ProjectName.Api.ViewModel;
+using ProjectName.Api.Model;
 
 namespace ProjectName.Api.Application.Queries
 {
     public interface IBlogQueries
     {
-        public Task<BlogViewModel> GetAsync(int Id);
+        public Task<BlogResponseModel> GetAsync(int Id);
     }
 }
