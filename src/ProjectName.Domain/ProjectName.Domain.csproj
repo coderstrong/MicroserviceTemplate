@@ -13,4 +13,8 @@
     <PackageReference Include="NSwag.Annotations" Version="13.8.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
+  </ItemGroup>
+
 </Project>

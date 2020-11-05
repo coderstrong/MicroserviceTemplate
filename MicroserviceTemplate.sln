@@ -11,6 +11,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectName.API", "src\Proj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectName.UnitTests", "src\ProjectName.UnitTests\ProjectName.UnitTests.csproj", "{A5FC3394-D91D-4645-B056-D838D020292A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "building-blocks", "building-blocks", "{1DC2EB3D-8EC2-42F0-AAA2-64683CD5C38E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EA530507-11A4-4E71-8939-04078BE8C1DD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "deploy", "deploy", "{5A82617F-48B2-4FDA-BFC2-513BE6537B79}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stu.AspNetCore.Mvc", "building-blocks\Stu.AspNetCore.Mvc\Stu.AspNetCore.Mvc.csproj", "{95154252-FEF8-4B5E-A8E9-0BB410E9237B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,9 +41,17 @@ Global
 		{A5FC3394-D91D-4645-B056-D838D020292A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5FC3394-D91D-4645-B056-D838D020292A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5FC3394-D91D-4645-B056-D838D020292A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95154252-FEF8-4B5E-A8E9-0BB410E9237B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95154252-FEF8-4B5E-A8E9-0BB410E9237B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95154252-FEF8-4B5E-A8E9-0BB410E9237B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95154252-FEF8-4B5E-A8E9-0BB410E9237B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5A82617F-48B2-4FDA-BFC2-513BE6537B79} = {EA530507-11A4-4E71-8939-04078BE8C1DD}
+		{95154252-FEF8-4B5E-A8E9-0BB410E9237B} = {1DC2EB3D-8EC2-42F0-AAA2-64683CD5C38E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {15FADE4D-D479-4975-B33B-C179CDF5AE66}

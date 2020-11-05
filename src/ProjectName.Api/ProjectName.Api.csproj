@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Cores\" />
+    <Folder Include="Application\Events\" />
   </ItemGroup>
 
   <ItemGroup>
