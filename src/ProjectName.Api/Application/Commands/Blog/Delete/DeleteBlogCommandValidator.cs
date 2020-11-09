@@ -1,7 +1,7 @@
 using FluentValidation;
 using Microsoft.Extensions.Logging;
 
-namespace ProjectName.Api.Application.Commands
+namespace ProjectName.API.Application.Commands
 {
     public class DeleteBlogCommandValidator : AbstractValidator<DeleteBlogCommand>
     {

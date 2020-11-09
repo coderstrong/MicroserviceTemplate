@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
-using ProjectName.Api.Model;
+using ProjectName.API.Model;
 using ProjectName.Infrastructure.Database;
 
-namespace ProjectName.Api.Application.Queries
+namespace ProjectName.API.Application.Queries
 {
     public class PostQueries : IPostQueries
     {

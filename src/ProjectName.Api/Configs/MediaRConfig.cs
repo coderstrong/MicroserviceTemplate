@@ -2,9 +2,9 @@ using System.Reflection;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using ProjectName.Api.Application.Behaviors;
+using ProjectName.API.Application.Behaviors;
 
-namespace ProjectName.Api.Infrastructure
+namespace ProjectName.API.Infrastructure
 {
     public static class MediaRConfig
     {

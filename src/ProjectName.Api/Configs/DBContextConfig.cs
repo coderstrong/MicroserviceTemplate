@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using ProjectName.Infrastructure.Database;
 
-namespace ProjectName.Api.Infrastructure
+namespace ProjectName.API.Infrastructure
 {
     public static class DBContextConfig
     {

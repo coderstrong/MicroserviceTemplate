@@ -1,7 +1,7 @@
 using MediatR;
-using ProjectName.Api.Model;
+using ProjectName.API.Model;
 
-namespace ProjectName.Api.Application.Commands
+namespace ProjectName.API.Application.Commands
 {
     public class CreateBlogCommand : IRequest<BlogResponseModel>
     {

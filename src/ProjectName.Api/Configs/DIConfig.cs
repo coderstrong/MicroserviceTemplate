@@ -1,8 +1,8 @@
 using Microsoft.Extensions.DependencyInjection;
-using ProjectName.Api.Application.Queries;
+using ProjectName.API.Application.Queries;
 using ProjectName.Domain.Common;
 
-namespace ProjectName.Api.Infrastructure
+namespace ProjectName.API.Infrastructure
 {
     public static class DIConfig
     {

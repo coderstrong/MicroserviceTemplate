@@ -1,6 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace ProjectName.Api.Infrastructure
+namespace ProjectName.API.Infrastructure
 {
     public static class CorsConfig
     {

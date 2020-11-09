@@ -1,5 +1,4 @@
 using System;
-using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -9,12 +8,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Project.Api.Infrastructure;
-using ProjectName.Api.Infrastructure;
+using ProjectName.API.Infrastructure;
 using ProjectName.Domain.Common;
 using ProjectName.Infrastructure.Dapper;
 using ProjectName.Infrastructure.Database;
 
-namespace ProjectName.Api
+namespace ProjectName.API
 {
     public class Startup
     {

@@ -2,10 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
-using ProjectName.Api.Application.Commands;
-using ProjectName.Api.Application.Queries;
-using ProjectName.Api.Controllers;
-using ProjectName.Api.Model;
+using ProjectName.API.Application.Commands;
+using ProjectName.API.Application.Queries;
+using ProjectName.API.Controllers;
+using ProjectName.API.Model;
 using System;
 using System.Threading;
 using System.Threading.Tasks;

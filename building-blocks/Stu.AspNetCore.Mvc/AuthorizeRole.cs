@@ -1,7 +1,7 @@
-using System;
-using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Stu.AspNetCore.Mvc.Interfaces;
+using System;
+using System.Linq;
 
 namespace Stu.AspNetCore.Mvc
 {

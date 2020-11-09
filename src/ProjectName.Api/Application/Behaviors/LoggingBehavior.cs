@@ -2,9 +2,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using ProjectName.Api.Helper;
+using ProjectName.API.Helper;
 
-namespace ProjectName.Api.Application.Behaviors
+namespace ProjectName.API.Application.Behaviors
 {
     public class LoggingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     {

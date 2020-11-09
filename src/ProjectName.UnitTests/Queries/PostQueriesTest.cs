@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Moq;
-using ProjectName.Api.Application.Queries;
-using ProjectName.Api.Model;
+using ProjectName.API.Application.Queries;
+using ProjectName.API.Model;
 using ProjectName.Domain.Entities;
 using ProjectName.Infrastructure.Database;
 using System;

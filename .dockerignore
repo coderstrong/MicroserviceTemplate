@@ -1,6 +1,6 @@
 # directories
-**/bin/
-**/obj/
+**/[b|B]in/
+**/[O|o]bj/
 **/out/
 
 # files

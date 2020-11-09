@@ -2,12 +2,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
-using ProjectName.Api.Model;
+using ProjectName.API.Model;
 using ProjectName.Domain.Common;
 using ProjectName.Domain.Entities;
 using ProjectName.Infrastructure.Database;
 
-namespace ProjectName.Api.Application.Commands
+namespace ProjectName.API.Application.Commands
 {
     public class CreateBlogCommandHandler : IRequestHandler<CreateBlogCommand, BlogResponseModel>
     {

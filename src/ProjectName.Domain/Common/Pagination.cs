@@ -1,4 +1,3 @@
-using Newtonsoft.Json;
 using NSwag.Annotations;
 
 namespace ProjectName.Domain.Common

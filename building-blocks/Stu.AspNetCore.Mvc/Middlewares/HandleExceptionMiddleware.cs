@@ -1,10 +1,12 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
+using Stu.AspNetCore.Mvc.Implements;
+using Stu.AspNetCore.Mvc.Interfaces;
 using System;
 using System.Net;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
 
 namespace Stu.AspNetCore.Mvc.Middlewares
 {
@@ -63,7 +65,7 @@ namespace Stu.AspNetCore.Mvc.Middlewares
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
             string apiMessage = exception.GetBaseException().Message;
-            Helper.ErrorCode errorCode = Helper.ErrorCode.InternalErrorHandleBase;
+            IErrorCode errorCode = new SuccessCode();
             if (exception is UnhandledException)
             {
                 context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
@@ -71,24 +73,24 @@ namespace Stu.AspNetCore.Mvc.Middlewares
             }
             else if (exception is ForbiddenException)
             {
-                apiMessage = "Access denied";
+                errorCode = new ForbiddenCode();
                 context.Response.StatusCode = (int)HttpStatusCode.Forbidden;
             }
             else if (exception is UnauthorizedAccessException)
             {
-                apiMessage = "Unauthorized Access";
+                errorCode = new UnauthorizedCode();
                 context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
             }
             else if (exception is ValidateException)
             {
+                errorCode = new InputInvalidCode();
                 context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                errorCode = Helper.ErrorCode.InputInvalid;
             }
 
             string json = JsonSerializer.Serialize(new ResultData<object>
             {
-                ErrorCode = errorCode,
-                Data = new { code = "error", msg = apiMessage }
+                Error = errorCode,
+                Data = null
             });
 
             return context.Response.WriteAsync(json);

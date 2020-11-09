@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 
-namespace ProjectName.Api.Helper
+namespace ProjectName.API.Helper
 {
     public static class GenericTypeExtensions
     {

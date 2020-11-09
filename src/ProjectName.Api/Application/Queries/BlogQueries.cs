@@ -2,11 +2,11 @@ using System;
 using System.Threading.Tasks;
 using AutoMapper;
 using Dapper;
-using ProjectName.Api.Model;
+using ProjectName.API.Model;
 using ProjectName.Infrastructure.Dapper;
 using ProjectName.Infrastructure.Database;
 
-namespace ProjectName.Api.Application.Queries
+namespace ProjectName.API.Application.Queries
 {
     public class BlogQueries : IBlogQueries
     {

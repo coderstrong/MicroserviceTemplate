@@ -1,8 +1,9 @@
+using Stu.AspNetCore.Mvc.Implements;
+using Stu.AspNetCore.Mvc.Interfaces;
 using System.Collections;
 using System.Net;
 using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
-using Stu.AspNetCore.Mvc.Interfaces;
 
 namespace Stu.AspNetCore.Mvc
 {
@@ -11,7 +12,7 @@ namespace Stu.AspNetCore.Mvc
         public ResultData()
         {
             StatusCode = HttpStatusCode.OK;
-            ErrorCode = ErrorCode.Success;
+            Error = new SuccessCode();
             Data = default(T);
             Total = 1;
         }
@@ -19,7 +20,7 @@ namespace Stu.AspNetCore.Mvc
         public ResultData(T dataDefault)
         {
             StatusCode = HttpStatusCode.OK;
-            ErrorCode = ErrorCode.Success;
+            Error = new SuccessCode();
             Data = dataDefault;
             Total = 1;
         }
@@ -28,19 +29,7 @@ namespace Stu.AspNetCore.Mvc
         [IgnoreDataMember]
         public HttpStatusCode StatusCode { get; set; }
 
-        public string Message { get; set; }
-
-        private IErrorCode _errorCode;
-
-        public IErrorCode ErrorCode
-        {
-            get { return _errorCode; }
-            set
-            {
-                _errorCode = value;
-                Message = _errorCode.ToString();
-            }
-        }
+        public IErrorCode Error { get; set; }
 
         public T _data;
         public T Data
@@ -83,8 +72,7 @@ namespace Stu.AspNetCore.Mvc
         public void CopyFrom<TF>(ResultData<TF> source)
         {
             StatusCode = source.StatusCode;
-            ErrorCode = source.ErrorCode;
-            Message = source.Message;
+            Error = source.Error;
             Total = source.Total;
         }
     }

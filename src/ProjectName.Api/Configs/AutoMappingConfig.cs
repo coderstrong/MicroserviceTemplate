@@ -1,9 +1,9 @@
 using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
-using ProjectName.Api.Model;
+using ProjectName.API.Model;
 using ProjectName.Domain.Entities;
 
-namespace ProjectName.Api.Infrastructure
+namespace ProjectName.API.Infrastructure
 {
     public class AutoMappingConfigs : Profile
     {

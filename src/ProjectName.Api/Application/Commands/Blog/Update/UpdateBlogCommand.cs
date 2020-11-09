@@ -1,7 +1,7 @@
 using System;
 using MediatR;
 
-namespace ProjectName.Api.Application.Commands
+namespace ProjectName.API.Application.Commands
 {
     public class UpdateBlogCommand : IRequest<bool>
     {

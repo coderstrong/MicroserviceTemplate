@@ -4,11 +4,11 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using ProjectName.Api.Application.Commands;
-using ProjectName.Api.Application.Queries;
-using ProjectName.Api.Model;
+using ProjectName.API.Application.Commands;
+using ProjectName.API.Application.Queries;
+using ProjectName.API.Model;
 
-namespace ProjectName.Api.Controllers
+namespace ProjectName.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

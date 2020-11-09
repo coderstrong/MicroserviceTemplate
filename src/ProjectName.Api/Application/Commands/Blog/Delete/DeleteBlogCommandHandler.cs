@@ -6,7 +6,7 @@ using ProjectName.Domain.Common;
 using ProjectName.Domain.Entities;
 using ProjectName.Infrastructure.Database;
 
-namespace ProjectName.Api.Application.Commands
+namespace ProjectName.API.Application.Commands
 {
     public class DeleteBlogCommandHandler : IRequestHandler<DeleteBlogCommand, bool>
     {

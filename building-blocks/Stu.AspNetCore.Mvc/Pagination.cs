@@ -1,6 +1,6 @@
+using NSwag.Annotations;
 using System.Linq;
 using System.Runtime.Serialization;
-using NSwag.Annotations;
 
 namespace Stu.AspNetCore.Mvc
 {

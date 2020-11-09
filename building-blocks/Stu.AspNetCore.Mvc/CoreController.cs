@@ -1,7 +1,7 @@
-using System.Net;
-using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
+using System.Security.Claims;
 namespace Stu.AspNetCore.Mvc
 {
     [Route("api/[version]/[controller]")]
@@ -52,17 +52,12 @@ namespace Stu.AspNetCore.Mvc
             }
         }
 
-        public virtual IActionResult AcbResult<T>(ResultData<T> result)
+        public virtual IActionResult Result<T>(ResultData<T> result)
         {
             if (result == null)
             {
                 return new NotFoundObjectResult(result);
             }
-
-            //if (result.Data == null && result.ErrorCode == ErrorCode)
-            //{
-            //    return NoContent();
-            //}
 
             switch (result.StatusCode)
             {
@@ -79,13 +74,13 @@ namespace Stu.AspNetCore.Mvc
                     return NotFound(result);
 
                 default:
-                    return new AcbObjectResult((int)result.StatusCode, result);
+                    return new ObjectResult((int)result.StatusCode, result);
             }
         }
 
-        protected class AcbObjectResult : ObjectResult
+        protected class ObjectResult : Microsoft.AspNetCore.Mvc.ObjectResult
         {
-            public AcbObjectResult(int statusCode, object value)
+            public ObjectResult(int statusCode, object value)
                 : base(value)
             {
                 StatusCode = statusCode;

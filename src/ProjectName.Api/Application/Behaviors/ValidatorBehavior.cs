@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using ProjectName.Api.Helper;
+using ProjectName.API.Helper;
 using ProjectName.Domain.Exceptions;
 
-namespace ProjectName.Api.Application.Behaviors
+namespace ProjectName.API.Application.Behaviors
 {
     public class ValidatorBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     {

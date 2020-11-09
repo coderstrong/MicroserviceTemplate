@@ -1,8 +1,8 @@
 using System;
 using System.Threading.Tasks;
-using ProjectName.Api.Model;
+using ProjectName.API.Model;
 
-namespace ProjectName.Api.Application.Queries
+namespace ProjectName.API.Application.Queries
 {
     public interface IBlogQueries
     {

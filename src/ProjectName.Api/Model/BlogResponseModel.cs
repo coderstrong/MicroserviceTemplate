@@ -1,6 +1,6 @@
 using System;
 
-namespace ProjectName.Api.Model
+namespace ProjectName.API.Model
 {
     public class BlogResponseModel
     {
