@@ -1,16 +1,17 @@
 using Microsoft.Extensions.DependencyInjection;
 using ProjectName.ModuleName.API.Application.Queries;
 using ProjectName.ModuleName.Domain.Common;
+using ProjectName.ModuleName.Infrastructure;
 
-namespace ProjectName.ModuleName.API.Infrastructure
+namespace ProjectName.ModuleName.API.Configs
 {
-    public static class DIConfig
+    public static class DependencyInjectionConfig
     {
         public static IServiceCollection LoadServices(this IServiceCollection services)
         {
             services.AddTransient(typeof(IRepositoryGeneric<,>), typeof(RepositoryGeneric<,>));
-            services.AddTransient(typeof(IPostQueries), typeof(PostQueries));
-            services.AddTransient(typeof(IBlogQueries), typeof(BlogQueries));
+            services.AddTransient<IPostQueries, PostQueries>();
+            services.AddTransient<IBlogQueries, BlogQueries>();
             return services;
         }
     }

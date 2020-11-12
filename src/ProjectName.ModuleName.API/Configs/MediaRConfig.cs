@@ -4,7 +4,7 @@ using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using ProjectName.ModuleName.API.Application.Behaviors;
 
-namespace ProjectName.ModuleName.API.Infrastructure
+namespace ProjectName.ModuleName.API.Configs
 {
     public static class MediaRConfig
     {

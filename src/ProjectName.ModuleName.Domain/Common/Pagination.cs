@@ -4,6 +4,7 @@ namespace ProjectName.ModuleName.Domain.Common
 {
     public class Pagination
     {
+        private int _defaultPageSize = 10;
         public int PageIndex { get; set; }
 
         public int PageSize { get; set; }
@@ -25,7 +26,7 @@ namespace ProjectName.ModuleName.Domain.Common
         public Pagination()
         {
             this.PageIndex = 1;
-            this.PageSize = ConstDefine.DefaultPageSize;
+            this.PageSize = _defaultPageSize;
             this.TotalItem = this.PageSize;
         }
     }

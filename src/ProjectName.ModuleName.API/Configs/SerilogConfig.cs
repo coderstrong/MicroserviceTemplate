@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Serilog;
 
-namespace ProjectName.ModuleName.API.Infrastructure
+namespace ProjectName.ModuleName.API.Configs
 {
     public static class SerilogConfig
     {

@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using ProjectName.ModuleName.API.Model;
 using ProjectName.ModuleName.Domain.Entities;
 
-namespace ProjectName.ModuleName.API.Infrastructure
+namespace ProjectName.ModuleName.API.Configs
 {
     public class AutoMappingConfigs : Profile
     {

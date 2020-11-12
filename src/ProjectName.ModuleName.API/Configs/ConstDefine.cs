@@ -1,4 +1,4 @@
-namespace ProjectName.ModuleName.Domain.Common
+namespace ProjectName.ModuleName.API.Configs
 {
     public static class ConstDefine
     {

@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using ProjectName.ModuleName.Infrastructure.Database;
 
-namespace ProjectName.ModuleName.API.Infrastructure
+namespace ProjectName.ModuleName.API.Configs
 {
-    public static class DBContextConfig
+    public static class DatabaseContextConfig
     {
         public static IServiceCollection CreateDomainDbContext(this IServiceCollection services)
         {

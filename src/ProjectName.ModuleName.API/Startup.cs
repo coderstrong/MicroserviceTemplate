@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Project.Api.Infrastructure;
-using ProjectName.ModuleName.API.Infrastructure;
+using ProjectName.ModuleName.API.Configs;
 using ProjectName.ModuleName.Domain.Common;
 using ProjectName.ModuleName.Infrastructure.Dapper;
 using ProjectName.ModuleName.Infrastructure.Database;
