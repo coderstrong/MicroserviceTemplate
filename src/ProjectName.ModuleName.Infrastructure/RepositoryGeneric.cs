@@ -7,7 +7,7 @@ using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using ProjectName.ModuleName.Domain.Common;
+using ProjectName.ModuleName.Domain.SeedWork;
 
 namespace ProjectName.ModuleName.Infrastructure
 {

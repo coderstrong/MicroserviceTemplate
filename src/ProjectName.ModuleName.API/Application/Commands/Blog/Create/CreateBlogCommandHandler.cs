@@ -2,14 +2,13 @@ using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
-using ProjectName.ModuleName.API.Model;
-using ProjectName.ModuleName.Domain.Common;
 using ProjectName.ModuleName.Domain.Entities;
+using ProjectName.ModuleName.Domain.SeedWork;
 using ProjectName.ModuleName.Infrastructure.Database;
 
 namespace ProjectName.ModuleName.API.Application.Commands
 {
-    public class CreateBlogCommandHandler : IRequestHandler<CreateBlogCommand, BlogResponseModel>
+    public class CreateBlogCommandHandler : IRequestHandler<CreateBlogCommand, Blog>
     {
         private readonly IRepositoryGeneric<BlogContext, Blog> _blog;
         private readonly IMapper _mapper;
@@ -20,19 +19,15 @@ namespace ProjectName.ModuleName.API.Application.Commands
             _mapper = mapper;
         }
 
-        public async Task<BlogResponseModel> Handle(CreateBlogCommand request, CancellationToken cancellationToken)
+        public async Task<Blog> Handle(CreateBlogCommand command, CancellationToken cancellationToken)
         {
-            Blog blog = new Blog()
-            {
-                Title = request.Title,
-                Description = request.Description
-            };
+            Blog blog = _mapper.Map<Blog>(command);
 
             blog = _blog.Insert(blog);
 
             await _blog.UnitOfWork.SaveEntitiesAsync();
 
-            return _mapper.Map<BlogResponseModel>(blog);
+            return blog;
         }
     }
 }

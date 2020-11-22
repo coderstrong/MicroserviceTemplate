@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using ProjectName.ModuleName.API.Model;
-using ProjectName.ModuleName.Domain.Common;
+using ProjectName.ModuleName.Domain.SeedWork;
 using ProjectName.ModuleName.Domain.Entities;
 using ProjectName.ModuleName.Infrastructure.Database;
 

@@ -6,6 +6,7 @@ using ProjectName.ModuleName.API.Application.Commands;
 using ProjectName.ModuleName.API.Application.Queries;
 using ProjectName.ModuleName.API.Controllers;
 using ProjectName.ModuleName.API.Model;
+using ProjectName.ModuleName.Domain.Entities;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -63,7 +64,7 @@ namespace ProjectName.ModuleName.UnitTest.Api
         public async Task Create_Blog_Success()
         {
             //Arrange
-            var resultExpect = new BlogResponseModel() { Id = Guid.NewGuid(), Title = "New Blog", Description = "Blog description" };
+            var resultExpect = new Blog() { Id = Guid.NewGuid(), Title = "New Blog", Description = "Blog description" };
             _mediatorMock.Setup(x => x.Send(It.IsAny<CreateBlogCommand>(), default(CancellationToken)))
                 .Returns(Task.FromResult(resultExpect));
 

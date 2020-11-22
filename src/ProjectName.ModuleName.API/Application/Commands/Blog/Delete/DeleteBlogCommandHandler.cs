@@ -2,7 +2,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
-using ProjectName.ModuleName.Domain.Common;
+using ProjectName.ModuleName.Domain.SeedWork;
 using ProjectName.ModuleName.Domain.Entities;
 using ProjectName.ModuleName.Infrastructure.Database;
 

@@ -1,6 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using ProjectName.ModuleName.API.Application.Queries;
-using ProjectName.ModuleName.Domain.Common;
+using ProjectName.ModuleName.Domain.SeedWork;
 using ProjectName.ModuleName.Infrastructure;
 
 namespace ProjectName.ModuleName.API.Configs

@@ -3,7 +3,7 @@ namespace ProjectName.ModuleName.Domain.Entities
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using ProjectName.ModuleName.Domain.Common;
+    using ProjectName.ModuleName.Domain.SeedWork;
     using ProjectName.ModuleName.Domain.Exceptions;
 
     public class PostStatus

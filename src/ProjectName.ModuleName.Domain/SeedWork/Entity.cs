@@ -1,4 +1,4 @@
-namespace ProjectName.ModuleName.Domain.Common
+namespace ProjectName.ModuleName.Domain.SeedWork
 {
     using System;
     using System.Collections.Generic;

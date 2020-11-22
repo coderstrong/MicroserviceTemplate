@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
-using ProjectName.ModuleName.Domain.Common;
+using ProjectName.ModuleName.Domain.SeedWork;
 using ProjectName.ModuleName.Domain.Entities;
 using ProjectName.ModuleName.Infrastructure.Database.Configurations;
 using ProjectName.ModuleName.Infrastructure.Utils;

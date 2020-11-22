@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using ProjectName.ModuleName.Domain.Common;
+using ProjectName.ModuleName.Domain.SeedWork;
 
 namespace ProjectName.ModuleName.Domain.Entities
 {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace ProjectName.ModuleName.Domain.Common
+namespace ProjectName.ModuleName.Domain.SeedWork
 {
     public interface IRepositoryGeneric<C, E> : IDisposable
         where C : IUnitOfWork

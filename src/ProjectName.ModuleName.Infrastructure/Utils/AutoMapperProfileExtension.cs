@@ -1,6 +1,6 @@
 using AutoMapper;
 using MediatR;
-using ProjectName.ModuleName.Domain.Common;
+using ProjectName.ModuleName.Domain.SeedWork;
 
 namespace ProjectName.ModuleName.Infrastructure.Utils
 {
