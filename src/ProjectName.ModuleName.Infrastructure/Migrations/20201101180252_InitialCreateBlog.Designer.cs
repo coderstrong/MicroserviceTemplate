@@ -9,7 +9,7 @@ using ProjectName.ModuleName.Infrastructure.Database;
 
 namespace ProjectName.ModuleName.Infrastructure.Migrations
 {
-    [DbContext(typeof(BlogContext))]
+    [DbContext(typeof(ProjectNameModuleNameContext))]
     [Migration("20201101180252_InitialCreateBlog")]
     partial class InitialCreateBlog
     {

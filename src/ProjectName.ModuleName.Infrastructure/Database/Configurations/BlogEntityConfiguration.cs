@@ -9,7 +9,7 @@ namespace ProjectName.ModuleName.Infrastructure.Database.Configurations
     {
         public void Configure(EntityTypeBuilder<Blog> builder)
         {
-            builder.ToTable("Blog", BlogContext.DefaultSchema);
+            builder.ToTable("Blog", ProjectNameModuleNameContext.DefaultSchema);
             builder.HasKey(m => m.Id);
         }
     }

@@ -18,13 +18,13 @@ namespace ProjectName.ModuleName.UnitTest.Api
     {
         private readonly Mock<IMediator> _mediatorMock;
         private readonly Mock<IBlogQueries> _blogQueriesMock;
-        private readonly Mock<ILogger<BlogController>> _loggerMock;
+        private readonly Mock<ILogger<BlogsController>> _blogMock;
 
         public BlogWebApiTest()
         {
             _mediatorMock = new Mock<IMediator>();
             _blogQueriesMock = new Mock<IBlogQueries>();
-            _loggerMock = new Mock<ILogger<BlogController>>();
+            _blogMock = new Mock<ILogger<BlogsController>>();
         }
 
         [Fact]
@@ -37,7 +37,7 @@ namespace ProjectName.ModuleName.UnitTest.Api
             _blogQueriesMock.Setup(x => x.GetAsync(IdHas)).ReturnsAsync(blog);
 
             //Act
-            var blogController = new BlogController(_loggerMock.Object, _mediatorMock.Object, _blogQueriesMock.Object);
+            var blogController = new BlogsController(_blogMock.Object, _mediatorMock.Object, _blogQueriesMock.Object);
             var actionResult = await blogController.Get(IdNotFound) as NotFoundResult;
 
             //Assert
@@ -53,7 +53,7 @@ namespace ProjectName.ModuleName.UnitTest.Api
             _blogQueriesMock.Setup(x => x.GetAsync(IdHas)).ReturnsAsync(blog);
 
             //Act
-            var blogController = new BlogController(_loggerMock.Object, _mediatorMock.Object, _blogQueriesMock.Object);
+            var blogController = new BlogsController(_blogMock.Object, _mediatorMock.Object, _blogQueriesMock.Object);
             var actionResult = await blogController.Get(IdHas) as OkObjectResult;
 
             //Assert
@@ -69,7 +69,7 @@ namespace ProjectName.ModuleName.UnitTest.Api
                 .Returns(Task.FromResult(resultExpect));
 
             //Act
-            var blogController = new BlogController(_loggerMock.Object, _mediatorMock.Object, _blogQueriesMock.Object);
+            var blogController = new BlogsController(_blogMock.Object, _mediatorMock.Object, _blogQueriesMock.Object);
             var command = new CreateBlogCommand() { Title = "New Blog 1", Description = "Blog description" };
             var actionResult = await blogController.PostAsync(command) as OkObjectResult;
 

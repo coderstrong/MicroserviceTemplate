@@ -12,13 +12,13 @@ namespace ProjectName.ModuleName.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BlogController : ControllerBase
+    public class BlogsController : ControllerBase
     {
-        private readonly ILogger<BlogController> _logger;
+        private readonly ILogger<BlogsController> _logger;
         private readonly IMediator _mediator;
         private readonly IBlogQueries _blogQueries;
 
-        public BlogController(ILogger<BlogController> logger,
+        public BlogsController(ILogger<BlogsController> logger,
             IMediator mediator,
             IBlogQueries blogQueries)
         {
@@ -48,16 +48,17 @@ namespace ProjectName.ModuleName.API.Controllers
             return Ok(blog);
         }
 
-        [HttpPut("{id}")]
-        public async Task Put([FromRoute] Guid id, [FromBody] UpdateBlogCommand value)
-        {
-            await _mediator.Send(value);
-        }
 
         [HttpDelete("{id}")]
         public async Task Delete([FromRoute] Guid id)
         {
             await _mediator.Send(new DeleteBlogCommand() { Id = id });
+        }
+
+        [HttpPut("{id}")]
+        public async Task Put([FromRoute] Guid id, [FromBody] UpdateBlogCommand value)
+        {
+            await _mediator.Send(value);
         }
     }
 }

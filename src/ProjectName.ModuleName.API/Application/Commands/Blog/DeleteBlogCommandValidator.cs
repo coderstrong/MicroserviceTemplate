@@ -1,5 +1,8 @@
 using FluentValidation;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using ProjectName.ModuleName.Domain.SeedWork;
 
 namespace ProjectName.ModuleName.API.Application.Commands
 {
@@ -7,7 +10,6 @@ namespace ProjectName.ModuleName.API.Application.Commands
     {
         public DeleteBlogCommandValidator(ILogger<DeleteBlogCommandValidator> logger)
         {
-            RuleFor(command => command.Id).NotNull().WithMessage("Id is Required");
             logger.LogTrace("----- INSTANCE CREATED - {ClassName}", GetType().Name);
         }
     }

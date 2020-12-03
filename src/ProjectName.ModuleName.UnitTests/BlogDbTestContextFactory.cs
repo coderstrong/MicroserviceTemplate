@@ -7,13 +7,13 @@ namespace ProjectName.ModuleName.UnitTest
 {
     public class BlogDbTestContextFactory
     {
-        public static BlogContext Create()
+        public static ProjectNameModuleNameContext Create()
         {
-            var options = new DbContextOptionsBuilder<BlogContext>()
+            var options = new DbContextOptionsBuilder<ProjectNameModuleNameContext>()
                 .UseInMemoryDatabase(Guid.NewGuid().ToString())
                 .Options;
 
-            var context = new BlogContext(options, new NoMediator());
+            var context = new ProjectNameModuleNameContext(options, new NoMediator());
 
             context.Database.EnsureCreated();
 
@@ -22,12 +22,12 @@ namespace ProjectName.ModuleName.UnitTest
             return context;
         }
 
-        public static void SeedSampleData(BlogContext context)
+        public static void SeedSampleData(ProjectNameModuleNameContext context)
         {
             context.SaveChanges();
         }
 
-        public static void Destroy(BlogContext context)
+        public static void Destroy(ProjectNameModuleNameContext context)
         {
             context.Database.EnsureDeleted();
 

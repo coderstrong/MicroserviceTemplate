@@ -1,5 +1,8 @@
 using FluentValidation;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using ProjectName.ModuleName.Domain.SeedWork;
 
 namespace ProjectName.ModuleName.API.Application.Commands
 {
@@ -7,8 +10,6 @@ namespace ProjectName.ModuleName.API.Application.Commands
     {
         public CreateBlogCommandValidator(ILogger<CreateBlogCommandValidator> logger)
         {
-            RuleFor(command => command.Title).NotEmpty().WithMessage("No Title found");
-            RuleFor(command => command.Description).NotEmpty().WithMessage("No Description found");
             logger.LogTrace("----- INSTANCE CREATED - {ClassName}", GetType().Name);
         }
     }

@@ -3,18 +3,18 @@ using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using ProjectName.ModuleName.API.Model;
-using ProjectName.ModuleName.Domain.SeedWork;
 using ProjectName.ModuleName.Domain.Entities;
+using ProjectName.ModuleName.Domain.SeedWork;
 using ProjectName.ModuleName.Infrastructure.Database;
 
 namespace ProjectName.ModuleName.API.Application.Commands
 {
     public class CreatePostCommandHandler : IRequestHandler<CreatePostCommand, PostResponseModel>
     {
-        private readonly IRepositoryGeneric<BlogContext, Post> _post;
+        private readonly IRepositoryGeneric<ProjectNameModuleNameContext, Post> _post;
         private readonly IMapper _mapper;
 
-        public CreatePostCommandHandler(IRepositoryGeneric<BlogContext, Post> post, IMapper mapper)
+        public CreatePostCommandHandler(IRepositoryGeneric<ProjectNameModuleNameContext, Post> post, IMapper mapper)
         {
             _post = post;
             _mapper = mapper;

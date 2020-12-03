@@ -18,14 +18,14 @@ namespace ProjectName.ModuleName.API.Application.Behaviors
     public class TransactionBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     {
         private readonly ILogger<TransactionBehaviour<TRequest, TResponse>> _logger;
-        private readonly BlogContext _dbContext;
+        private readonly ProjectNameModuleNameContext _dbContext;
         //private readonly IOrderingIntegrationEventService _orderingIntegrationEventService;
 
-        public TransactionBehaviour(BlogContext dbContext,
+        public TransactionBehaviour(ProjectNameModuleNameContext dbContext,
             //IOrderingIntegrationEventService orderingIntegrationEventService,
             ILogger<TransactionBehaviour<TRequest, TResponse>> logger)
         {
-            _dbContext = dbContext ?? throw new ArgumentException(nameof(BlogContext));
+            _dbContext = dbContext ?? throw new ArgumentException(nameof(ProjectNameModuleNameContext));
             //_orderingIntegrationEventService = orderingIntegrationEventService ?? throw new ArgumentException(nameof(orderingIntegrationEventService));
             _logger = logger ?? throw new ArgumentException(nameof(ILogger));
         }

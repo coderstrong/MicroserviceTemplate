@@ -10,7 +10,7 @@ namespace ProjectName.ModuleName.UnitTest
             Context = BlogDbTestContextFactory.Create();
         }
 
-        public BlogContext Context { get; }
+        public ProjectNameModuleNameContext Context { get; }
 
         public void Dispose()
         {

@@ -10,10 +10,10 @@ namespace ProjectName.ModuleName.API.Application.Commands
 {
     public class CreateBlogCommandHandler : IRequestHandler<CreateBlogCommand, Blog>
     {
-        private readonly IRepositoryGeneric<BlogContext, Blog> _blog;
+        private readonly IRepositoryGeneric<ProjectNameModuleNameContext, Blog> _blog;
         private readonly IMapper _mapper;
 
-        public CreateBlogCommandHandler(IRepositoryGeneric<BlogContext, Blog> blog, IMapper mapper)
+        public CreateBlogCommandHandler(IRepositoryGeneric<ProjectNameModuleNameContext, Blog> blog, IMapper mapper)
         {
             _blog = blog;
             _mapper = mapper;

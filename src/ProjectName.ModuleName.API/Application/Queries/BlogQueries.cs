@@ -10,10 +10,10 @@ namespace ProjectName.ModuleName.API.Application.Queries
 {
     public class BlogQueries : IBlogQueries
     {
-        private readonly BlogContext _context;
+        private readonly ProjectNameModuleNameContext _context;
         private readonly IDapperRepository _dapper;
         private readonly IMapper _mapper;
-        public BlogQueries(BlogContext context
+        public BlogQueries(ProjectNameModuleNameContext context
             , IMapper mapper, IDapperRepository dapper)
         {
             _context = context;

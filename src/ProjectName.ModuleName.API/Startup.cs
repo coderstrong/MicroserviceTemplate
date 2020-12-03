@@ -31,7 +31,7 @@ namespace ProjectName.ModuleName.API
             services.AddLoggingSystem(Configuration);
             services.AddMediaRModule();
 
-            var BlogContext = new ServiceDescriptor(typeof(DbContextOptions<BlogContext>), BlogContextFactory, ServiceLifetime.Scoped);
+            var BlogContext = new ServiceDescriptor(typeof(DbContextOptions<ProjectNameModuleNameContext>), BlogContextFactory, ServiceLifetime.Scoped);
             services.Replace(BlogContext);
             ConfigureContext(services);
 
@@ -77,15 +77,15 @@ namespace ProjectName.ModuleName.API
 
         private void ConfigureContext(IServiceCollection services)
         {
-            services.AddScoped<IUnitOfWork, BlogContext>();
+            services.AddScoped<IUnitOfWork, ProjectNameModuleNameContext>();
             services.CreateDomainDbContext();
         }
 
-        private DbContextOptions<BlogContext> BlogContextFactory(IServiceProvider provider)
+        private DbContextOptions<ProjectNameModuleNameContext> BlogContextFactory(IServiceProvider provider)
         {
             string connectionString = Configuration.GetSection("ConnectionStrings:BlogConnection").Value;
 
-            var optionsBuilder = new DbContextOptionsBuilder<BlogContext>();
+            var optionsBuilder = new DbContextOptionsBuilder<ProjectNameModuleNameContext>();
             if (!String.IsNullOrEmpty(connectionString))
             {
                 optionsBuilder.UseSqlServer(connectionString);

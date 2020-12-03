@@ -9,7 +9,7 @@ namespace ProjectName.ModuleName.API.Configs
     {
         public static IServiceCollection CreateDomainDbContext(this IServiceCollection services)
         {
-            services.AddDbContext<BlogContext>(options => options.UseInMemoryDatabase(databaseName: "BlogSample" + Guid.NewGuid()), ServiceLifetime.Scoped, ServiceLifetime.Scoped);
+            services.AddDbContext<ProjectNameModuleNameContext>(options => options.UseInMemoryDatabase(databaseName: "BlogSample" + Guid.NewGuid()), ServiceLifetime.Scoped, ServiceLifetime.Scoped);
             return services;
         }
     }

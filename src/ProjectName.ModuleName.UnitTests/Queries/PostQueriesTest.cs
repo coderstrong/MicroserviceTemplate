@@ -16,12 +16,12 @@ namespace ProjectName.ModuleName.UnitTest.Queries
     public class PostQueriesTest
     {
         private readonly Mock<IMapper> _mapperMock;
-        private readonly Mock<BlogContext> _blogContextMock;
+        private readonly Mock<ProjectNameModuleNameContext> _blogContextMock;
 
         public PostQueriesTest()
         {
             _mapperMock = new Mock<IMapper>();
-            _blogContextMock = new Mock<BlogContext>();
+            _blogContextMock = new Mock<ProjectNameModuleNameContext>();
         }
 
         [Fact]

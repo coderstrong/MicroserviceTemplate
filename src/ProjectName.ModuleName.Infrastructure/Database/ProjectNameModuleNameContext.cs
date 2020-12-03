@@ -5,14 +5,14 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
-using ProjectName.ModuleName.Domain.SeedWork;
 using ProjectName.ModuleName.Domain.Entities;
+using ProjectName.ModuleName.Domain.SeedWork;
 using ProjectName.ModuleName.Infrastructure.Database.Configurations;
 using ProjectName.ModuleName.Infrastructure.Utils;
 
 namespace ProjectName.ModuleName.Infrastructure.Database
 {
-    public class BlogContext : DbContext, IUnitOfWork, IDisposable
+    public class ProjectNameModuleNameContext : DbContext, IUnitOfWork, IDisposable
     {
         public const string DefaultSchema = "BlogSample";
         private IDbContextTransaction _currentTransaction;
@@ -28,7 +28,7 @@ namespace ProjectName.ModuleName.Infrastructure.Database
         public virtual DbSet<PostStatus> PostStatus { get; set; }
 
         public bool HasActiveTransaction => _currentTransaction != null;
-        public BlogContext(DbContextOptions<BlogContext> options, IMediator mediator) : base(options)
+        public ProjectNameModuleNameContext(DbContextOptions<ProjectNameModuleNameContext> options, IMediator mediator) : base(options)
         {
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
@@ -54,7 +54,7 @@ namespace ProjectName.ModuleName.Infrastructure.Database
 
         public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default)
         {
-            await _mediator.DispatchDomainEventsAsync<BlogContext>(this);
+            await _mediator.DispatchDomainEventsAsync<ProjectNameModuleNameContext>(this);
 
             var result = await base.SaveChangesAsync(cancellationToken);
 

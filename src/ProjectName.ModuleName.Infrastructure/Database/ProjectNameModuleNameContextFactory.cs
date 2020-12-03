@@ -4,15 +4,15 @@ using ProjectName.ModuleName.Infrastructure.Utils;
 
 namespace ProjectName.ModuleName.Infrastructure.Database
 {
-    public class BlogContextFactory : IDesignTimeDbContextFactory<BlogContext>
+    public class ProjectNameModuleNameContextFactory : IDesignTimeDbContextFactory<ProjectNameModuleNameContext>
     {
-        public BlogContext CreateDbContext(string[] args)
+        public ProjectNameModuleNameContext CreateDbContext(string[] args)
         {
-            var optionsBuilder = new DbContextOptionsBuilder<BlogContext>();
+            var optionsBuilder = new DbContextOptionsBuilder<ProjectNameModuleNameContext>();
 
             optionsBuilder.UseSqlServer("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=D:\\Database\\MSSQL11.MSSQLSERVER\\DATA\\ProjectName.ModuleName.mdf;Integrated Security=True;Connect Timeout=30");
 
-            return new BlogContext(optionsBuilder.Options, new NoMediator());
+            return new ProjectNameModuleNameContext(optionsBuilder.Options, new NoMediator());
         }
     }
 }

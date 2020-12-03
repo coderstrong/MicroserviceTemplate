@@ -12,10 +12,10 @@ namespace ProjectName.ModuleName.API.Application.Queries
 {
     public class PostQueries : IPostQueries
     {
-        private readonly BlogContext _context;
+        private readonly ProjectNameModuleNameContext _context;
         private readonly IMapper _mapper;
 
-        public PostQueries(BlogContext context
+        public PostQueries(ProjectNameModuleNameContext context
             , IMapper mapper)
         {
             _context = context;
