@@ -8,7 +8,7 @@ namespace ProjectName.ModuleName.Domain.SeedWork
 {
     public interface IRepositoryGeneric<C, E> : IDisposable
         where C : IUnitOfWork
-        where E : Entity
+        where E : class
     {
         IUnitOfWork UnitOfWork { get; }
 
@@ -44,7 +44,7 @@ namespace ProjectName.ModuleName.Domain.SeedWork
             string includeProperties = "", Pagination paging = null);
 
         /// <summary>
-        ///  Get IQueryable from Entity
+        ///  As IQueryable from Entity
         /// </summary>
         /// <param name="filter"></param>
         /// <param name="orderBy"></param>
@@ -52,7 +52,7 @@ namespace ProjectName.ModuleName.Domain.SeedWork
         /// <param name="top"></param>
         /// <param name="skip"></param>
         /// <returns></returns>
-        IQueryable<E> GetQueryable(Expression<Func<E, bool>> filter = null, Func<IQueryable<E>, IOrderedQueryable<E>> orderBy = null,
+        IQueryable<E> AsQueryable(Expression<Func<E, bool>> filter = null, Func<IQueryable<E>, IOrderedQueryable<E>> orderBy = null,
             string includeProperties = "", Pagination paging = null);
 
         /// <summary>

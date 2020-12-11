@@ -1,14 +1,21 @@
 namespace ProjectName.ModuleName.Domain.SeedWork
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using MediatR;
+    using ProjectName.ModuleName.Domain.Interfaces;
 
-    public abstract class Entity
+    public abstract class Entity :
+        ICreatedAtProperty,
+        IModifiedAtProperty,
+        ICreatedByProperty,
+        IModifiedByProperty,
+        IDeletedAtProperty,
+        IDeletedByProperty,
+        IStateProperty,
+        IStatusProperty
     {
         public DateTime CreatedAt { get; set; }
-        public DateTime? ModifiedAt { get; set; }
+        public DateTime ModifiedAt { get; set; }
         public DateTime? DeletedAt { get; set; }
 
         [MaxLength(50)]
@@ -20,28 +27,12 @@ namespace ProjectName.ModuleName.Domain.SeedWork
         [MaxLength(50)]
         public string DeletedBy { get; set; }
 
-        private List<INotification> _domainEvents;
-        public IReadOnlyCollection<INotification> DomainEvents => _domainEvents?.AsReadOnly();
+        public int Status { get; set; }
+        public int State { get; set; }
 
         public Entity()
         {
             this.CreatedAt = DateTime.Now;
-        }
-
-        public void AddDomainEvent(INotification eventItem)
-        {
-            _domainEvents = _domainEvents ?? new List<INotification>();
-            _domainEvents.Add(eventItem);
-        }
-
-        public void RemoveDomainEvent(INotification eventItem)
-        {
-            _domainEvents?.Remove(eventItem);
-        }
-
-        public void ClearDomainEvents()
-        {
-            _domainEvents?.Clear();
         }
     }
 }

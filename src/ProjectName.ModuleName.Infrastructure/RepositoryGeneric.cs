@@ -13,7 +13,7 @@ namespace ProjectName.ModuleName.Infrastructure
 {
     public class RepositoryGeneric<C, E> : Disposable, IRepositoryGeneric<C, E>
         where C : DbContext, IUnitOfWork
-        where E : Entity
+        where E : class
     {
         private readonly ILogger<RepositoryGeneric<C, E>> _logger;
         private readonly C _context;
@@ -109,7 +109,7 @@ namespace ProjectName.ModuleName.Infrastructure
             return await _context.Set<E>().FindAsync(key);
         }
 
-        public IQueryable<E> GetQueryable(Expression<Func<E, bool>> filter = null, Func<IQueryable<E>, IOrderedQueryable<E>> orderBy = null, string includeProperties = "", Pagination paging = null)
+        public IQueryable<E> AsQueryable(Expression<Func<E, bool>> filter = null, Func<IQueryable<E>, IOrderedQueryable<E>> orderBy = null, string includeProperties = "", Pagination paging = null)
         {
             IQueryable<E> query = _context.Set<E>();
 
