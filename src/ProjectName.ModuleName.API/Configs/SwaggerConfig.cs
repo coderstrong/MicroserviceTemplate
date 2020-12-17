@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 
-namespace Project.Api.Infrastructure
+namespace ProjectName.ModuleName.API.Configs
 {
     public class SwaggerConfig
     {

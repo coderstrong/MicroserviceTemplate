@@ -10,7 +10,6 @@ namespace ProjectName.ModuleName.API.Configs
         {
             var mappingConfig = new MapperConfiguration(mc =>
             {
-                mc.AddProfile(new PostMappingConfigs());
                 mc.AddProfile(new BlogMappingConfigs());
             });
 

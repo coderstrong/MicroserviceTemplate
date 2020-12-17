@@ -7,7 +7,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
-using Project.Api.Infrastructure;
 using ProjectName.ModuleName.API.Configs;
 using ProjectName.ModuleName.Domain.SeedWork;
 using ProjectName.ModuleName.Infrastructure.Dapper;
@@ -31,8 +30,6 @@ namespace ProjectName.ModuleName.API
             services.AddLoggingSystem(Configuration);
             services.AddMediaRModule();
 
-            var BlogContext = new ServiceDescriptor(typeof(DbContextOptions<ProjectNameModuleNameContext>), BlogContextFactory, ServiceLifetime.Scoped);
-            services.Replace(BlogContext);
             ConfigureContext(services);
 
             services.AddDapper(o =>
