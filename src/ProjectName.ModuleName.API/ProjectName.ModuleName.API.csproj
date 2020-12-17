@@ -23,8 +23,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Application\Commands\Blog\" />
+    <Folder Include="Application\Commands\" />
     <Folder Include="Application\Events\" />
+    <Folder Include="Controllers\" />
   </ItemGroup>
 
   <ItemGroup>

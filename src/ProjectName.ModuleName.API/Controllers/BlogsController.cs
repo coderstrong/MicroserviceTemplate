@@ -27,16 +27,14 @@ namespace ProjectName.ModuleName.API.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet("{id}")]
+        [HttpGet]
+        [Route("{id}")]
         [ProducesResponseType(typeof(BlogResponseModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public async Task<IActionResult> Get([FromRoute] Guid id)
+        public async Task<IActionResult> GetByIdAsync([FromRoute] Guid id)
         {
-            var blog = await _blogQueries.GetAsync(id);
-            if (blog != null)
-                return Ok(blog);
-            else
-                return NotFound();
+            var blog = await _mediator.Send(new GetBlogByIdRequest { Id =  id });
+            return Ok(blog);
         }
 
         [HttpPost]
@@ -48,13 +46,14 @@ namespace ProjectName.ModuleName.API.Controllers
             return Ok(blog);
         }
 
-
+        [Route("{id}")]
         [HttpDelete("{id}")]
         public async Task Delete([FromRoute] Guid id)
         {
             await _mediator.Send(new DeleteBlogCommand() { Id = id });
         }
 
+        [Route("{id}")]
         [HttpPut("{id}")]
         public async Task Put([FromRoute] Guid id, [FromBody] UpdateBlogCommand value)
         {

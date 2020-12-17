@@ -5,6 +5,6 @@ namespace ProjectName.ModuleName.Domain.Interfaces
     /// </summary>
     interface IStatusProperty
     {
-        public int Status { get;set; }
+        public int Status { get; set; }
     }
 }

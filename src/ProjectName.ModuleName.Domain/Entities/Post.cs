@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using ProjectName.ModuleName.Domain.SeedWork;
 
 namespace ProjectName.ModuleName.Domain.Entities
 {
@@ -10,10 +11,6 @@ namespace ProjectName.ModuleName.Domain.Entities
         public string Author { get; set; }
 
         public string Content { get; set; }
-
-        public virtual PostStatus Status { get; set; }
-        public int StatusId { get; set; }
-
         public virtual Blog Blog { get; set; }
         public int BlogId { get; set; }
 
@@ -30,7 +27,7 @@ namespace ProjectName.ModuleName.Domain.Entities
             this.Title = title;
             this.Author = author;
             this.Content = content;
-            this.StatusId = postStatus.Id;
+            this.Status = postStatus.Id;
         }
     }
 }

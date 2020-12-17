@@ -21,8 +21,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Api\" />
     <Folder Include="Infrastructure\" />
     <Folder Include="Domain\" />
+    <Folder Include="Queries\" />
   </ItemGroup>
 
   <ItemGroup>

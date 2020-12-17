@@ -8,7 +8,6 @@ using Microsoft.EntityFrameworkCore.Storage;
 using ProjectName.ModuleName.Domain.Entities;
 using ProjectName.ModuleName.Domain.SeedWork;
 using ProjectName.ModuleName.Infrastructure.Database.Configurations;
-using ProjectName.ModuleName.Infrastructure.Utils;
 
 namespace ProjectName.ModuleName.Infrastructure.Database
 {
@@ -54,9 +53,7 @@ namespace ProjectName.ModuleName.Infrastructure.Database
 
         public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default)
         {
-            await _mediator.DispatchDomainEventsAsync<ProjectNameModuleNameContext>(this);
-
-            var result = await base.SaveChangesAsync(cancellationToken);
+            await base.SaveChangesAsync(cancellationToken);
 
             return true;
         }

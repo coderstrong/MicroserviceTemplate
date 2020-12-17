@@ -1,8 +1,7 @@
-using MediatR;
-using ProjectName.ModuleName.Domain.Entities;
 using System;
 using System.Collections.Generic;
-using ProjectName.ModuleName.Domain.SeedWork;
+using MediatR;
+using ProjectName.ModuleName.Domain.Entities;
 
 namespace ProjectName.ModuleName.API.Application.Commands
 {
