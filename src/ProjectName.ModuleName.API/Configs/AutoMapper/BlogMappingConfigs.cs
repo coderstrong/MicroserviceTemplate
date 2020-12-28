@@ -9,7 +9,7 @@ namespace ProjectName.ModuleName.API.Configs.AutoMapper
     {
         public BlogMappingConfigs()
         {
-            CreateMap<Blog, GetBlogByIdResponseModel>().ReverseMap();
+            CreateMap<Blog, GetBlogByIdQueryResponseModel>().ReverseMap();
             CreateMap<Blog, CreateBlogCommand>().ReverseMap();
             CreateMap<Blog, UpdateBlogCommand>().ReverseMap();
         }

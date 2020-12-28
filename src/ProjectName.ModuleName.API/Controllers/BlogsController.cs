@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ProjectName.ModuleName.API.Application.Commands;
 using ProjectName.ModuleName.API.Application.Queries;
-using ProjectName.ModuleName.Domain.Entities;
+using ProjectName.ModuleName.API.Models;
 
 namespace ProjectName.ModuleName.API.Controllers
 {
@@ -24,19 +24,9 @@ namespace ProjectName.ModuleName.API.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet]
-        [Route("{id}")]
-        [ProducesResponseType(typeof(GetBlogByIdResponseModel), (int)HttpStatusCode.OK)]
-        [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public async Task<IActionResult> GetByIdAsync([FromRoute] Guid id)
-        {
-            var blog = await _mediator.Send(new GetBlogByIdRequest { Id = id });
-            return Ok(blog);
-        }
 
         [HttpPost]
-        [Route("")]
-        [ProducesResponseType(typeof(Blog), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(CommandResponseBase), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> PostAsync([FromBody] CreateBlogCommand value)
         {
@@ -44,15 +34,33 @@ namespace ProjectName.ModuleName.API.Controllers
             return Ok(blog);
         }
 
-        [Route("{id}")]
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task Delete([FromRoute] Guid id)
         {
             await _mediator.Send(new DeleteBlogCommand() { Id = id });
         }
 
+        [HttpGet]
+        [Route("")]
+        [ProducesResponseType(typeof(GetBlogQueryResponseModel), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> GetAsync([FromQuery] GetBlogQueryRequest request)
+        {
+            var blog = await _mediator.Send(request);
+            return Ok(blog);
+        }
+
+        [HttpGet]
         [Route("{id}")]
-        [HttpPut]
+        [ProducesResponseType(typeof(GetBlogByIdQueryResponseModel), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> GetByIdAsync([FromRoute] Guid id)
+        {
+            var blog = await _mediator.Send(new GetBlogByIdQueryRequest { Id =  id });
+            return Ok(blog);
+        }
+
+        [HttpPut("{id}")]
         public async Task Put([FromRoute] Guid id, [FromBody] UpdateBlogCommand value)
         {
             await _mediator.Send(value);

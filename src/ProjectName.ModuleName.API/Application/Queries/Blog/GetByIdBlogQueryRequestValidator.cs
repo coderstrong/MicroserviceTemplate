@@ -4,11 +4,11 @@ using System;
 using System.Collections.Generic;
 using ProjectName.ModuleName.Domain.SeedWork;
 
-namespace ProjectName.ModuleName.API.Application.Commands
+namespace ProjectName.ModuleName.API.Application.Queries
 {
-    public class CreateBlogCommandValidator : AbstractValidator<CreateBlogCommand>
+    public class GetBlogByIdQueryRequestValidator : AbstractValidator<GetBlogByIdQueryRequest>
     {
-        public CreateBlogCommandValidator(ILogger<CreateBlogCommandValidator> logger)
+        public GetBlogByIdQueryRequestValidator(ILogger<GetBlogByIdQueryRequestValidator> logger)
         {
             logger.LogTrace("----- INSTANCE CREATED - {ClassName}", GetType().Name);
         }
