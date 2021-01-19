@@ -4,8 +4,8 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using ProjectName.ModuleName.API.Application.Commands;
-using ProjectName.ModuleName.API.Application.Queries;
+using ProjectName.ModuleName.Application.Commands;
+using ProjectName.ModuleName.Application.Queries;
 using ProjectName.ModuleName.API.Models;
 
 namespace ProjectName.ModuleName.API.Controllers
@@ -23,7 +23,6 @@ namespace ProjectName.ModuleName.API.Controllers
             _logger = logger;
             _mediator = mediator;
         }
-
 
         [HttpPost]
         [ProducesResponseType(typeof(CommandResponseBase), (int)HttpStatusCode.OK)]
@@ -56,7 +55,7 @@ namespace ProjectName.ModuleName.API.Controllers
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> GetByIdAsync([FromRoute] Guid id)
         {
-            var blog = await _mediator.Send(new GetBlogByIdQueryRequest { Id =  id });
+            var blog = await _mediator.Send(new GetBlogByIdQueryRequest { Id = id });
             return Ok(blog);
         }
 

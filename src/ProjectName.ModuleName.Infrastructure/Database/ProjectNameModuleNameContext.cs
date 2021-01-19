@@ -27,6 +27,7 @@ namespace ProjectName.ModuleName.Infrastructure.Database
         public virtual DbSet<PostStatus> PostStatus { get; set; }
 
         public bool HasActiveTransaction => _currentTransaction != null;
+
         public ProjectNameModuleNameContext(DbContextOptions<ProjectNameModuleNameContext> options, IMediator mediator) : base(options)
         {
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));

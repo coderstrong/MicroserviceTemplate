@@ -1,4 +1,5 @@
 using System;
+
 namespace ProjectName.ModuleName.API.Models
 {
     public class CommandResponseBase

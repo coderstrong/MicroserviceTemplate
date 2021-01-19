@@ -28,7 +28,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ProjectName.ModuleName.API\ProjectName.ModuleName.API.csproj" />
+    <ProjectReference Include="..\ProjectName.ModuleName.Api\ProjectName.ModuleName.Api.csproj" />
+    <ProjectReference Include="..\ProjectName.ModuleName.Application\ProjectName.ModuleName.Application.csproj" />
     <ProjectReference Include="..\ProjectName.ModuleName.Domain\ProjectName.ModuleName.Domain.csproj" />
     <ProjectReference Include="..\ProjectName.ModuleName.Infrastructure\ProjectName.ModuleName.Infrastructure.csproj" />
   </ItemGroup>

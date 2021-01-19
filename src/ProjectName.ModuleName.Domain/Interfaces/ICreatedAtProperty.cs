@@ -2,7 +2,7 @@ using System;
 
 namespace ProjectName.ModuleName.Domain.Interfaces
 {
-    interface ICreatedAtProperty
+    internal interface ICreatedAtProperty
     {
         public DateTime CreatedAt { get; set; }
     }

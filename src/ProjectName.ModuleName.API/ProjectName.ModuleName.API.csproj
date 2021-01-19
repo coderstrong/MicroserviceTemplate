@@ -23,16 +23,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Application\Commands\" />
-    <Folder Include="Application\Events\" />
-    <Folder Include="Application\Queries\" />
     <Folder Include="Controllers\" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\building-blocks\Stu.AspNetCore.Mvc\Stu.AspNetCore.Mvc.csproj" />
-    <ProjectReference Include="..\ProjectName.ModuleName.Domain\ProjectName.ModuleName.Domain.csproj" />
-    <ProjectReference Include="..\ProjectName.ModuleName.Infrastructure\ProjectName.ModuleName.Infrastructure.csproj" />
+    <ProjectReference Include="..\ProjectName.ModuleName.Application\ProjectName.ModuleName.Application.csproj" />
   </ItemGroup>
 
 </Project>

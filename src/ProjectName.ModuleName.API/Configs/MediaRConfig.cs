@@ -2,7 +2,7 @@ using System.Reflection;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using ProjectName.ModuleName.API.Application.Behaviors;
+using ProjectName.ModuleName.Application.Behaviors;
 
 namespace ProjectName.ModuleName.API.Configs
 {

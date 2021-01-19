@@ -1,6 +1,6 @@
 using AutoMapper;
-using ProjectName.ModuleName.API.Application.Commands;
-using ProjectName.ModuleName.API.Application.Queries;
+using ProjectName.ModuleName.Application.Commands;
+using ProjectName.ModuleName.Application.Queries;
 using ProjectName.ModuleName.Domain.Entities;
 
 namespace ProjectName.ModuleName.API.Configs.AutoMapper

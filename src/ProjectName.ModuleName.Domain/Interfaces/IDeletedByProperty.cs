@@ -1,6 +1,6 @@
 namespace ProjectName.ModuleName.Domain.Interfaces
 {
-    interface IDeletedByProperty
+    internal interface IDeletedByProperty
     {
         string DeletedBy { get; set; }
     }

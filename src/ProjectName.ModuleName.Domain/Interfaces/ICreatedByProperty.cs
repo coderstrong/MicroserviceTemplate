@@ -1,6 +1,6 @@
 namespace ProjectName.ModuleName.Domain.Interfaces
 {
-    interface ICreatedByProperty
+    internal interface ICreatedByProperty
     {
         public string CreatedBy { get; set; }
     }
