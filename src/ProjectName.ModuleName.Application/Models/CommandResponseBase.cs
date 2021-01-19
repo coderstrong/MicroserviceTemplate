@@ -1,6 +1,6 @@
 using System;
 
-namespace ProjectName.ModuleName.API.Models
+namespace ProjectName.ModuleName.Application.Models
 {
     public class CommandResponseBase
     {

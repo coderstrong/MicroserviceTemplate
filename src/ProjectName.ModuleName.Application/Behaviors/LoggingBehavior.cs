@@ -1,6 +1,6 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
-using ProjectName.ModuleName.API.Helper;
+using ProjectName.ModuleName.Application.Helper;
 using System.Threading;
 using System.Threading.Tasks;
 

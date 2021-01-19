@@ -1,7 +1,7 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using ProjectName.ModuleName.API.Helper;
+using ProjectName.ModuleName.Application.Helper;
 using ProjectName.ModuleName.Infrastructure.Database;
 using Serilog.Context;
 using System;

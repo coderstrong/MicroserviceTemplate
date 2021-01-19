@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ProjectName.ModuleName.Application.Commands;
 using ProjectName.ModuleName.Application.Queries;
-using ProjectName.ModuleName.API.Models;
+using ProjectName.ModuleName.Application.Models;
 
 namespace ProjectName.ModuleName.API.Controllers
 {
