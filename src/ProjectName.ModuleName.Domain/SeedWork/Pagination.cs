@@ -1,5 +1,3 @@
-using NSwag.Annotations;
-
 namespace ProjectName.ModuleName.Domain.SeedWork
 {
     public class Pagination
@@ -9,7 +7,6 @@ namespace ProjectName.ModuleName.Domain.SeedWork
 
         public int PageSize { get; set; }
 
-        [OpenApiIgnore]
         public int Skip
         {
             get
@@ -20,14 +17,10 @@ namespace ProjectName.ModuleName.Domain.SeedWork
             }
         }
 
-        [OpenApiIgnore]
-        public int TotalItem { get; set; }
-
         public Pagination()
         {
             this.PageIndex = 1;
             this.PageSize = _defaultPageSize;
-            this.TotalItem = this.PageSize;
         }
     }
 }

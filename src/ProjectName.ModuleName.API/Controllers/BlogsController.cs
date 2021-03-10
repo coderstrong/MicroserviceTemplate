@@ -5,8 +5,8 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ProjectName.ModuleName.Application.Commands;
-using ProjectName.ModuleName.Application.Queries;
 using ProjectName.ModuleName.Application.Models;
+using ProjectName.ModuleName.Application.Queries;
 
 namespace ProjectName.ModuleName.API.Controllers
 {

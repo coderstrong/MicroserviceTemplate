@@ -26,6 +26,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectName.ModuleName.Appl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectName.ModuleName.Api", "src\ProjectName.ModuleName.Api\ProjectName.ModuleName.Api.csproj", "{E32777EA-4B20-4A87-A2B8-2B71B6C6E993}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectName.ModuleName.GraphsQL", "src\ProjectName.ModuleName.GraphsQL\ProjectName.ModuleName.GraphsQL.csproj", "{355610D8-D61E-4B05-8004-583B2686E3AE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,6 +54,10 @@ Global
 		{E32777EA-4B20-4A87-A2B8-2B71B6C6E993}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E32777EA-4B20-4A87-A2B8-2B71B6C6E993}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E32777EA-4B20-4A87-A2B8-2B71B6C6E993}.Release|Any CPU.Build.0 = Release|Any CPU
+		{355610D8-D61E-4B05-8004-583B2686E3AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{355610D8-D61E-4B05-8004-583B2686E3AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{355610D8-D61E-4B05-8004-583B2686E3AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{355610D8-D61E-4B05-8004-583B2686E3AE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

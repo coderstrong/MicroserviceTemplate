@@ -65,7 +65,6 @@ namespace ProjectName.ModuleName.Infrastructure
 
                 if (paging != null)
                 {
-                    paging.TotalItem = query.Count();
                     query = query.Skip(paging.Skip).Take(paging.PageSize);
                 }
             }
@@ -96,7 +95,6 @@ namespace ProjectName.ModuleName.Infrastructure
                 query = orderBy(query);
                 if (paging != null)
                 {
-                    paging.TotalItem = query.Count();
                     query = query.Skip(paging.Skip).Take(paging.PageSize);
                 }
             }
@@ -129,7 +127,6 @@ namespace ProjectName.ModuleName.Infrastructure
                 query = orderBy(query);
                 if (paging != null)
                 {
-                    paging.TotalItem = query.Count();
                     query = query.Skip(paging.Skip).Take(paging.PageSize);
                 }
             }

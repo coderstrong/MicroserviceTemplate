@@ -1,4 +1,5 @@
-using System.Reflection;
+using System;
+using System.Linq;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,18 +11,20 @@ namespace ProjectName.ModuleName.API.Configs
     {
         public static IServiceCollection AddMediaRModule(this IServiceCollection services)
         {
-            var assembly = Assembly.GetExecutingAssembly();
+            var assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(assembly => assembly.GetName().Name.Contains(".Application")).ToList();
 
-            AssemblyScanner.FindValidatorsInAssembly(assembly)
-            .ForEach(result =>
+            foreach (var assembly in assemblies)
             {
-                services.AddTransient(result.InterfaceType, result.ValidatorType);
-            });
+                AssemblyScanner.FindValidatorsInAssembly(assembly)
+                .ForEach(result =>
+                {
+                    services.AddTransient(result.InterfaceType, result.ValidatorType);
+                });
+                services.AddMediatR(assembly);
+            }
 
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidatorBehavior<,>));
-
-            services.AddMediatR(assembly);
 
             return services;
         }

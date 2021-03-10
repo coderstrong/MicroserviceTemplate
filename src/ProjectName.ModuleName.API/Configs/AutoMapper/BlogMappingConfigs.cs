@@ -12,6 +12,7 @@ namespace ProjectName.ModuleName.API.Configs.AutoMapper
             CreateMap<Blog, GetBlogByIdQueryResponseModel>().ReverseMap();
             CreateMap<Blog, CreateBlogCommand>().ReverseMap();
             CreateMap<Blog, UpdateBlogCommand>().ReverseMap();
+            CreateMap<Blog, GetBlogQueryResponseModel>().ReverseMap();
         }
     }
 }

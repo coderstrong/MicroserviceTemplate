@@ -1,6 +1,5 @@
 using System.Linq;
 using System.Runtime.Serialization;
-using NSwag.Annotations;
 
 namespace Stu.AspNetCore.Mvc
 {
@@ -11,7 +10,6 @@ namespace Stu.AspNetCore.Mvc
         public int PageSize { get; set; }
 
         [IgnoreDataMember]
-        [OpenApiIgnore]
         public int Skip
         {
             get
@@ -25,15 +23,10 @@ namespace Stu.AspNetCore.Mvc
             }
         }
 
-        [IgnoreDataMember]
-        [OpenApiIgnore]
-        public int TotalItem { get; set; }
-
         public Pagination()
         {
             PageIndex = 1;
             PageSize = 10;
-            TotalItem = PageSize;
         }
     }
 

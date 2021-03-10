@@ -8,7 +8,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ProjectName.ModuleName.API.Configs;
 using ProjectName.ModuleName.Domain.SeedWork;
-using ProjectName.ModuleName.Infrastructure.Dapper;
 using ProjectName.ModuleName.Infrastructure.Database;
 
 namespace ProjectName.ModuleName.API
@@ -30,13 +29,6 @@ namespace ProjectName.ModuleName.API
             services.AddMediaRModule();
 
             ConfigureContext(services);
-
-            services.AddDapper(o =>
-            {
-                o.Schema = "BlogSample";
-                o.DatabaseType = DatabaseType.SqlServer;
-                o.ConnectionString = Configuration.GetSection("ConnectionStrings:BlogConnection").Value;
-            });
 
             services.LoadServices();
 
